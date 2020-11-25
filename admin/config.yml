@@ -7,6 +7,4 @@ collections:
     label: 'Blog'
     folder: '_posts/'
     fields:
-      -
-
-{ name: Title }
+      - { name: Title }
