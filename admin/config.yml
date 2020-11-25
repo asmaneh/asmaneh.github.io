@@ -1,10 +1,16 @@
 backend:
   name: github
   repo: asmaneh/asmaneh.github.io # Path to your GitHub repository
-media_folder: 'assets/uploads'
+media_folder: 'upload/img'
+
 collections:
-  - name: 'blog'
-    label: 'Blog'
-    folder: '_posts/'
-    fields:
-      - { name: Title }
+  - name: 'site_settings'
+    label: 'Site settings'
+    files:
+      - label: 'Site settings'
+        name: 'site'
+        file: '_data/site.yml'
+        fields:
+          - label: 'Tel'
+            name: 'tel'
+            width: 'string'
