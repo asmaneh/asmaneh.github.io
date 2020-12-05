@@ -1,0 +1,4 @@
+---
+title: نظری
+slug: theory
+---

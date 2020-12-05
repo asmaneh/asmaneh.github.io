@@ -1,0 +1,33 @@
+<section id="topSection" class="py-5 bg-black" style="{% if page.background %} background-image:linear-gradient(#000000dd, #000000dd),url('{{page.background}}'); {%else%}background-image:linear-gradient(#000000dd, #000000dd),url('/assets/img/topSectionBg.jpg');{%endif%}">
+  <div class="container-fluid">
+    <div class="col-12">
+      <div class="card bg-transparent border-0">
+          <div class="row no-gutters">
+            {% if page.image %}
+              <div class="col-sm-2"  style="margin-left: -50px;">
+                  <img class="card-img border border-3 border-dark" src="{{page.image}}" alt="{{page.title}}">
+              </div>
+              {%endif%}
+              <div class="col-sm mt-5">
+                <div class="d-flex flex-row mb-0">
+                  <div class="h4 py-2 px-3 mt-auto bg-light border border-3 border-dark mb-0 border-bottom-0">
+                    {{pcollection.title}}
+                  </div>
+                </div>
+                <div class="card-body border border-3 border-dark mt-0  bg-light">
+                  <h1 class="card-title">{{page.title}} </h1>
+                  <h4><?php echo $author;  ?></h4>
+                  <p class="lead card-text"><?php echo $excerpt;  ?></p>
+                </div>
+                <div class="d-flex flex-row mt-0 justify-content-end">
+                  <div class="h4 py-2 px-3 mt-auto bg-light border border-3 border-dark mb-0 border-top-0">
+                    تعداد مطلب: {{pagesize}}
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+
+    </div>
+  </div>
+</section>

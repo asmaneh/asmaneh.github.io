@@ -1,0 +1,48 @@
+<section id="topSection" class="h-100 py-3 bg-black text-light" style="{% if page.featureImg %} background-image:linear-gradient(#00000090, #00000090),url('{{page.featureImg}}');{%endif%}">
+  <div class="container h-100">
+    <div class="row h-100">
+      <div class=" p-3 d-flex  align-items-start flex-column">
+        <div class="h2  border border-3 w-100 border-white p-4 mb-0">
+          {{page.title}}
+        </div>
+        {% if pageauthorurl %}
+        <a class="link-dark-box" href="{{pageauthorurl}}">
+          <div class="h3 py-2 px-3 border border-top-0 border-3 border-white mt-0">
+            {{pageauthor}}
+          </div>
+        </a>
+        {%else%}
+        <div class="h3 py-2 px-3 border border-top-0 border-3 border-white mt-0">
+          {{pageauthor}}
+        </div>
+        {%endif%}
+      </div>
+    </div>
+    <div class="row h-100">
+      <div class="col-md-6 pt-5 offset-md-6 d-flex  align-items-end flex-column">
+        {% for category in page.categories %}{% assign cat = site.categories | where: 'slug', category | first %}
+        {% if cat %}
+        <a class="link-dark-box" href="{{cat.url}}">
+          <div class="h4 py-2 px-3 border border-3 border-white mt-0 mb-0 border-bottom-0 text-center" style="min-width:150px">
+          {{cat.title}}
+          </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+        {% for type in page.types %}{% assign typ = site.types | where: 'slug', type | first %}
+        {% if typ %}
+        <a class="link-dark-box" href="{{typ.url}}">
+          <div class="h4 py-2 px-3 border border-3 border-white mt-0 mb-0 border-bottom-0 text-center" style="min-width:200px">
+            {{typ.title}}
+          </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+        <div class="persianDate h4 py-2 px-3 mt-auto border border-3 border-white float-right text-center" style="min-width:250px">
+          {{page.date }}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

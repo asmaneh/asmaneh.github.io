@@ -1,0 +1,57 @@
+---
+title: "کتاب تازه: «معماری هم‌زیستی: ساختن کثرت‌گرایی»"
+types: book
+categories: theory
+authors: عذرا آقشامیجه
+featureImg: '/assets/img/posts/8-1.jpg'
+---
+![](/assets/img/posts/8-1.jpg){: .img-float-left}
+`Architecture of Coexistence: Building Pluralism`
+`by Azra Aksamija`
+`Architangle, 2020`
+
+در این زمان که اختلافات فزاینده‌ای وجود دارد، معماری هم‌زیستی در صدد ترویج کثرت‌گرایی از دریچهٔ معماری معاصری است که مسلمانان در اروپا از آن مطلع و ساکن هستند. در این کتاب سؤال می‌شود که چگونه معماری می‌تواند جامعه‌ای آزاد‌اندیش و فراگیر را شکل دهد. پرسش اصلی این کتاب در تلاقی هنر، معماری و حفاظت فرهنگی، و همراه با سه پروژهٔ معماری مشهور در سطح بین‌المللی که در چهار دهه گذشته جایزهٔ معماری آقاخان را دریافت‌ کرده‌اند طرح می‌شود: مسجد سفید در ویسوکو، بوسنی هرزگوین (برندهٔ ۱۹۸۳)؛ گورستان اسلامی التاچ در فورآرلبرگ، اتریش (برندهٔ ۲۰۱۳)؛ و سوپرکلاین در کپنهاگ، دانمارد (برندهٔ۲۰۱۷).
+
+معماری هم‌زیستی دیدگاه منحصر‌ به فرد و چند‌رشته‌ای در مورد این پرو‌ژه‌های برگزیده شده ارائه می‌دهد. به جای مشاهدهٔ یک ساختمان تکمیل شده به مثابهٔ نقطهٔ پایان، تأثیر اجتماعی معماری را در بازهٔ زمانی طولانی‌تری بررسی می‌کند. معماری به مثابهٔ یک رسانهٔ اجتماعی که تأثیر مثبتی بر جوامع خود دارد چگونه عمل می‌کند؟ زیبایی‌شناسی چه نقشی در پرورش کثرت گرایی و درک بهتر فرهنگ‌ها دارد؟
+
+جدا از مصاحبه‌هایی که با معماران پروژه‌ها و کاربران روزمره‌ٔ آن انجام گرفته، مقاله‌های علمی‌ در زمینه‌های مختلفْ بینش جالب توجهی را در مورد توانایی معماری برای زدودن شکاف‌های فرهنگی عرضه می‌کند. طرح پرسش‌های گسترده در بارهٔ مهاجرت، فرهنگ‌پذیری، شمول و محرومیتْ فرآیند‌های طولانی مدت اجتماعی ایجاد شده بین فرم معماری و کاربران آن را روشن می‌کند.
+
+از آنجا که با چالش‌های بی‌سابقه‌ای رو‌به‌رو هستیم، از تهدید تغییرات اقلیمی و طیف وسیعی از بیماری‌های مزمن اجتماعی که دیگر نمی‌توانیم آنها را نادیده بگیریم- نژاد‌پرستی، بیگانه‌ستیزی و بیگانگی اجتماعی- معماری هم‌زیستی یک دیدگاه میان‌رشته‌ای را در بارهٔ موضوعی به‌هنگام عرضه می‌کند: «ساختن کثرت‌گرایی» به معنای طراحی برای احترام گذاشتن به نیاز‌ها، شیوه‌ها و سنت‌های مختلف فرهنگی است.
+
+## فهرست مطالب کتاب:
+
+`Architecture and harmony I Foreword by Farrokh Derakhshani`
+`Architecture of Coexistence: Building Pluralism I Introduction by Azra Akšamija`
+
+`I. Building Pluralism`
+`Beyond Homogeneity: On the Concept of Transculturality I Wolfgang Welsch`
+`Immigrant Communities and Their Buildings I Mohammad al-Asad`
+`The Architecture of Death in Islam: A Brief Cross-cultural History I Nasser Rabbat`
+
+`II. Divergence`
+`The White Mosque, Visoko, Bosnia and Herzegovina I Photo Essay by Velibor Božović`
+`Headless, They March On: Cephalophores and Coexistence in Ottoman Bosnia I Amila Buturović`
+`Bosnia and the Destruction of Coexistence I Helen Walasek`
+`Mosque First: Coming to Terms with the Legacy of Past Abuses in Bosnia Through Heritage Restoration I Amra Hadžimuhamedović`
+
+`III. Dissonance`
+`Superkilen, Copenhagen, Denmark I Photo Essay by Jesper Lambaek, Conversations by Tina Gudrun Jensen`
+`Rhetoric of Segregation, Everyday Forms of Coexistence: Diverging Visions of Diversity and Coexistence in Denmark I Tina Gudrun Jensen`
+`A “Border Concept”: Scandinavian Public Space in the Twenty-First Century I Jennifer Mack`
+`Conflictual Constellations: On Superkilen I Barbara Steiner`
+
+`IV. Convergence`
+`Islamic Cemetery Altach, Austria I Photo Essay by Nikolaus Walter and Cemal Emden, with Interviews by Robert Fabach`
+`Cultivating Convergence: The Islamic Cemetery Altach, Austria I Azra Akšamija`
+`The Islamic Cemetery as an Expression of the Process of Muslim Belonging in Vorarlberg I Simon Burtscher-Mathis`
+`An Offer of Leadership I Eva Grabherr in conversation with Azra Akšamija`
+
+`V. Epilogue`
+`Islam, Arts, and Pedagogy I Ali S. Asani`
+
+
+
+
+## اطلاعات بیشتر دربارۀ این کتاب:
+
+https://architangle.com/book/architecture-of-coexistence

@@ -1,0 +1,4 @@
+---
+title: تاریخی
+slug: historical
+---

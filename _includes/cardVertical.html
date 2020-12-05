@@ -1,0 +1,55 @@
+{% if pagecollection == 'categories' %}
+{% for type in post.types %}{% assign typ = site.types | where: 'slug', type | first %}
+{% if typ %}{% assign topcat = typ.title %}{% assign topcaturl = typ.url %}{% endif %}
+{% endfor %}
+{% else %}
+{% for category in post.categories %}{% assign cat = site.categories | where: 'slug', category | first %}
+{% if cat %}{% assign topcat = cat.title %}{% assign topcaturl = cat.url %}{% endif %}
+{% endfor %}
+{% endif %}
+{% for author in post.authors %}{% assign auth = site.authors | where: 'slug', author | first %}
+{% if auth %}
+{% assign pageauthor = auth.title %}
+{% assign pageauthorurl = auth.url %}
+{% else %}
+{% assign pageauthor = post.authors %}
+{% endif %}
+{% endfor %}
+{% if post.featureImg %}
+{% assign excerptn = 20 %}
+{%else%}
+{% assign excerptn = 50 %}
+{%endif%}
+  <div class="card shadow-sm  p-0 text-dark border bg-light border-3 border-dark">
+          <div class="card-body m-0 p-0">
+            {% if post.featureImg %}
+              <a href="{{post.url}}">
+              <div class="card-image card-image-vr">
+                <div class="square" style="background-image: url('{{post.featureImg}}')">
+                </div>
+              </div>
+              </a>
+              {%endif%}
+            <div class="d-flex flex-row mb-0 mt-3">
+              <a class="link-light-box" href="{{topcaturl}}">
+              <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0 border-left-0">
+                {{topcat}}
+              </div>
+              </a>
+            </div>
+            <div class="border border-3 border-dark border-bottom-0 border-left-0 border-right-0 mt-0  bg-light p-0">
+              <div class="p-3">
+                <h5 class="card-title"><a href="{{post.url}}">{% if post.shortTitle%}{{post.shortTitle}}{%else%}{{post.title}}{%endif%}</a></h5>
+                {%if pageauthorurl%}<a href="{{pageauthorurl}}"><h6>{{pageauthor}}</h6></a>{%else%}<h6>{{pageauthor}}</h6>{%endif%}
+                <p class="card-text">{{post.content | markdownify | truncatewords: 25  | strip_html}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer m-0 p-0 border-0 bg-light">
+            <div class="d-flex flex-row mb-0 justify-content-end">
+              <div class="persianDate h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0 border-right-0">
+                {{post.date}}
+              </div>
+            </div>
+</div>
+  </div>

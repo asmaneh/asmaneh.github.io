@@ -1,0 +1,4 @@
+---
+title: نقد
+slug: critique
+---

@@ -1,0 +1,126 @@
+html, body {
+  font-family: IRANSans, Arial !important;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.65;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  line-height: 1.65;
+}
+a {
+  color: #000000;
+  font-weight: 500;
+  text-decoration: none !important;
+  line-height: 1.6;
+}
+a:hover {
+  color: #000000;
+}
+p {
+  text-align: justify;
+}
+.navbar {
+}
+.logo {
+  filter: invert(1);
+  height: 80px;
+}
+#topSection {
+  background-size: cover;
+  background-position: center;
+}
+.border-3 {
+    border-width:3px !important;
+}
+.bg-black {
+    background-color: #111111 !important;
+}
+.bg-night {
+  background-color: #000000 !important;
+}
+.img-float-left {
+  width: 50%;
+  float: left;
+  margin: 10px 20px 10px -150px;
+}
+.img-float-right {
+  width: 50%;
+  float: right;
+  margin: 10px -150px 10px 20px;
+}
+@media only screen and (max-width: 600px) {
+  .img-float-left,.img-float-right {
+    width: 100%;
+    margin: 10px auto;
+  }
+  .card-image-hr {
+      margin-bottom: -100px;
+  }
+}
+.card-image-hr {
+    margin-left: -50px;
+}
+.card-image-vr {
+  margin-bottom: -150px;
+}
+.card-title a:hover{
+  border-bottom: 2px solid;
+}
+code {
+  color: inherit;
+}
+blockquote {
+  background: #f9f9f9;
+  border-right: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  text-align: justify;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-left: 0.25em;
+  vertical-align: -0.4em;
+}
+blockquote p {
+  display: inline;
+}
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+}
+.thumb-img {
+  object-fit: cover;
+  object-position: center;
+  height: 10vw;
+  width: 10vw;
+}
+.square {
+  width: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.square:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+.link-light-box div {
+  color: #111111 !important;
+}
+.link-light-box div:hover {
+  background-color: #111111 !important;
+  color: #EEEEEE !important;
+}
+.link-dark-box div {
+  color: #EEEEEE !important;
+}
+.link-dark-box div:hover {
+  background-color: #EEEEEE !important;
+  color: #111111 !important;
+}
