@@ -51,7 +51,8 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
-permalink: /:categories/:title/
+permalink: /:types/:categories/:title/
+permalink_custom_vars: ['types']
 collections:
   authors:
     output: true
