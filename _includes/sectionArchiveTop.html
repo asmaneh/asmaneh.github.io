@@ -9,19 +9,21 @@
               </div>
               {%endif%}
               <div class="col-sm mt-5">
-                <div class="d-flex flex-row mb-0">
-                  <div class="h4 py-2 px-3 mt-auto bg-light border border-3 border-dark mb-0 border-bottom-0">
-                    {{pcollection.title}}
+                <div class="card-body border border-3 border-dark mt-0  bg-light p-0">
+                  <div class="d-flex flex-row mb-0">
+                    <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-top-0 border-left-0">
+                      {{pcollection.title}}
+                    </div>
                   </div>
-                </div>
-                <div class="card-body border border-3 border-dark mt-0  bg-light">
-                  <h1 class="card-title">{{page.title}} </h1>
-                  <h4><?php echo $author;  ?></h4>
-                  <p class="lead card-text"><?php echo $excerpt;  ?></p>
-                </div>
-                <div class="d-flex flex-row mt-0 justify-content-end">
-                  <div class="h4 py-2 px-3 mt-auto bg-light border border-3 border-dark mb-0 border-top-0">
-                    تعداد مطلب: {{pagesize}}
+                  <div class="px-3">
+                    <h1 class="card-title">{{page.title}} </h1>
+                    <h4><?php echo $author;  ?></h4>
+                    <p class="lead card-text"><?php echo $excerpt;  ?></p>
+                  </div>
+                  <div class="d-flex flex-row mt-0 justify-content-end">
+                    <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0 border-right-0">
+                      تعداد مطلب: {{pagesize}}
+                    </div>
                   </div>
                 </div>
               </div>

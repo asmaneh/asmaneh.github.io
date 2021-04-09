@@ -2,6 +2,7 @@
 layout: default
 ---
 {%assign pagecollection = page.collection %}
+{{pagecollection}}
 {% assign pcollection = site.collections | where: "label", pagecollection | first %}
 {% assign pagesize = site.posts | where: pagecollection , page.slug | size %}
 <main role="main">

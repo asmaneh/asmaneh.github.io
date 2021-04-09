@@ -1,0 +1,58 @@
+- name: home
+  label: صفحه نخست
+  link: /
+  faClass: "fa fa-home"
+- name: enter
+  label: ورود
+  link: /login/
+- name: about
+  label: درباره
+  link: /about/
+- name: articles
+  label: یادداشت‌‌ها
+  link: ''
+  subitems:
+    - name: historical
+      label: تاریخی
+      link: /historical/
+    - name: theory
+      label: نظری
+      link: /theory/
+    - name: critique
+      label: نقد
+      link: /critique/
+    - name: iranologie
+      label: ایران‌‌شناسی
+      link: /iranologie/
+- name: news
+  label: خبر و گزارش
+  link: /news/
+- name: books
+  label: کتاب، مقاله، نشریه
+  link: ''
+  subitems:
+    - name: book
+      label: کتاب
+      link: /book/
+    - name: article
+      label: مقاله
+      link: /article/
+    - name: periodical
+      label: نشریه
+      link: /periodical/
+    - name: asmanehBooks
+      label: کتاب‌‌های آسمانه
+      link: /asmaneBooks/
+
+- name: spetial
+  label: پرونده‌‌ها
+  link: /spetials/
+- name: research
+  label: پژوهش
+  link: /research/
+- name: voices
+  label: صداها
+  link: /voices/
+- name: library
+  label: کتابخانه
+  link: /library

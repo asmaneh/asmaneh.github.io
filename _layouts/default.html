@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ site.title }} {% if page.title %} | {{ page.title }}{% endif %}</title>
     <link rel="stylesheet" href="/assets/vendors/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/vendors/fontawesome/css/all.css">
     <link rel="stylesheet" href="/assets/vendors/trumbowyg/ui/trumbowyg.min.css">
     <link rel="stylesheet" href="/assets/vendors/lightbox/ekko-lightbox.css">
     <link rel="stylesheet" href="/assets/css/asmaneh.css">
@@ -17,12 +18,41 @@
     <script src="/assets/vendors/moment.js"></script>
     <script src="/assets/vendors/moment-jalaali.js"></script>
     <script src="/assets/vendors/lightbox/ekko-lightbox.min.js"></script>
-
-    <script type="text/javascript" src="/assets/js/asmaneh.js"></script>
   </head>
   <body>
-    {% include nav-top.html %}
-    {{content}}
-    {% include footer.html %}
+    <div id="mySidenav" class="sidenav bg-black text-light" id="search-demo-container">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <h2 class="ml-3">جستجو</h2>
+      <div class="input-group input-group-lg">
+        <input type="search" id="search-input" class="form-control rounded-0" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+      </div>
+      <div>
+        <ul id="results-container"></ul>
+      </div>
+
+    </div>
+    <main id="main" role="main">
+      {% include nav-top.html %}
+      {{content}}
+      {% include footer.html %}
+
+    </main>
   </body>
 </html>
+<script src="/assets/js/simple-jekyll-search.min.js"></script>
+<script type="text/javascript" src="/assets/js/functions.js"></script>
+<script type="text/javascript" src="/assets/js/asmaneh.js"></script>
+{% if page.jsFile %}<script type="text/javascript" src="/assets/js/{{page.jsFile}}"></script>{% endif %}
+
+<script>
+  window.simpleJekyllSearch = new SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('results-container'),
+    json: '{{ site.baseurl }}/search.json',
+    searchResultTemplate: '<li><a href="{url}?query={query}" title="{desc}">{title}</a></li>',
+    noResultsText: 'No results found',
+    limit: 10,
+    fuzzy: false,
+    exclude: ['Welcome']
+  })
+</script>

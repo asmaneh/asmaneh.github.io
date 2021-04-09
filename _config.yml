@@ -51,7 +51,8 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
-permalink: /posts/:title/
+permalink: /:types/:categories/:title/
+permalink_custom_vars: ['types']
 collections:
   authors:
     output: true
@@ -76,11 +77,13 @@ defaults:
       type: "types"
     values:
       layout: "archive"
+      permalink: :categories/:title
   - scope:
       path: ""
       type: "categories"
     values:
       layout: "archive"
+      permalink: :title
   - scope:
       path: ""
       type: "tags"

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>آسمانه </title>
     <link rel="stylesheet" href="/assets/vendors/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/vendors/fontawesome/css/all.css">
     <link rel="stylesheet" href="/assets/vendors/trumbowyg/ui/trumbowyg.min.css">
     <link rel="stylesheet" href="/assets/vendors/lightbox/ekko-lightbox.css">
     <link rel="stylesheet" href="/assets/css/asmaneh.css">
@@ -17,11 +18,21 @@
     <script src="/assets/vendors/moment.js"></script>
     <script src="/assets/vendors/moment-jalaali.js"></script>
     <script src="/assets/vendors/lightbox/ekko-lightbox.min.js"></script>
-
-    <script type="text/javascript" src="/assets/js/asmaneh.js"></script>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg py-3 navbar-light bg-white shadow-sm">
+    <div id="mySidenav" class="sidenav bg-black text-light" id="search-demo-container">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <h2 class="ml-3">جستجو</h2>
+      <div class="input-group input-group-lg">
+        <input type="search" id="search-input" class="form-control rounded-0" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+      </div>
+      <div>
+        <ul id="results-container"></ul>
+      </div>
+
+    </div>
+    <main id="main" role="main">
+      <nav class="navbar navbar-expand-lg py-3 navbar-light bg-white shadow-sm">
   <div class="container-fluid">
     <a href="/" class="navbar-brand">
       <!-- Logo Image -->
@@ -32,25 +43,112 @@
 
     <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
 
-    <div id="navbarSupportedContent" class="collapse navbar-collapse">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active"><a href="#" class="nav-link">صفحه نخست <span class="sr-only">(current)</span></a></li>
-        <li class="nav-item"><a href="#" class="nav-link">درباره</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">تماس</a></li>
-      </ul>
+    <div id="navbarSupportedContent" class="collapse navbar-collapse justify-content-end">
+        <div class="btn-group rounded-0 guest">
+          <a href="/login" class="btn btn-primary-outline rounded-0 border-0">ورود</a>
+        </div>
+        <div class="btn-group rounded-0 user">
+          <a href="/dashboard/" class="btn btn-primary-outline rounded-0 border-0 user-fullname"></a>
+          <button type="button" class="btn btn-primary-outline rounded-0 border-0 dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+            <a class="dropdown-item" href="/editprofile/">ویرایش اطلاعات شخصی</a>
+            <a class="dropdown-item" href="/newpost/">ارسال مطلب جدید</a>
+            <a class="dropdown-item reviewer admin" href="/review/" style="display:none;">بررسی مطالب ارسال شده</a>
+            <a class="dropdown-item admin" href="/adduser/" style="display:none;">افزودن کاربر جدید</a>
+          </div>
+        </div>
+
+        
+        
+        <div class="btn-group rounded-0">
+          <a href="/blog" class="btn btn-primary-outline rounded-0 border-0">یادداشت‌‌ها</a>
+          
+          <button type="button" class="btn btn-primary-outline rounded-0 border-0 dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+            
+            <a class="dropdown-item" href="/blog/art">هنر</a>
+            
+            <a class="dropdown-item" href="/blog/choices">گزیده</a>
+            
+            <a class="dropdown-item" href="/blog/critique">نقد</a>
+            
+            <a class="dropdown-item" href="/blog/historical">تاریخی</a>
+            
+            <a class="dropdown-item" href="/blog/iranologie">ایران‌‌شناسی</a>
+            
+            <a class="dropdown-item" href="/blog/theory">نظری</a>
+            
+          </div>
+          
+        </div>
+        
+        
+        <div class="btn-group rounded-0">
+          <a href="/news" class="btn btn-primary-outline rounded-0 border-0">خبر و گزارش</a>
+          
+        </div>
+        
+        
+        <div class="btn-group rounded-0">
+          <a href="/bap" class="btn btn-primary-outline rounded-0 border-0">کتاب، مقاله، نشریه</a>
+          
+          <button type="button" class="btn btn-primary-outline rounded-0 border-0 dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+            
+            <a class="dropdown-item" href="/bap/asmaneBooks">کتابهای آسمانه</a>
+            
+            <a class="dropdown-item" href="/bap/book">کتاب</a>
+            
+            <a class="dropdown-item" href="/bap/periodical">نشریه</a>
+            
+          </div>
+          
+        </div>
+        
+        
+        <div class="btn-group rounded-0">
+          <a href="/bulletins" class="btn btn-primary-outline rounded-0 border-0">پرونده‌‌ها</a>
+          
+        </div>
+        
+        
+        <div class="btn-group rounded-0">
+          <a href="/research" class="btn btn-primary-outline rounded-0 border-0">پژوهش</a>
+          
+        </div>
+        
+        
+        <div class="btn-group rounded-0">
+          <a href="/voices" class="btn btn-primary-outline rounded-0 border-0">صداها</a>
+          
+        </div>
+        
+        
+        <div class="btn-group rounded-0">
+          <a href="/library" class="btn btn-primary-outline rounded-0 border-0">کتابخانه</a>
+          
+        </div>
+        
     </div>
   </div>
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()"> &#x2315; </span>
+
 </nav>
 
-    <main role="main">
-  
+        
   
   
 <section id="topSection" class="d-flex  py-3 bg-black text-light" style="min-height: calc(100vh - 96px); background-image:linear-gradient(#000000dd, #000000dd),url('/assets/img/posts/3-1.jpg'); ">
   <div class="align-self-center container">
     <div class="row pb-5">
       <div class=" p-3 d-flex  align-items-start flex-column">
-        <a class="link-dark-box" href="/posts/4/">
+        <a class="link-dark-box" href="/blog/iranologie/4/">
           <div class="h2  border border-3 w-100 border-white p-4 mb-0">
             مرمت و الهام شاهانه
           </div>
@@ -68,7 +166,7 @@
       <div class="col-md-6 pt-5 offset-md-6 d-flex  align-items-end flex-column">
         
         
-        <a class="link-dark-box" href="/categories/iranologie/">
+        <a class="link-dark-box" href="/blog/iranologie">
           <div class="h4 py-2 px-3 border border-3 border-white mt-0 mb-0 border-bottom-0 text-center" style="min-width:150px">
           ایران‌‌شناسی
           </div>
@@ -77,9 +175,9 @@
         
         
         
-        <a class="link-dark-box" href="/types/blog/">
+        <a class="link-dark-box" href="/blog">
           <div class="h4 py-2 px-3 border border-3 border-white mt-0 mb-0 border-bottom-0 text-center" style="min-width:200px">
-            وب‌‌نوشت
+            یادداشت‌‌ها
           </div>
         </a>
         
@@ -107,16 +205,16 @@
       <div class="row no-gutters">
         
           <div class="col-sm mt-2" >
-            <div class="d-flex flex-row mb-0  ">
-              <a class="link-light-box" href="/categories/theory/">
-              <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0">
-                نظری
-              </div>
-              </a>
-            </div>
             <div class="card-body border border-3 border-dark mt-0  bg-light p-0">
-              <div class="p-3">
-                <h5 class="card-title"><a href="/posts/9/">برگزاری مجموعه گفتگوهای آنلاین «نکته»</a></h5>
+              <div class="d-flex flex-row mb-0  ">
+                <a class="link-light-box" href="/blog/theory">
+                  <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-top-0 border-left-0">
+                    نظری
+                  </div>
+                </a>
+              </div>
+              <div class="px-3 pb-3">
+                <h5 class="card-title"><a href="/news/theory/9/">برگزاری مجموعه گفتگوهای آنلاین «نکته»</a></h5>
                 <a href="/authors/nrokni/"><h6>عذرا آقشامیجه</h6></a>
                 <p class="card-text"> سخنران: شارلوت بنک میزبان: مجمع هنر مدرن و معاصرِ جهان عرب، ایران، ترکیه (AMCA)     زمان...</p>
               </div>
@@ -142,23 +240,23 @@
       <div class="row no-gutters">
         
           <div class="col-sm-4 card-image card-image-hr">
-            <a href="/posts/8/">
+            <a href="/book/theory/8/">
             <div class="square border border-3 border-dark" style="background-image: url('/assets/img/posts/8-1.jpg')">
             </div>
           </a>
           </div>
           
           <div class="col-sm mt-2" >
-            <div class="d-flex flex-row mb-0  ">
-              <a class="link-light-box" href="/categories/theory/">
-              <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0">
-                نظری
-              </div>
-              </a>
-            </div>
             <div class="card-body border border-3 border-dark mt-0  bg-light p-0">
-              <div class="p-3">
-                <h5 class="card-title"><a href="/posts/8/">کتاب تازه: «معماری هم‌زیستی: ساختن کثرت‌گرایی»</a></h5>
+              <div class="d-flex flex-row mb-0  ">
+                <a class="link-light-box" href="/blog/theory">
+                  <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-top-0 border-left-0">
+                    نظری
+                  </div>
+                </a>
+              </div>
+              <div class="px-3 pb-3">
+                <h5 class="card-title"><a href="/book/theory/8/">کتاب تازه: «معماری هم‌زیستی: ساختن کثرت‌گرایی»</a></h5>
                 <a href="/authors/nrokni/"><h6>عذرا آقشامیجه</h6></a>
                 <p class="card-text"> Architecture of Coexistence: Building Pluralism by Azra Aksamija Architangle,...</p>
               </div>
@@ -184,23 +282,23 @@
       <div class="row no-gutters">
         
           <div class="col-sm-4 card-image card-image-hr">
-            <a href="/posts/6/">
+            <a href="/asnad/theory/6/">
             <div class="square border border-3 border-dark" style="background-image: url('/assets/img/posts/6-1.jpg')">
             </div>
           </a>
           </div>
           
           <div class="col-sm mt-2" >
-            <div class="d-flex flex-row mb-0  ">
-              <a class="link-light-box" href="/categories/theory/">
-              <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0">
-                نظری
-              </div>
-              </a>
-            </div>
             <div class="card-body border border-3 border-dark mt-0  bg-light p-0">
-              <div class="p-3">
-                <h5 class="card-title"><a href="/posts/6/">فتوگرافی آنتوان‌خان</a></h5>
+              <div class="d-flex flex-row mb-0  ">
+                <a class="link-light-box" href="/blog/theory">
+                  <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-top-0 border-left-0">
+                    نظری
+                  </div>
+                </a>
+              </div>
+              <div class="px-3 pb-3">
+                <h5 class="card-title"><a href="/asnad/theory/6/">فتوگرافی آنتوان‌خان</a></h5>
                 <a href="/authors/nrokni/"><h6>حمیدرضا نوری‌مطلق</h6></a>
                 <p class="card-text">مؤسسۀ اسمیتسونیَن (Smithsonian Institute) نام اسمیتسونین را شاید تا به حال شنیده باشید. این موسسه با هدف دانش‌افزایی میان مردم...</p>
               </div>
@@ -226,16 +324,16 @@
       <div class="row no-gutters">
         
           <div class="col-sm mt-2" >
-            <div class="d-flex flex-row mb-0  ">
-              <a class="link-light-box" href="/categories/critique/">
-              <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0">
-                نقد
-              </div>
-              </a>
-            </div>
             <div class="card-body border border-3 border-dark mt-0  bg-light p-0">
-              <div class="p-3">
-                <h5 class="card-title"><a href="/posts/7/">شر: چیزی در همین دور و بر</a></h5>
+              <div class="d-flex flex-row mb-0  ">
+                <a class="link-light-box" href="/blog/critique">
+                  <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-top-0 border-left-0">
+                    نقد
+                  </div>
+                </a>
+              </div>
+              <div class="px-3 pb-3">
+                <h5 class="card-title"><a href="/blog/critique/7/">شر: چیزی در همین دور و بر</a></h5>
                 <a href="/authors/mqayoomi/"><h6>مهرداد قیومی بیدهندی</h6></a>
                 <p class="card-text">پدری دخترِ خود را سر می‌برد و وقتی که می‌شنویم او مردی معمولی و زحمت‌کش است و بدخواه نیست، باور...</p>
               </div>
@@ -261,16 +359,16 @@
       <div class="row no-gutters">
         
           <div class="col-sm mt-2" >
-            <div class="d-flex flex-row mb-0  ">
-              <a class="link-light-box" href="/categories/historical/">
-              <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0">
-                تاریخی
-              </div>
-              </a>
-            </div>
             <div class="card-body border border-3 border-dark mt-0  bg-light p-0">
-              <div class="p-3">
-                <h5 class="card-title"><a href="/posts/5/">معماری، عدالت، تاریخ‌نویسی (۱)</a></h5>
+              <div class="d-flex flex-row mb-0  ">
+                <a class="link-light-box" href="/blog/historical">
+                  <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-top-0 border-left-0">
+                    تاریخی
+                  </div>
+                </a>
+              </div>
+              <div class="px-3 pb-3">
+                <h5 class="card-title"><a href="/blog/historical/5/">معماری، عدالت، تاریخ‌نویسی (۱)</a></h5>
                 <a href="/authors/mmabdollahzadeh/"><h6>محمدمهدی عبدالله‌زاده</h6></a>
                 <p class="card-text">عموماً تاریخ معماری را به مطالعۀ آثارش می‌شناسیم، خصوصاً آثار شاخص و چشم‌گیر. در معماری اسلامی هم همین‌طور است؛ مانند...</p>
               </div>
@@ -296,29 +394,29 @@
       <div class="row no-gutters">
         
           <div class="col-sm-4 card-image card-image-hr">
-            <a href="/posts/3/">
+            <a href="/blog/historical/3/">
             <div class="square border border-3 border-dark" style="background-image: url('/assets/img/posts/4-1.jpg')">
             </div>
           </a>
           </div>
           
           <div class="col-sm mt-2" >
-            <div class="d-flex flex-row mb-0  ">
-              <a class="link-light-box" href="/categories/historical/">
-              <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0">
-                تاریخی
-              </div>
-              </a>
-            </div>
             <div class="card-body border border-3 border-dark mt-0  bg-light p-0">
-              <div class="p-3">
-                <h5 class="card-title"><a href="/posts/3/">بررسی مسجدهای تاریخی ثبت‌شده</a></h5>
+              <div class="d-flex flex-row mb-0  ">
+                <a class="link-light-box" href="/blog/historical">
+                  <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-top-0 border-left-0">
+                    تاریخی
+                  </div>
+                </a>
+              </div>
+              <div class="px-3 pb-3">
+                <h5 class="card-title"><a href="/blog/historical/3/">بررسی مسجدهای تاریخی ثبت‌شده</a></h5>
                 <a href="/authors/mmtaheri/"><h6>محمدمهدی طاهری</h6></a>
                 <p class="card-text"> شمار بناهای ثبت‌شده در فهرست بناهای تاریخی ایران به حدود سی‌ودوهزار پرونده رسیده است و...</p>
               </div>
               <div class="d-flex flex-row mb-0 justify-content-end">
                 <div class="persianDate h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0 border-right-0">
-                  2020-09-18 00:00:00 +0430
+                  2020-09-18 00:00:00 +0330
                 </div>
               </div>
 
@@ -335,7 +433,7 @@
         
         
           <div class="card bg-transparent border-0" >
-    <a class="link-light-box" href="/posts/4/">
+    <a class="link-light-box" href="/blog/iranologie/4/">
     <div class="card-body card-body border border-3 border-dark">
       <h5 class="card-title">مرمت و الهام شاهانه</h5>
       <p class="card-text persianDate">2016-06-14 00:00:00 +0430</p>
@@ -345,7 +443,7 @@
 
         
           <div class="card bg-transparent border-0" >
-    <a class="link-light-box" href="/posts/2/">
+    <a class="link-light-box" href="/blog/theory/2/">
     <div class="card-body card-body border border-3 border-dark">
       <h5 class="card-title">«فرهنگ» چگونه در آثار معماری ظهور می‌یابد؟</h5>
       <p class="card-text persianDate">2016-04-21 00:00:00 +0430</p>
@@ -355,7 +453,7 @@
 
         
           <div class="card bg-transparent border-0" >
-    <a class="link-light-box" href="/posts/1/">
+    <a class="link-light-box" href="/blog/theory/1/">
     <div class="card-body card-body border border-3 border-dark">
       <h5 class="card-title">معماری و زبان</h5>
       <p class="card-text persianDate">2016-04-12 00:00:00 +0430</p>
@@ -384,7 +482,7 @@
   <div class="card shadow-sm  p-0 text-dark border bg-light border-3 border-dark">
           <div class="card-body m-0 p-0">
             
-              <a href="/posts/8/">
+              <a href="/book/theory/8/">
               <div class="card-image card-image-vr">
                 <div class="square" style="background-image: url('/assets/img/posts/8-1.jpg')">
                 </div>
@@ -392,7 +490,7 @@
               </a>
               
             <div class="d-flex flex-row mb-0 mt-3">
-              <a class="link-light-box" href="/categories/theory/">
+              <a class="link-light-box" href="/blog/theory">
               <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0 border-left-0">
                 نظری
               </div>
@@ -400,7 +498,7 @@
             </div>
             <div class="border border-3 border-dark border-bottom-0 border-left-0 border-right-0 mt-0  bg-light p-0">
               <div class="p-3">
-                <h5 class="card-title"><a href="/posts/8/">کتاب تازه: «معماری هم‌زیستی: ساختن کثرت‌گرایی»</a></h5>
+                <h5 class="card-title"><a href="/book/theory/8/">کتاب تازه: «معماری هم‌زیستی: ساختن کثرت‌گرایی»</a></h5>
                 <a href="/authors/mmtaheri/"><h6>عذرا آقشامیجه</h6></a>
                 <p class="card-text"> Architecture of Coexistence: Building Pluralism by Azra Aksamija Architangle, 2020 در این زمان که...</p>
               </div>
@@ -422,7 +520,7 @@
   <div class="card shadow-sm  p-0 text-dark border bg-light border-3 border-dark">
           <div class="card-body m-0 p-0">
             
-              <a href="/posts/6/">
+              <a href="/asnad/theory/6/">
               <div class="card-image card-image-vr">
                 <div class="square" style="background-image: url('/assets/img/posts/6-1.jpg')">
                 </div>
@@ -430,7 +528,7 @@
               </a>
               
             <div class="d-flex flex-row mb-0 mt-3">
-              <a class="link-light-box" href="/categories/theory/">
+              <a class="link-light-box" href="/blog/theory">
               <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0 border-left-0">
                 نظری
               </div>
@@ -438,7 +536,7 @@
             </div>
             <div class="border border-3 border-dark border-bottom-0 border-left-0 border-right-0 mt-0  bg-light p-0">
               <div class="p-3">
-                <h5 class="card-title"><a href="/posts/6/">فتوگرافی آنتوان‌خان</a></h5>
+                <h5 class="card-title"><a href="/asnad/theory/6/">فتوگرافی آنتوان‌خان</a></h5>
                 <a href="/authors/mmtaheri/"><h6>حمیدرضا نوری‌مطلق</h6></a>
                 <p class="card-text">مؤسسۀ اسمیتسونیَن (Smithsonian Institute) نام اسمیتسونین را شاید تا به حال شنیده باشید. این موسسه با هدف دانش‌افزایی میان مردم در شهر واشنگتن پایه‌گذاری شده...</p>
               </div>
@@ -460,7 +558,7 @@
   <div class="card shadow-sm  p-0 text-dark border bg-light border-3 border-dark">
           <div class="card-body m-0 p-0">
             
-              <a href="/posts/3/">
+              <a href="/blog/historical/3/">
               <div class="card-image card-image-vr">
                 <div class="square" style="background-image: url('/assets/img/posts/4-1.jpg')">
                 </div>
@@ -468,7 +566,7 @@
               </a>
               
             <div class="d-flex flex-row mb-0 mt-3">
-              <a class="link-light-box" href="/categories/historical/">
+              <a class="link-light-box" href="/blog/historical">
               <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0 border-left-0">
                 تاریخی
               </div>
@@ -476,7 +574,7 @@
             </div>
             <div class="border border-3 border-dark border-bottom-0 border-left-0 border-right-0 mt-0  bg-light p-0">
               <div class="p-3">
-                <h5 class="card-title"><a href="/posts/3/">بررسی مسجدهای تاریخی ثبت‌شده</a></h5>
+                <h5 class="card-title"><a href="/blog/historical/3/">بررسی مسجدهای تاریخی ثبت‌شده</a></h5>
                 <a href="/authors/mmtaheri/"><h6>محمدمهدی طاهری</h6></a>
                 <p class="card-text"> شمار بناهای ثبت‌شده در فهرست بناهای تاریخی ایران به حدود سی‌ودوهزار پرونده رسیده است و هنوز بر این تعداد افزوده...</p>
               </div>
@@ -485,7 +583,7 @@
           <div class="card-footer m-0 p-0 border-0 bg-light">
             <div class="d-flex flex-row mb-0 justify-content-end">
               <div class="persianDate h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0 border-right-0">
-                2020-09-18 00:00:00 +0430
+                2020-09-18 00:00:00 +0330
               </div>
             </div>
 </div>
@@ -498,7 +596,7 @@
   <div class="card shadow-sm  p-0 text-dark border bg-light border-3 border-dark">
           <div class="card-body m-0 p-0">
             
-              <a href="/posts/4/">
+              <a href="/blog/iranologie/4/">
               <div class="card-image card-image-vr">
                 <div class="square" style="background-image: url('/assets/img/posts/3-1.jpg')">
                 </div>
@@ -506,7 +604,7 @@
               </a>
               
             <div class="d-flex flex-row mb-0 mt-3">
-              <a class="link-light-box" href="/categories/iranologie/">
+              <a class="link-light-box" href="/blog/iranologie">
               <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0 border-left-0">
                 ایران‌‌شناسی
               </div>
@@ -514,7 +612,7 @@
             </div>
             <div class="border border-3 border-dark border-bottom-0 border-left-0 border-right-0 mt-0  bg-light p-0">
               <div class="p-3">
-                <h5 class="card-title"><a href="/posts/4/">مرمت و الهام شاهانه</a></h5>
+                <h5 class="card-title"><a href="/blog/iranologie/4/">مرمت و الهام شاهانه</a></h5>
                 <a href="/authors/nrokni/"><h6>نوشاد رکنی</h6></a>
                 <p class="card-text"> سال گذشته، وقتی دوستان خبر ایجاد سایت آسمانه را دادند بسیار به شوق آمدم. نه به خاطر این‌که حرف‌های گفتنی‌ام...</p>
               </div>
@@ -533,9 +631,7 @@
       </div>
       </section>
 
-</main>
-
-    <section class="pt-5 bg-night text-light" style="min-height: 50vh;">
+      <section class="pt-5 bg-night text-light" style="min-height: 50vh;">
   <div class="container-fluid">
     <div class="row px-4">
       <div class="col d-flex ml-3 text-center">
@@ -564,5 +660,24 @@
 
 </section>
 
+
+    </main>
   </body>
 </html>
+<script src="/assets/js/simple-jekyll-search.min.js"></script>
+<script type="text/javascript" src="/assets/js/functions.js"></script>
+<script type="text/javascript" src="/assets/js/asmaneh.js"></script>
+
+
+<script>
+  window.simpleJekyllSearch = new SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('results-container'),
+    json: '/search.json',
+    searchResultTemplate: '<li><a href="{url}?query={query}" title="{desc}">{title}</a></li>',
+    noResultsText: 'No results found',
+    limit: 10,
+    fuzzy: false,
+    exclude: ['Welcome']
+  })
+</script>
