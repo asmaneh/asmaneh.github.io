@@ -1,0 +1,46 @@
+---
+layout: default
+permalink: /login/
+---
+<div id="login" class="container text-center">
+      <form class="form-signin">
+        <h1 class="h3 mb-3 font-weight-normal">وارد شوید</h1>
+        <label for="inputUsername" class="sr-only">نام کاربری</label>
+        <input type="text" id="inputUsername" class="form-control" placeholder="نام کاربری" required autofocus>
+        <label for="inputPassword" class="sr-only">پسورد</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="پسورد" required>
+        <div class="checkbox mb-3">
+          <label>
+            <input name="remmermberMe" type="checkbox" value="remember-me"> من را به خاطر بسپار
+          </label>
+        </div>
+        <button class="btn btn-lg btn-dark btn-block" type="submit">ورود</button>
+      </form>
+
+</div>
+<script type="text/javascript">
+  $('.form-signin').submit(function(){
+  event.preventDefault();
+  var user = $('#inputUsername').val();
+  var pass = $('#inputPassword').val();
+  fetch('https://alitayebi.com/asmaneh/cm/api/collections/get/authors', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json','Authorization': 'Bearer 38211f8b09e9e58ec27947f1812d73' },
+      body: JSON.stringify({
+          filter: {username: user, password: pass}
+      })
+    })
+      .then(res=>res.json())
+      .then(data => obj = data)
+      .then(res => setUserCookie(obj));
+  })
+  function setUserCookie(object) {
+    var currentUser = [];
+    if ($('input:checkbox[name="remmermberMe"]').is(':checked')) {
+      localStorage.setItem('currentUser', JSON.stringify(object.entries[0]) )
+    } else {
+      sessionStorage.setItem('currentUser', JSON.stringify(object.entries[0]))
+    };
+  }
+
+</script>

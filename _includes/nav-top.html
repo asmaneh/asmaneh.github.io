@@ -9,12 +9,41 @@
 
     <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
 
-    <div id="navbarSupportedContent" class="collapse navbar-collapse">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active"><a href="#" class="nav-link">صفحه نخست <span class="sr-only">(current)</span></a></li>
-        <li class="nav-item"><a href="#" class="nav-link">درباره</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">تماس</a></li>
-      </ul>
+    <div id="navbarSupportedContent" class="collapse navbar-collapse justify-content-end">
+        <div class="btn-group rounded-0 guest">
+          <a href="/login" class="btn btn-primary-outline rounded-0 border-0">ورود</a>
+        </div>
+        <div class="btn-group rounded-0 user">
+          <a href="/dashboard/" class="btn btn-primary-outline rounded-0 border-0 user-fullname"></a>
+          <button type="button" class="btn btn-primary-outline rounded-0 border-0 dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+            <a class="dropdown-item" href="/editprofile/">ویرایش اطلاعات شخصی</a>
+            <a class="dropdown-item" href="/newpost/">ارسال مطلب جدید</a>
+            <a class="dropdown-item reviewer admin" href="/review/" style="display:none;">بررسی مطالب ارسال شده</a>
+            <a class="dropdown-item admin" href="/adduser/" style="display:none;">افزودن کاربر جدید</a>
+          </div>
+        </div>
+
+        {% for item in site.types %}
+        {% assign type-categories = site.categories | where: 'type', item.slug %}
+        <div class="btn-group rounded-0">
+          <a href="{{item.url}}" class="btn btn-primary-outline rounded-0 border-0">{{item.title}}</a>
+          {% if type-categories.size > 0 %}
+          <button type="button" class="btn btn-primary-outline rounded-0 border-0 dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+            {% for category in type-categories %}
+            <a class="dropdown-item" href="{{category.url}}">{{category.title}}</a>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+        {% endfor %}
     </div>
   </div>
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()"> &#x2315; </span>
+
 </nav>
