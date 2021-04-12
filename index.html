@@ -1,7 +1,6 @@
 ---
 layout: default
 ---
-test
   {% assign top_section = site.posts | where: 'featured', 1 %}
   {% for post in top_section limit: 1 %}
   {% include sectionHomeTop.html %}
