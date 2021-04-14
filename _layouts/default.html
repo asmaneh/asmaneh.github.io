@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ site.title }} {% if page.title %} | {{ page.title }}{% endif %}</title>
     <link rel="stylesheet" href="/assets/vendors/bootstrap.min.css">
+    {% if page.jsFile == 'edit.js' %}<link rel="stylesheet" href="/assets/vendors/bootstrap-markdown.min.css">{% endif %}
     <link rel="stylesheet" href="/assets/vendors/fontawesome/css/all.css">
     <link rel="stylesheet" href="/assets/vendors/trumbowyg/ui/trumbowyg.min.css">
     <link rel="stylesheet" href="/assets/vendors/lightbox/ekko-lightbox.css">
     <link rel="stylesheet" href="/assets/css/asmaneh.css">
     <script type="text/javascript" src="/assets/vendors/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/vendors/bootstrap.min.js"></script>
-    <script src="/assets/vendors/trumbowyg/trumbowyg.min.js"></script>
-    <script src="/assets/vendors/trumbowyg/langs/fa.min.js"></script>
-    <script src="/assets/vendors/trumbowyg/plugins/cleanpaste/trumbowyg.cleanpaste.min.js"></script>
-    <script src="/assets/vendors/trumbowyg/plugins/upload/trumbowyg.upload.min.js"></script>
+    {% if page.jsFile == 'edit.js' %}<script src="/assets/vendors/markdown.js"></script>{% endif %}
+    {% if page.jsFile == 'edit.js' %}<script src="/assets/vendors/to-markdown.js"></script>{% endif %}
+    {% if page.jsFile == 'edit.js' %}<script src="/assets/vendors/bootstrap-markdown.js"></script>{% endif %}
+    {% if page.jsFile == 'edit.js' %}<script src="/assets/vendors/bootstrap-markdown.fa.js"></script>{% endif %}
+    <script src="/assets/vendors/dist.js" defer async></script>
     <script src="/assets/vendors/moment.js"></script>
     <script src="/assets/vendors/moment-jalaali.js"></script>
     <script src="/assets/vendors/lightbox/ekko-lightbox.min.js"></script>

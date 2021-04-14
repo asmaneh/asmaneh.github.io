@@ -1,0 +1,37 @@
+---
+layout: default
+title: کاربران
+jsFile: users.js
+---
+<section class="text-center">
+  <div class="container my-5">
+    <div class="row">
+      <div class="col-12">
+        <h2>لیست کاربران سایت</h2>
+        <a href="/user/" class="btn btn-primary">افزودن کاربر جدید</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="mb-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <table id="usersTable" class="table">
+          <thead>
+            <tr>
+              <th scope="col">نام</th>
+              <th scope="col">نام کاربری</th>
+              <th scope="col">نقش</th>
+              <th scope="col">اقدام</th>
+            </tr>
+          </thead>
+          <tbody id="usersTableList">
+          </tbody>
+          <tfoot>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,126 @@
+---
+layout: default
+title: ویرایش اطلاعات کاربری
+jsFile: user.js
+---
+<section class="pt-5">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-12">
+        <h2>{{page.title}}</h2>
+      </div>
+      <div class="col-12">
+        <div id="alertProfile" class="alert alert-danger" role="alert" style="display:none;">
+          کاربری با این مشخصه وجود ندارد.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="pb-5">
+  <form id="formUser" action="index.html" method="post">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-group">
+          <label for="userFullName">نام و نام خانوادگی</label>
+          <input type="text" class="form-control" name="userFullName" id="userFullName" required>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-group">
+          <label for="userUserName">نام کاربری</label>
+          <input type="text" class="form-control" name="userUserName" id="userUserName" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-group">
+          <label for="userTitle">عنوان</label>
+          <input type="text" class="form-control" name="userTitle" id="userTitle">
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-group">
+          <label for="userRole">نقش</label>
+          <select class="form-control" id="userRole" name="userRole">
+            <option value="admin">مدیر سایت</option>
+            <option value="reviewer">ویراستار</option>
+            <option value="author">نویسنده</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 form-group">
+          <label for="userBio">معرفی کوتاه (Bio)</label>
+          <textarea class="form-control" name="userBio" id="userBio" rows="5"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="changePassword">
+            <label class="form-check-label" for="changePassword">
+              تغییر پسورد
+            </label>
+          </div>
+        </div>
+      </div>
+      <div id="changePasswordRow" class="row" style="display:none;">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-group">
+          <label for="userNewPassword">پسورد جدید</label>
+          <input type="password" class="form-control" name="userNewPassword" id="userNewPassword" disabled>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-group">
+          <label for="userConfirmNewPassword">تکرار پسورد جدید</label>
+          <input type="password" class="form-control" name="userConfirmNewPassword" id="userConfirmNewPassword" disabled>
+          <div id="confirmPasswordAlert"></div>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-12">
+            <label for="userPic">عکس پروفایل</label>
+            <input type="file" class="uploadImg" id="userPic" name="myFile">
+            <a href="javascript:void(0)" class="upload uploadImg btn btn-secondary">بارگزاری</a>
+            <a href="" id="imgPrv" class="uploadedImg btn btn-success" target="_blank" style="display: none;">نمایش</a>
+            <a href="javascript:void(0)" id="imgDel" class="uploadedImg btn btn-danger" style="display: none;">حذف</a>
+          </div>
+          <div class="col-12 form-group d-none">
+            <label for="imgUrl">آدرس تصویر شاخص</label>
+            <input type="text" class="form-control" id="imgUrl" placeholder="تصویر شاخص">
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button id="btnSubmit" type="submit" name="submit" class="btn btn-primary btn-block">ثبت</button>
+        </div>
+        <div class="col-12 text-center">
+          <div id="alertEditedProfile" class="alert aler-success" role="alert" style="display:none;">
+            اطلاعات کاربری با موفقیت ثبت شد.
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
+<script type="text/javascript">
+  document.querySelector(".upload").addEventListener('click',()=>{
+  uploadImage()
+  })
+  document.querySelector("#imgDel").addEventListener('click',()=>{
+  $('.uploadImg').show();
+  $('.uploadedImg').hide();
+  $('#imgUrl').val('');
+  })
+  $(document).ready(function () {
+    $('#userConfirmNewPassword').on('keyup', function () {
+        var password = $("#userNewPassword").val();
+        var confirmPassword = $("#userConfirmNewPassword").val();
+
+        if (password != confirmPassword) {
+            $("#confirmPasswordAlert").html("پسوردها مشابه نیست.");
+            $('#btnSubmit').addClass('disabled');
+        }
+        else {
+          $("#confirmPasswordAlert").html("");
+          $('#btnSubmit').removeClass('disabled');
+
+        }
+    });
+
+  })
+</script>

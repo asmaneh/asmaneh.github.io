@@ -19,10 +19,13 @@
             <span class="sr-only">Toggle Dropdown</span>
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-            <a class="dropdown-item" href="/editprofile/">ویرایش اطلاعات شخصی</a>
-            <a class="dropdown-item" href="/newpost/">ارسال مطلب جدید</a>
-            <a class="dropdown-item reviewer admin" href="/review/" style="display:none;">بررسی مطالب ارسال شده</a>
-            <a class="dropdown-item admin" href="/adduser/" style="display:none;">افزودن کاربر جدید</a>
+            <a class="dropdown-item" href="/user/?id=me">ویرایش پروفایل</a>
+            <a class="dropdown-item" href="/post/">مطلب جدید</a>
+            <a class="dropdown-item reviewer admin" href="/review/" style="display:none;">مطالب دریافتی</a>
+            <a class="dropdown-item admin" href="/users/" style="display:none;">مدیریت کاربران</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="javascript:void(0)" onclick="logout()">خروج</a>
+
           </div>
         </div>
 

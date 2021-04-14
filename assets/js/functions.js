@@ -2,31 +2,7 @@ const API_URL = 'https://alitayebi.com/asmaneh/cm';
 const TOKEN   = '38211f8b09e9e58ec27947f1812d73';
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-
-function uploadImage(){
-      const PATH      = '/api/cockpit/addAssets?token=';
-      const api       = API_URL+PATH+TOKEN;
-      const fileInput = document.querySelector('input[type="file"]');
-      const formData  = new FormData();
-      formData.append('files[]', fileInput.files[0]);
-      fetch(api,{
-          method : 'POST',
-          body : formData
-      })
-      .then(e=>e.json())
-      .then(res=>{
-          const {assets} = res;
-          if(!assets){
-              alert('Upload failed!');
-              return;
-          }
-         const image_url = API_URL+'/storage/uploads'+assets[0].path;
-         $('#imgUrl').val(assets[0].path);
-         $('.uploadImg').hide();
-         $('.uploadedImg').show();
-         $('#imgPrv').prop('href', image_url)
-         alert('Successfully uploaded!');
-      })
+function uploadImage(e, fname){
 }
 function openNav() {
   document.getElementById("mySidenav").style.width = "400px";
@@ -60,18 +36,96 @@ function checkCookie() {
 function getUserInfo(u) {
     $('.user-fullname').text(u.name);
     $('.user-title').text(u.title);
+    console.log(u.avatar);
+    if (u.avatar !== null) {
+
+      $('.user-photo').attr('src', u.avatar);
+    }
 
   }
-function getRecentPost(user) {
-  console.log('t1');
+function getAllPosts() {
   fetch(API_URL+'/api/collections/get/posts', {
       method: 'post',
       headers: { 'Content-Type': 'application/json','Authorization': 'Bearer '+TOKEN },
       body: JSON.stringify({
-          filter: {author: user}
+          sort: {date:-1}
       })
     })
       .then(res=>res.json())
       .then(data => obj = data)
       .then(res => showRecentPost(obj));
   }
+
+function getRecentPost(user) {
+  fetch(API_URL+'/api/collections/get/posts', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json','Authorization': 'Bearer '+TOKEN },
+      body: JSON.stringify({
+          filter: {author: user},
+          limit: 10,
+          sort: {date:-1}
+      })
+    })
+      .then(res=>res.json())
+      .then(data => obj = data)
+      .then(res => showRecentPost(obj));
+  }
+function logout() {
+  localStorage.removeItem('currentUser');
+  sessionStorage.removeItem('currentUser');
+  window.location.replace('/');
+
+}
+function downloadPost(object) {
+  const publishDateEn = new Date(parseInt(object.date));
+var gallaryTag = ""
+if (object.gallary.length > 0) {
+  var dataGallary ="";
+  for (var i = 0; i < object.gallary.length; i++) {
+    dataGallary +=
+    '- image_path: '+object.gallary[i].image_path+ ' \r\n'+
+    '  title: '+object.gallary[i].image_title+ ' \r\n';
+  }
+  var gallaryTag =
+      'gallary: \r\n'+
+      dataGallary;
+}
+      // This variable stores all the data.
+      let data =
+          '--- \r\n'  +
+          'title: ' +object.title + ' \r\n' +
+          'authors: ' +object.author + ' \r\n' +
+          'types: "' + object.type + '" \r\n' +
+          'categories: "' + object.category + '" \r\n' +
+          'featureImg: "' + object.image + '" \r\n' +
+          gallaryTag+' \r\n' +
+          '--- \r\n'  +
+          object.content;
+      // Convert the text to BLOB.
+      const textToBLOB = new Blob([data], { type: 'text/x-markdown' });
+      const sFileName = publishDateEn.toISOString().split("T")[0]+'-'+object.title+'.md';	   // The file to save the data.
+      let newLink = document.createElement("a");
+      newLink.download = sFileName;
+
+      if (window.webkitURL != null) {
+          newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+      }
+      else {
+          newLink.href = window.URL.createObjectURL(textToBLOB);
+          newLink.style.display = "none";
+          document.body.appendChild(newLink);
+      }
+
+      newLink.click();
+
+}
+function makeid(length) {
+    var result           = [];
+    var characters       = 'ABCDEFGHJKMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result.push(characters.charAt(Math.floor(Math.random() *
+ charactersLength)));
+   }
+   return result.join('');
+}

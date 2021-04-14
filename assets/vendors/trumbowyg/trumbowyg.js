@@ -569,7 +569,7 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
                 .addClass(prefix + 'editor')
                 .attr({
                     contenteditable: true,
-                    dir: t.lang._dir || 'ltr'
+                    dir: t.lang._dir || 'rtl'
                 })
                 .html(html)
             ;
