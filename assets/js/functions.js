@@ -69,7 +69,38 @@ function getRecentPost(user) {
       .then(res=>res.json())
       .then(data => obj = data)
       .then(res => showRecentPost(obj));
+}
+function showRecentPost(object) {
+  if (object.entries.length>0) {
+    $('#alertRecentPost').hide();
+    $('#myRecentPostTable').show();
+    for (var i = 0; i < object.entries.length; i++) {
+      var isPostDate = new Date(object.entries[i]._created*1000);
+      var isModifiedDate = new Date(object.entries[i]._modified*1000);
+      var isStatus = '';
+      if (object.entries[i].published == true) {
+        isEdit ='display:none;';
+        isDownload ='d-inline-block';
+        isStatus = 'آماده انتشار';
+      } else {
+        isEdit = '';
+        isDownload ='d-none';
+        isStatus = 'پیش‌‌نویس';
+      }
+      if (object.entries[i].upload == true) {
+        publishBtn ='btn-success';
+      } else {
+        publishBtn ='btn-secondary';
+      }
+
+        $('#myRecentPostList').prepend('<tr><th scope="row" >'+object.entries[i].title+'</th><td>'+isPostDate.toLocaleDateString('fa-IR')+'</td><td>'+ isModifiedDate.toLocaleDateString('fa-IR')+'</td><td>'+ isStatus +'</td><td><a href="/post/?id='+object.entries[i]._id+'" target="_blank" class="btn btn-primary btn-sm rounded-0 d-inline-block admin reviewer" id="showPrvPost" style="'+isEdit+'">ویرایش</a><a href="javascript:void(0)" class="gitPublish btn '+publishBtn+' btn-sm rounded-0 admin reviewer '+isDownload+'" style="">انتشار</a><span style="display:none;">'+JSON.stringify(object.entries[i])+'</span></td></tr>');
+
+    }
+    checkCookie();
   }
+
+}
+
 function logout() {
   localStorage.removeItem('currentUser');
   sessionStorage.removeItem('currentUser');
@@ -128,4 +159,30 @@ function makeid(length) {
  charactersLength)));
    }
    return result.join('');
+}
+function publishedPost(id) {
+  fetch(API_URL+'/api/collections/save/posts', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json','Authorization': 'Bearer '+TOKEN },
+      body: JSON.stringify({
+          data: {
+            _id: id,
+            upload: true
+          }
+      })
+  })
+  .then(res=>res.json());
+}
+function publishedAuthor(id) {
+  fetch(API_URL+'/api/collections/save/authors', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json','Authorization': 'Bearer '+TOKEN },
+      body: JSON.stringify({
+          data: {
+            _id: id,
+            upload: true
+          }
+      })
+  })
+  .then(res=>res.json());
 }

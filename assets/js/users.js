@@ -12,7 +12,22 @@ if (currentUser.role != 'admin') {
       .then(data => {
           if (data.entries.length > 0) {
             for (var i = 0; i < data.entries.length; i++) {
-              $('#usersTableList').prepend('<tr><th scope="row" >'+data.entries[i].name+'</th><td>'+data.entries[i].username+'</td><td>'+data.entries[i].role+'</td><td><a href="/user/?id='+data.entries[i]._id+'" target="_blank" class="btn btn-primary btn-sm rounded-0 d-inline-block admin" id="showPrvPost" style="">ویرایش</a><a href="javascript:void(0)" onclick="saveUserFile(\'' +data.entries[i]._id+ '\')" class="btn btn-secondary btn-sm rounded-0 admin"  style="">دانلود</a></td></tr>');
+              if (data.entries[i].upload == true) {
+                publishBtn ='btn-success';
+              } else {
+                publishBtn ='btn-secondary';
+              }
+              $('#usersTableList').prepend(`
+                <tr>
+                  <th scope="row" >`+data.entries[i].name+`</th>
+                  <td>`+data.entries[i].username+`</td>
+                  <td>`+data.entries[i].role+`</td>
+                  <td>
+                    <a href="/user/?id=`+data.entries[i]._id+`" target="_blank" class="btn btn-primary btn-sm rounded-0 d-inline-block admin" id="showPrvPost" style="">ویرایش</a>
+                    <a href="javascript:void(0)" class="gitSaveAuthor btn `+publishBtn+` btn-sm rounded-0 admin"  style="">انتشار</a>
+                    <span style="display:none;">`+JSON.stringify(data.entries[i])+`</span>
+                  </td>
+                </tr>`);
             }
           }
       });

@@ -1,14 +1,12 @@
 if (urlParams.get('id')) {
-  getProfileInfo();
   if (urlParams.get('id') == 'me') {
-    if (currentUser != 'admin') {
-      console.log('notadmin');
+    var currentUser = checkCookie();
+    if (currentUser.role != 'admin') {
       $('#userUserName').attr('readonly', true);
       $('#userRole').prop('disabled', true);
-
     }
-
     var currentProfileID = currentUser._id;
+    console.log(currentProfileID);
   } else {
     if (currentUser.role == 'author') {
       window.location.replace('/');
@@ -46,7 +44,8 @@ if (urlParams.get('id')) {
                 bio: $('#userBio').val(),
                 role: $('#userRole').val(),
                 password: profilePassword,
-                avatar: $('#imgPrv').attr('href')
+                avatar: $('#imgPrv').attr('href'),
+                avatarPath: $('#imgPrv').attr('data-path')
               }
           })
       })
@@ -84,7 +83,8 @@ if (urlParams.get('id')) {
               bio: $('#userBio').val(),
               role: $('#userRole').val(),
               password: $('#userNewPassword').val(),
-              avatar: $('#imgPrv').attr('href')
+              avatar: $('#imgPrv').attr('href'),
+              avatarPath: $('#imgPrv').attr('data-path')
             }
         })
     })
@@ -104,6 +104,9 @@ $('#changePassword').change(function () {
     $('#changePasswordRow :input').attr('required', false);
   }
 
+});
+$('#userUserName').change(function () {
+  $('#authorImg').attr('data-name', this.value);
 })
 function setSession (name, object) {
   if (object.length == 1) {
@@ -120,6 +123,7 @@ function setSession (name, object) {
 function getProfileInfo() {
   var thisProfile = JSON.parse(localStorage.getItem('currentProfile'));
   $('#userFullName').val(thisProfile.name)
+  $('#authorImg').attr('data-name', thisProfile.username)
   $('#userUserName').val(thisProfile.username)
   $('#userTitle').val(thisProfile.title)
   $('#userRole').val(thisProfile.role)
@@ -130,7 +134,7 @@ function getProfileInfo() {
   $('#userBio').val(thisProfile.bio)
   if (thisProfile.avatar !== null) {
     $('#imgUrl').val(thisProfile.avatar);
-    $('#imgPrv').attr('href', thisProfile.avatar);
+    $('#imgPrv').attr('href', thisProfile.avatar).attr('data-path', thisProfile.avatarPath);
     $('.uploadImg').hide();
     $('.uploadedImg').show();
   } else {

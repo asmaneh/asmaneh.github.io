@@ -2,9 +2,19 @@
   <form id="sendPost">
     <div class="container">
       <div class="row">
-        <div class="col-12 form-group">
+        <div class="col-8 form-group">
           <label for="postTitle">عنوان</label>
           <input type="text" class="form-control" id="postTitle" placeholder="عنوان یادداشت" value="" required>
+        </div>
+        <div class="col-4 form-group">
+          <label for="postType">نویسنده</label>
+          <select class="form-control" id="postAuthor">
+            <option value=""></option>
+            {% for author in site.authors%}
+            <option value="{{author.slug}}">{{author.title}}</option>
+            {% endfor %}
+          </select>
+
         </div>
       </div>
       <div class="row">
@@ -50,7 +60,7 @@
         <div class="col-12 git" id="featureImg">
           <label>تصویر شاخص</label>
           <input type="file" class="uploadImg" id="file" >
-          <a href="javascript:void(0)" class="uploadGit upload uploadImg btn btn-secondary" id="uploadFImg" data-commit="upload post feature image" data-path="assets/img/posts/" data-name="test">بارگزاری</a>
+          <a href="javascript:void(0)" class="uploadGit upload uploadImg btn btn-secondary" id="uploadFImg" data-commit="upload post feature image" data-path="assets/img/posts/" data-name="postSlug">بارگذاری</a>
           <a href="" class="image-link uploadedImg btn btn-success" target="_blank" style="display: none;">نمایش</a>
           <a href="javascript:void(0)" class="image-delete uploadedImg btn btn-danger" style="display: none;">حذف</a>
         </div>
