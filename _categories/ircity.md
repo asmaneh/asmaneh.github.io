@@ -4,4 +4,5 @@ slug: ircity
 type: bulletins
 permalink: /bulletins/ircity
 background: /assets/img/pages/ircity.jpg
+sortby: title
 ---
