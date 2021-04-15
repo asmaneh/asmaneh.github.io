@@ -36,12 +36,9 @@ function checkCookie() {
 function getUserInfo(u) {
     $('.user-fullname').text(u.name);
     $('.user-title').text(u.title);
-    console.log(u.avatar);
     if (u.avatar !== null) {
-
       $('.user-photo').attr('src', u.avatar);
     }
-
   }
 function getAllPosts() {
   fetch(API_URL+'/api/collections/get/posts', {
@@ -61,7 +58,7 @@ function getRecentPost(user) {
       method: 'post',
       headers: { 'Content-Type': 'application/json','Authorization': 'Bearer '+TOKEN },
       body: JSON.stringify({
-          filter: {author: user},
+          filter: {author: user, upload: false},
           limit: 10,
           sort: {date:-1}
       })

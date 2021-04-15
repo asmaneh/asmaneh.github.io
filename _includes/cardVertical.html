@@ -1,12 +1,9 @@
-{% if pagecollection == 'categories' %}
 {% for type in post.types %}{% assign typ = site.types | where: 'slug', type | first %}
 {% if typ %}{% assign topcat = typ.title %}{% assign topcaturl = typ.url %}{% endif %}
 {% endfor %}
-{% else %}
 {% for category in post.categories %}{% assign cat = site.categories | where: 'slug', category | first %}
-{% if cat %}{% assign topcat = cat.title %}{% assign topcaturl = cat.url %}{% endif %}
+{% if cat %}{% assign botcat = cat.title %}{% assign botcaturl = cat.url %}{% endif %}
 {% endfor %}
-{% endif %}
 {% for author in post.authors %}{% assign auth = site.authors | where: 'slug', author | first %}
 {% if auth %}
 {% assign pageauthor = auth.title %}
@@ -47,8 +44,12 @@
           </div>
           <div class="card-footer m-0 p-0 border-0 bg-light">
             <div class="d-flex flex-row mb-0 justify-content-end">
-              <div class="persianDate h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0 border-right-0">
-                {{post.date}}
+              {% if botcat %}<a class="link-light-box" href="{{botcaturl}}">
+                  <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0 border-right-0">
+                    {{botcat}}
+                  </div>
+              </a>{% endif %}
+              <div class="persianDate h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0 border-right-0" data-timestamp="{{post.date | date: '%s'}}">
               </div>
             </div>
 </div>

@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-  {% assign top_section = site.posts | where: 'featured', 1 %}
+  {% assign top_section = site.posts | where: 'featured', true %}
   {% for post in top_section limit: 1 %}
   {% include sectionHomeTop.html %}
   {%endfor%}

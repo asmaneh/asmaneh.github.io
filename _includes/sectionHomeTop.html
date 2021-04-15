@@ -48,8 +48,8 @@
         </a>
         {% endif %}
         {% endfor %}
-        <div class="persianDate h4 py-2 px-3 mt-auto border border-3 border-white float-right text-center" style="min-width:250px">
-          {{post.date }}
+        <div class="persianDate h4 py-2 px-3 mt-auto border border-3 border-white float-right text-center" style="min-width:250px" data-timestamp="{{post.date | date: '%s'}}">
+          
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ title:  "مرمت و الهام شاهانه"
 types: blog
 categories: iranologie
 authors: nrokni
-featured: 1
+featured: true
 featureImg: '/assets/img/posts/3-1.jpg'
 gallery:
 - image_path: /assets/img/posts/3-1.jpg

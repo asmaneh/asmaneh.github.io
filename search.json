@@ -7,10 +7,10 @@ layout: none
       "title"    : "{{ post.title | escape }}",
       "author"   : "{{post.authors}}",
       {% for category in post.categories %}{% assign cat = site.categories | where: 'slug', category | first %}{% if cat %}"categoryFa"   : "{{cat.title}}",{% endif %}{% endfor %}
-      {% for author in post.authors %}{% assign auth = site.authors | where: 'slug', author | first %}{% if auth %}"authorFa"   : "{{auth.title}}",{% endif %}{% endfor %}       
+      {% for author in post.authors %}{% assign auth = site.authors | where: 'slug', author | first %}{% if auth %}"authorFa"   : "{{auth.title}}",{% endif %}{% endfor %}
       "category" : "{{ post.categories }}",
       "url"      : "{{ site.baseurl }}{{ post.url }}",
-      "date"     : "{{ post.date }}"
+      "date"     : "{{post.date | date: '%s'}}"
     } {% unless forloop.last %},{% endunless %}
   {% endfor %}
 ]

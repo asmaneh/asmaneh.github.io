@@ -23,7 +23,7 @@ if (currentUser.role != 'admin') {
                   <td>`+data.entries[i].username+`</td>
                   <td>`+data.entries[i].role+`</td>
                   <td>
-                    <a href="/user/?id=`+data.entries[i]._id+`" target="_blank" class="btn btn-primary btn-sm rounded-0 d-inline-block admin" id="showPrvPost" style="">ویرایش</a>
+                    <a href="/user/?id=`+data.entries[i]._id+`" class="btn btn-primary btn-sm rounded-0 d-inline-block admin" id="showPrvPost" style="">ویرایش</a>
                     <a href="javascript:void(0)" class="gitSaveAuthor btn `+publishBtn+` btn-sm rounded-0 admin"  style="">انتشار</a>
                     <span style="display:none;">`+JSON.stringify(data.entries[i])+`</span>
                   </td>

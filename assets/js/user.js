@@ -6,7 +6,6 @@ if (urlParams.get('id')) {
       $('#userRole').prop('disabled', true);
     }
     var currentProfileID = currentUser._id;
-    console.log(currentProfileID);
   } else {
     if (currentUser.role == 'author') {
       window.location.replace('/');
@@ -26,7 +25,6 @@ if (urlParams.get('id')) {
     $('#formUser').submit(function () {
       event.preventDefault();
       var thisProfile = JSON.parse(localStorage.getItem('currentProfile'));
-      console.log(thisProfile);
       if ($('input#changePassword').is(':checked')) {
         var profilePassword = $('#userNewPassword').val();
       } else {
@@ -127,7 +125,7 @@ function getProfileInfo() {
   $('#userUserName').val(thisProfile.username)
   $('#userTitle').val(thisProfile.title)
   $('#userRole').val(thisProfile.role)
-  if (thisProfile.role != 'admin') {
+  if (currentUser.role != 'admin') {
     $('#userUserName').attr('readonly', true);
     $('#userRole').attr('disabled', true);
   }

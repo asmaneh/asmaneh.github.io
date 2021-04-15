@@ -29,10 +29,20 @@ if (urlParams.get('id')) {
       .then(res => getPost(obj));
     $('#sendPost').submit(function () {
       event.preventDefault();
-      var postGallary =[];
-      $('.gallary-image > .image-link').each(function () {
-        postGallary.push({"imageUrl": $(this).attr('href'), "imagePath": $(this).attr('data-path'), "image_title": $(this).siblings('input[type=text]').val()})
-      })
+      var postGallary;
+      if ($('.gallary-image > .image-link').length > 0) {
+        postGallary =[];
+        $('.gallary-image > .image-link').each(function () {
+          postGallary.push({"imageUrl": $(this).attr('href'), "imagePath": $(this).attr('data-path'), "image_title": $(this).siblings('input[type=text]').val()})
+        });
+      }
+      if ($('#postAuthor').val() == "other") {
+        var postAuthor = $('#postOtherAuthor').val();
+        var postOtherAuthor = true;
+      } else {
+        var postAuthor = $('#postAuthor').val();
+        var postOtherAuthor = false;
+      };
       const publishDateEn = new Date(parseInt($('#publishDateU').val()));
       fetch(API_URL+'/api/collections/save/posts', {
           method: 'post',
@@ -48,7 +58,10 @@ if (urlParams.get('id')) {
                 image: $('#featureImg > .image-link').attr('href'),
                 published: $('#postStatus').val(),
                 gallary: postGallary,
-                author: $('#postAuthor').val()
+                author: postAuthor,
+                otherAuthor: postOtherAuthor,
+                embedCode: $('#embdMediaCode').val(),
+                feature: $('#featureBtn').attr('aria-pressed')
               }
           })
       })
@@ -65,7 +78,20 @@ if (urlParams.get('id')) {
 
   $('#sendPost').submit(function (e) {
   e.preventDefault();
-
+  if ($('#postAuthor').val() == "other") {
+    var postAuthor = $('#postOtherAuthor').val();
+    var postOtherAuthor = true;
+  } else {
+    var postAuthor = $('#postAuthor').val();
+    var postOtherAuthor = false;
+  };
+  var postGallary;
+  if ($('.gallary-image > .image-link').length > 0) {
+    postGallary =[];
+    $('.gallary-image > .image-link').each(function () {
+      postGallary.push({"imageUrl": $(this).attr('href'), "imagePath": $(this).attr('data-path'), "image_title": $(this).siblings('input[type=text]').val()})
+    });
+  }
   fetch(API_URL+'/api/collections/save/posts', {
       method: 'post',
       headers: { 'Content-Type': 'application/json','Authorization': 'Bearer '+TOKEN },
@@ -80,7 +106,11 @@ if (urlParams.get('id')) {
             type: $('#postType').val(),
             image: $('#imgPrv').attr('href'),
             imagePath: $('#imgPrv').attr('data-path'),
-            author: $('#postAuthor').val()
+            gallary: postGallary,
+            author: postAuthor,
+            otherAuthor: postOtherAuthor,
+            embedCode: $('#embdMediaCode').val(),
+            feature: $('#featureBtn').attr('aria-pressed')
           }
       })
   })
@@ -111,9 +141,16 @@ function getPost(object) {
         }
       }
     }).setDate(parseInt(object.entries[0].date));
+    if (object.entries[0].otherAuthor == true) {
+      $('#postAuthor').val('other').trigger('change');
+      $('#postOtherAuthor').val(object.entries[0].author)
+    } else {
+      $('#postAuthor').val(object.entries[0].author).trigger('change');
+    }
     $('#postCategory').val(object.entries[0].category);
     $('#editor').html(object.entries[0].content);
-
+    $('#embdMediaCode').val(object.entries[0].embedCode);
+    $('#featureBtn').attr('aria-pressed', object.entries[0].feature)
     $('#published').attr('selected',object.entries[0].published);
     if (obj.entries[0].image != '') {
       $('#featureImg > .image-link').attr('href', obj.entries[0].image).attr('data-path', obj.entries[0].imagePath);
@@ -170,4 +207,18 @@ $("#editor").markdown({
   iconlibrary: 'fa',
   fullscreen: 'false',
   language: 'fa'
+})
+$("#embdMedia").change(function () {
+  if ($(this).is(':checked')) {
+    $('#embdMediaCode').parent().show();
+  } else {
+    $('#embdMediaCode').parent().hide();
+  }
+})
+$('#postAuthor').change(function () {
+  if (this.value == "other") {
+    $('#postOtherAuthor').show();
+  } else {
+    $('#postOtherAuthor').hide();
+  }
 })

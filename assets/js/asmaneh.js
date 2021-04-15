@@ -5,14 +5,10 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 $(this).ekkoLightbox();
 });
 $(document).ready(function(){
-
-$(".persianDate").each(function(){
-  console.log('test');
-  var date = $(this).text();
-  moment.loadPersian(true);
-  var jalaliDate = moment(date, 'YYYY-M-D HH:mm:ss TZD').format('jD jMMMM jYYYY');
-  $(this).text(jalaliDate)
-});
+$('.persianDate').each(function () {
+  var postDate = new Date(parseInt($(this).attr('data-timestamp'))*1000);
+  $(this).text(postDate.toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' }));
+})
 $('.header').on('click', '.search-toggle', function(e) {
   var selector = $(this).data('selector');
 

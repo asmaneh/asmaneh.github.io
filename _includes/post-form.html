@@ -2,28 +2,36 @@
   <form id="sendPost">
     <div class="container">
       <div class="row">
-        <div class="col-8 form-group">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
           <label for="postTitle">عنوان</label>
-          <input type="text" class="form-control" id="postTitle" placeholder="عنوان یادداشت" value="" required>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" id="postTitle" placeholder="عنوان یادداشت" value="" required>
+            <div class="input-group-append">
+              <button id="featureBtn" type="button" class="btn btn-outline-secondary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                شاخص
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="col-4 form-group">
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group">
           <label for="postType">نویسنده</label>
           <select class="form-control" id="postAuthor">
             <option value=""></option>
             {% for author in site.authors%}
             <option value="{{author.slug}}">{{author.title}}</option>
             {% endfor %}
+            <option value="other">سایر</option>
           </select>
-
+          <input class="form-control" type="text" name="postOtherAuthor" id="postOtherAuthor" value="" style="display:none;">
         </div>
-      </div>
-      <div class="row">
-        <div class="col-6">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
           <label for="publishDate">تاریخ</label>
-          <input type="text" class="form-control" id="publishDate" placeholder="تاریخ انتشار ..." />
+          <input type="text" class="form-control" id="publishDate" placeholder="تاریخ انتشار ..." autocomplete="off"/>
           <input type="hidden" id="publishDateU" />
         </div>
-        <div class="col-6 form-group">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group">
           <label for="poststatus">وضعیت</label>
           <select class="form-control" id="postStatus"  selected='false'>
             <option value="false" id="draft" value="false">پیش‌‌نویس</option>
@@ -33,7 +41,7 @@
 
       </div>
       <div class="row">
-        <div class="col-6">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <div class="form-group">
             <label for="postType">گروه</label>
             <select class="form-control" id="postType">
@@ -44,7 +52,7 @@
             </select>
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <div class="form-group">
             <label for="postCategory">دسته</label>
             <select class="form-control" id="postCategory">
@@ -57,16 +65,30 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12 git" id="featureImg">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 git" id="featureImg">
           <label>تصویر شاخص</label>
           <input type="file" class="uploadImg" id="file" >
           <a href="javascript:void(0)" class="uploadGit upload uploadImg btn btn-secondary" id="uploadFImg" data-commit="upload post feature image" data-path="assets/img/posts/" data-name="postSlug">بارگذاری</a>
           <a href="" class="image-link uploadedImg btn btn-success" target="_blank" style="display: none;">نمایش</a>
           <a href="javascript:void(0)" class="image-delete uploadedImg btn btn-danger" style="display: none;">حذف</a>
         </div>
-        <div class="col-12 form-group">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
           <label for="postText">متن</label>
           <textarea data-provide="markdown"  id="editor" class="form-control" placeholder="متن" required></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="embdMedia">
+            <label class="form-check-label" for="embdMedia">
+              محتوای چندرسانه‌‌ای (آپارات، ساندکلاد، یوتیوب، و ...)
+            </label>
+          </div>
+        </div>
+        <div class="col-12 form-group" style="display:none;">
+          <label for="embdMediaCode">کد امبد</label>
+          <textarea class="form-control" id="embdMediaCode" style="direction: ltr;" rows="10"></textarea>
         </div>
       </div>
       <div class="row">
