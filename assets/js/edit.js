@@ -131,7 +131,7 @@ if (urlParams.get('id')) {
   .then(data => {
     window.location.replace('/review/')
   });
-
+})
 }
 function getPost(object) {
   if (object.entries.length > 0) {
