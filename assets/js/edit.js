@@ -61,6 +61,7 @@ if (urlParams.get('id')) {
                 category: $('#postCategory').val(),
                 content: $('#editor').val(),
                 image: $('#featureImg > .image-link').attr('href'),
+                imagePath: $('#featureImg > .image-link').attr('data-path'),
                 published: $('#postStatus').val(),
                 gallary: postGallary,
                 author: postAuthor,
@@ -114,8 +115,8 @@ if (urlParams.get('id')) {
             content: $('#editor').val(),
             category: $('#postCategory').val(),
             type: $('#postType').val(),
-            image: $('#imgPrv').attr('href'),
-            imagePath: $('#imgPrv').attr('data-path'),
+            image: $('#featureImg > .image-link').attr('href'),
+            imagePath: $('#featureImg > .image-link').attr('data-path'),
             gallary: postGallary,
             author: postAuthor,
             otherAuthor: postOtherAuthor,
@@ -172,11 +173,11 @@ function getPost(object) {
     $('#featureBtn').attr('aria-pressed', object.entries[0].feature)
     $('#published').attr('selected',object.entries[0].published);
     if (obj.entries[0].image) {
-      $('#featureImg > .image-link').attr('href', '').attr('data-path', '');
+      $('#featureImg > .image-link').attr('href', obj.entries[0].image).attr('data-path', obj.entries[0].imagePath);
       $('#featureImg > .uploadImg').hide();
       $('#featureImg > .uploadedImg').show();
     } else {
-      $('#featureImg > .image-link').attr('href', obj.entries[0].image).attr('data-path', obj.entries[0].imagePath);
+      $('#featureImg > .image-link').attr('href', '').attr('data-path', '');
       $('#featureImg > .uploadImg').show();
       $('#featureImg > .uploadedImg').hide();
     }
