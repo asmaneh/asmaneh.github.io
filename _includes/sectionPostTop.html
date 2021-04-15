@@ -32,13 +32,13 @@
         {% for type in page.types %}{% assign typ = site.types | where: 'slug', type | first %}
         {% if typ %}
         <a class="link-dark-box" href="{{typ.url}}">
-          <div class="h4 py-2 px-3 border border-3 border-white mt-0 mb-0 border-bottom-0 text-center" style="min-width:200px">
+          <div class="h4 py-2 px-3 border border-3 border-white mt-0 mb-0 border-bottom-0 text-center" style="min-width:250px">
             {{typ.title}}
           </div>
         </a>
         {% endif %}
         {% endfor %}
-        <div class="persianDate h4 py-2 px-3 mt-auto border border-3 border-white float-right text-center" style="min-width:250px" data-timestamp="{{page.date | date: '%s'}}">
+        <div class="persianDate h4 py-2 px-3 mt-auto border border-3 border-white float-right text-center" style="min-width:350px" data-timestamp="{{page.date | date: '%s'}}">
         </div>
       </div>
     </div>

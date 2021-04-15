@@ -12,7 +12,7 @@ layout: default
 
         {% assign filtered_posts = site.posts | where: pagecollection, page.slug  %}
         {% if page.sortby %}
-        {% assign filtered_sort_posts = filtered_posts | sort: page.sortby %}
+        {% assign filtered_sort_posts = filtered_posts | sort: 'sortOrder' %}
         {% else %}
         {% assign filtered_sort_posts = filtered_posts %}
         {% endif %}

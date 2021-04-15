@@ -56,6 +56,7 @@ if (urlParams.get('id')) {
               data: {
                 _id: urlParams.get('id'),
                 title: $('#postTitle').val(),
+                upload: false,
                 date: $('#publishDateU').val(),
                 type: $('#postType').val(),
                 category: $('#postCategory').val(),
@@ -67,6 +68,7 @@ if (urlParams.get('id')) {
                 author: postAuthor,
                 otherAuthor: postOtherAuthor,
                 embedCode: embedTag,
+                sort: $('#postSort').val(),
                 feature: $('#featureBtn').attr('aria-pressed')
               }
           })
@@ -123,6 +125,7 @@ if (urlParams.get('id')) {
             author: postAuthor,
             otherAuthor: postOtherAuthor,
             embedCode: embedTag,
+            sort: $('#postSort').val(),
             feature: $('#featureBtn').attr('aria-pressed')
           }
       })
@@ -153,6 +156,11 @@ function getPost(object) {
         }
       }
     }).setDate(parseInt(object.entries[0].date));
+    if (object.entries[0].sort) {
+      $('#postSort').val(object.entries[0].sort);
+    } else {
+      $('#postSort').val('');      
+    }
     if (object.entries[0].otherAuthor == true) {
       $('#postAuthor').val('other').trigger('change');
       $('#postOtherAuthor').val(object.entries[0].author)
@@ -246,5 +254,12 @@ $('#postAuthor').change(function () {
     $('#postOtherAuthor').show();
   } else {
     $('#postOtherAuthor').hide();
+  }
+})
+$('#postType').change(function () {
+  if (this.value == 'bulletins') {
+    $('#postSort').parent().show();
+  } else {
+    $('#postSort').parent().hide();
   }
 })

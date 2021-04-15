@@ -5,6 +5,7 @@ layout: default
 {% if auth %}
 {% assign pageauthor = auth.title %}
 {% assign pageauthorurl = auth.url %}
+{% assign pageauthorbio = auth.content | strip_newlines %}
 {% else %}
 {% assign pageauthor = page.authors %}
 {% endif %}
@@ -46,6 +47,8 @@ layout: default
           </div>
         </div>
       </div>
+
+      {% unless pageauthorbio == ""  %}
       <div class="row justify-content-md-center">
         <div class="col col-lg-8 d-flex flex-column text-center">
           <div class="h4 border border-dark border-3 mb-0 border-bottom-0 p-3">
@@ -53,12 +56,11 @@ layout: default
           </div>
           <div class="border border-dark border-3 d-flex justify-content-around mt-0 p-3">
             <p>
-              <strong>{{pageauthor}}</strong>
-              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-
+              <strong>{{pageauthorbio}}</strong>
             </p>
           </div>
         </div>
+        {% endunless %}
 
     </div>
   </section>

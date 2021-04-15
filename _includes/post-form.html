@@ -65,13 +65,21 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 git" id="featureImg">
+      </div>
+      <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 git" id="featureImg">
           <label>تصویر شاخص</label>
           <input type="file" class="uploadImg" id="file" >
           <a href="javascript:void(0)" class="uploadGit upload uploadImg btn btn-secondary" id="uploadFImg" data-commit="upload post feature image" data-path="assets/img/posts/" data-name="postSlug">بارگذاری</a>
           <a href="" class="image-link uploadedImg btn btn-success" target="_blank" style="display: none;">نمایش</a>
           <a href="javascript:void(0)" class="image-delete uploadedImg btn btn-danger" style="display: none;">حذف</a>
         </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group" style="display:none;">
+          <label for="postSort">ترتیب نمایش پست در پرونده</label>
+          <input type="number" id="postSort" class="form-control" name="postSort" min="1" max="50">
+        </div>
+      </div>
+      <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
           <label for="postText">متن</label>
           <textarea data-provide="markdown"  id="editor" class="form-control" placeholder="متن" required></textarea>
