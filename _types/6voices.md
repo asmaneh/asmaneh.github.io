@@ -1,5 +1,6 @@
 ---
 title: صداها
 slug: voices
-image: '/assets/img/authors/news.jpg'
+image: '/assets/img/pages/voiceIcon.jpg'
+background: /assets/img/pages/voice.jpg
 ---

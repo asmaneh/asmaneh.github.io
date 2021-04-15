@@ -1,5 +1,5 @@
 ---
 title: پژوهش
 slug: research
-image: '/assets/img/authors/news.jpg'
+background: /assets/img/pages/research.jpg
 ---
