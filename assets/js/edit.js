@@ -43,6 +43,11 @@ if (urlParams.get('id')) {
         var postAuthor = $('#postAuthor').val();
         var postOtherAuthor = false;
       };
+      if ($('#embdMediaCode').val() != "") {
+        var embedTag = '<!--' + $('#embdMediaCode').val() + '-->';
+      } else {
+        var embedTag = "";
+      }
       const publishDateEn = new Date(parseInt($('#publishDateU').val()));
       fetch(API_URL+'/api/collections/save/posts', {
           method: 'post',
@@ -60,7 +65,7 @@ if (urlParams.get('id')) {
                 gallary: postGallary,
                 author: postAuthor,
                 otherAuthor: postOtherAuthor,
-                embedCode: $('#embdMediaCode').val(),
+                embedCode: embedTag,
                 feature: $('#featureBtn').attr('aria-pressed')
               }
           })
@@ -92,12 +97,17 @@ if (urlParams.get('id')) {
       postGallary.push({"imageUrl": $(this).attr('href'), "imagePath": $(this).attr('data-path'), "image_title": $(this).siblings('input[type=text]').val()})
     });
   }
+  if ($('#embdMediaCode').val() != "") {
+    var embedTag = '<!--' + $('#embdMediaCode').val() + '-->';
+  } else {
+    var embedTag = "";
+  }
   fetch(API_URL+'/api/collections/save/posts', {
       method: 'post',
       headers: { 'Content-Type': 'application/json','Authorization': 'Bearer '+TOKEN },
       body: JSON.stringify({
           data: {
-            published: '0',
+            published: $('#postStatus').val(),
             title: $('#postTitle').val(),
             slug: postID,
             date: $('#publishDateU').val(),
@@ -109,7 +119,7 @@ if (urlParams.get('id')) {
             gallary: postGallary,
             author: postAuthor,
             otherAuthor: postOtherAuthor,
-            embedCode: $('#embdMediaCode').val(),
+            embedCode: embedTag,
             feature: $('#featureBtn').attr('aria-pressed')
           }
       })
@@ -149,28 +159,42 @@ function getPost(object) {
     }
     $('#postCategory').val(object.entries[0].category);
     $('#editor').html(object.entries[0].content);
-    $('#embdMediaCode').val(object.entries[0].embedCode);
+    if (object.entries[0].embedCode) {
+      var embedCode = object.entries[0].embedCode;
+      embedCode = embedCode.replace("<!--", "");
+      embedCode = embedCode.replace("-->", "");
+      $('#embdMedia').attr('checked', true).trigger('change');
+      $('#embdMediaCode').val(embedCode);
+    } else {
+      $('#embdMedia').attr('checked', false).trigger('change');
+      $('#embdMediaCode').val('');
+    }
     $('#featureBtn').attr('aria-pressed', object.entries[0].feature)
     $('#published').attr('selected',object.entries[0].published);
-    if (obj.entries[0].image != '') {
-      $('#featureImg > .image-link').attr('href', obj.entries[0].image).attr('data-path', obj.entries[0].imagePath);
+    if (obj.entries[0].image) {
+      $('#featureImg > .image-link').attr('href', '').attr('data-path', '');
       $('#featureImg > .uploadImg').hide();
       $('#featureImg > .uploadedImg').show();
+    } else {
+      $('#featureImg > .image-link').attr('href', obj.entries[0].image).attr('data-path', obj.entries[0].imagePath);
+      $('#featureImg > .uploadImg').show();
+      $('#featureImg > .uploadedImg').hide();
     }
-    if (obj.entries[0].gallary.length > 0) {
-      $('#postGallary').empty();
-      for (var i = 0; i < obj.entries[0].gallary.length; i++) {
-        $('#postGallary').append(`
-        <div class="row gallary-image">
-            <input type="file" class="uploadImg" style="display:none;">
-            <a href="javascript:void(0)" class="uploadImg btn btn-secondary" onclick="uploadImage(this)" style="display:none;">بارگذاری</a>
-            <a href="`+obj.entries[0].gallary[i].imageUrl+`" data-path="`+obj.entries[0].gallary[i].imagePath+`" class="image-link uploadedImg btn btn-success" target="_blank">نمایش</a>
-            <a href="javascript:void(0)" class="image-delete uploadedImg btn btn-danger" onclick="deleteImage(this)">حذف</a>
-            <input type="text" class="uploadedImg" value="`+obj.entries[0].gallary[i].image_title+`" name="" placeholder="توضیح عکس" value="" style="width:400px">
-        </div>
-        `)
+    if (obj.entries[0].gallary) {
+      if (obj.entries[0].gallary.length > 0) {
+        $('#postGallary').empty();
+        for (var i = 0; i < obj.entries[0].gallary.length; i++) {
+          $('#postGallary').append(`
+          <div class="row gallary-image">
+              <input type="file" class="uploadImg" style="display:none;">
+              <a href="javascript:void(0)" class="uploadImg btn btn-secondary" onclick="uploadImage(this)" style="display:none;">بارگذاری</a>
+              <a href="`+obj.entries[0].gallary[i].imageUrl+`" data-path="`+obj.entries[0].gallary[i].imagePath+`" class="image-link uploadedImg btn btn-success" target="_blank">نمایش</a>
+              <a href="javascript:void(0)" class="image-delete uploadedImg btn btn-danger" onclick="deleteImage(this)">حذف</a>
+              <input type="text" class="uploadedImg" value="`+obj.entries[0].gallary[i].image_title+`" name="" placeholder="توضیح عکس" value="" style="width:400px">
+          </div>
+          `)
+        }
       }
-
     }
   }
 }
