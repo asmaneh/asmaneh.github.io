@@ -72,7 +72,9 @@ if (urlParams.get('id')) {
           })
       })
       .then(res=>res.json())
-      .then(commits => $('#alertEdited').show());
+      .then(data => {
+        window.location.replace('/review/')
+      });
     })
 } else {
   var postID = makeid(4);
@@ -127,9 +129,8 @@ if (urlParams.get('id')) {
   })
   .then(res=>res.json())
   .then(data => {
-    window.location.replace('/post/?id='+data._id);
-  })
-  })
+    window.location.replace('/review/')
+  });
 
 }
 function getPost(object) {

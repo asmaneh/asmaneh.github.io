@@ -87,7 +87,9 @@ if (urlParams.get('id')) {
         })
     })
     .then(res=>res.json())
-    .then(commits => $('#alertEditedProfile').show());
+    .then(data => {
+      window.location.replace('/review/')
+    });
 })
 
 }
