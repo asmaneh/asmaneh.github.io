@@ -26,11 +26,11 @@ layout: default
     <div class="container-fluid py-4">
       <div class="row px-4">
         <div class="h3 py-2 px-3 mt-auto border border-3 border-light mb-3">
-          پرونده ویژه
+          پرونده ویژه: شهر و جمهوری اسلامی
         </div>
       </div>
       <div class="card-deck">
-        {% assign special_issue = site.posts | where_exp: "item", "item.featureImg" %}
+        {% assign special_issue = site.posts | where: "categories", "ircity" %}
       {% for post in special_issue limit:4 %}
         {% include cardVertical.html %}
         {% endfor %}
