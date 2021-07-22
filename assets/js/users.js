@@ -17,6 +17,11 @@ if (currentUser.role != 'admin') {
               } else {
                 publishBtn ='btn-secondary';
               }
+              if (data.entries[i].username != 'asmaneh') {
+                var delUserTag = `<button class="btn btn-danger btn-sm rounded-0 d-inline-block admin" data-username="`+data.entries[i].name+`" data-user_id="`+data.entries[i]._id+`"  data-toggle="modal" data-target="#delUserConfirm">حذف</button>`;
+              } else {
+                var delUserTag = '';
+              }
               $('#usersTableList').prepend(`
                 <tr>
                   <th scope="row" >`+data.entries[i].name+`</th>
@@ -24,6 +29,7 @@ if (currentUser.role != 'admin') {
                   <td>`+data.entries[i].role+`</td>
                   <td>
                     <a href="/user/?id=`+data.entries[i]._id+`" class="btn btn-primary btn-sm rounded-0 d-inline-block admin" id="showPrvPost" style="">ویرایش</a>
+                    `+delUserTag+`
                     <a href="javascript:void(0)" class="gitSaveAuthor btn `+publishBtn+` btn-sm rounded-0 admin"  style="">انتشار</a>
                     <span style="display:none;">`+JSON.stringify(data.entries[i])+`</span>
                   </td>
@@ -76,3 +82,17 @@ function downloadPost(object) {
       newLink.click();
 
 }
+$('#delUserConfirm').on('show.bs.modal', function (event) {
+  let user_id = $(event.relatedTarget).data('user_id')
+  let username = $(event.relatedTarget).data('username')
+  $(this).find('.modal-footer #approve').attr('onclick', 'deleteUser("'+user_id+'")')
+  $(this).find('.modal-body strong').text(username)
+})
+$(document).ready(function(){
+  $("#searchUser").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#usersTableList tr").filter(function() {
+      $(this).toggle($(this).find("th, td:eq(0),td:eq(1)").text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});

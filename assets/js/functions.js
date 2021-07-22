@@ -90,7 +90,7 @@ function showRecentPost(object) {
         publishBtn ='btn-secondary';
       }
 
-        $('#myRecentPostList').prepend('<tr><th scope="row" >'+object.entries[i].title+'</th><td>'+isPostDate.toLocaleDateString('fa-IR')+'</td><td>'+ isModifiedDate.toLocaleDateString('fa-IR')+'</td><td>'+ isStatus +'</td><td><a href="/post/?id='+object.entries[i]._id+'" target="_blank" class="btn btn-primary btn-sm rounded-0 d-inline-block admin reviewer" id="showPrvPost" style="'+isEdit+'">ویرایش</a><a href="javascript:void(0)" class="gitPublish btn '+publishBtn+' btn-sm rounded-0 admin reviewer '+isDownload+'" style="">انتشار</a><span style="display:none;">'+JSON.stringify(object.entries[i])+'</span></td></tr>');
+        $('#myRecentPostList').prepend('<tr><th scope="row" ><a href="/post/?id='+object.entries[i]._id+'" target="_blank">'+object.entries[i].title+'</a></th><td>'+object.entries[i].author+'</td><td>'+isPostDate.toLocaleDateString('fa-IR')+'</td><td>'+ isModifiedDate.toLocaleDateString('fa-IR')+'</td><td>'+ isStatus +'</td><td><a href="/post/?id='+object.entries[i]._id+'" target="_blank" class="btn btn-primary btn-sm rounded-0 d-inline-block admin reviewer" id="showPrvPost" style="'+isEdit+'">ویرایش</a><a href="javascript:void(0)" class="gitPublish btn '+publishBtn+' btn-sm rounded-0 admin reviewer '+isDownload+'" style="">ثبت</a><span style="display:none;">'+JSON.stringify(object.entries[i])+'</span></td></tr>');
 
     }
     checkCookie();
@@ -182,4 +182,32 @@ function publishedAuthor(id) {
       })
   })
   .then(res=>res.json());
+}
+function deleteUser(id) {
+  console.log('ssss');
+  fetch(API_URL+'/api/collections/remove/authors', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json','Authorization': 'Bearer '+TOKEN },
+      body: JSON.stringify({
+          filter: {
+            _id: id
+          }
+      })
+  })
+  .then(res=>reloadPage());
+}
+function reloadPage() {
+  location.reload();
+}
+function copyToCilpboard(inputID) {
+ /* Get the text field */
+ var copyText = document.getElementById(inputID);
+
+ /* Select the text field */
+ copyText.select();
+ copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+ /* Copy the text inside the text field */
+ document.execCommand("copy");
+
 }

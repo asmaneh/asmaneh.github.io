@@ -24,3 +24,11 @@ function formatDate(date) {
 
     return [year, month, day].join('-');
 }
+$(document).ready(function(){
+  $("#searchPost").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myRecentPostList tr").filter(function() {
+      $(this).toggle($(this).find("th, td:eq(0),td:eq(1),td:eq(2),td:eq(3)").text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});

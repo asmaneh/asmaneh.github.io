@@ -1,5 +1,5 @@
 {% for type in post.types %}{% assign typ = site.types | where: 'slug', type | first %}
-{% if typ %}{% assign topcat = typ.title %}{% assign topcaturl = typ.url %}{% endif %}
+{% if typ %}{% assign topcat = typ.title %}{% assign topcatimg = typ.icon %}{% assign topcaturl = typ.url %}{% endif %}
 {% endfor %}
 {% for category in post.categories %}{% assign cat = site.categories | where: 'slug', category | first %}
 {% if cat %}{% assign botcat = cat.title %}{% assign botcaturl = cat.url %}{% endif %}
@@ -17,7 +17,7 @@
 {%else%}
 {% assign excerptn = 50 %}
 {%endif%}
-  <div class="card shadow-sm  p-0 text-dark border bg-light border-3 border-dark">
+  <div class="card shadow-sm  p-0 text-dark border bg-light border-3 border-black">
           <div class="card-body m-0 p-0">
             {% if post.featureImg %}
               <a href="{{post.url}}">
@@ -28,16 +28,16 @@
               </a>
               {%endif%}
             <div class="d-flex flex-row mb-0 mt-3">
-              <a class="link-light-box" href="{{topcaturl}}">
-              <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0 border-left-0">
-                {{topcat}}
+              <a href="{{topcaturl}}">
+              <div class="h5 mt-auto border bg-light border-3 border-black mb-0 border-bottom-0 border-left-0">
+                <img src="{{topcatimg}}" alt="{{topcat}}" class="nav-icon">
               </div>
               </a>
             </div>
-            <div class="border border-3 border-dark border-bottom-0 border-left-0 border-right-0 mt-0  bg-light p-0">
+            <div class="border border-3 border-black border-bottom-0 border-left-0 border-right-0 mt-0  bg-light p-0">
               <div class="p-3">
                 <h5 class="card-title"><a href="{{post.url}}">{% if post.shortTitle%}{{post.shortTitle}}{%else%}{{post.title}}{%endif%}</a></h5>
-                {%if pageauthorurl%}<a href="{{pageauthorurl}}"><h6>{{pageauthor}}</h6></a>{%else%}<h6>{{pageauthor}}</h6>{%endif%}
+                {% unless post.authors == 'asmaneh'%}{%if pageauthorurl%}<a href="{{pageauthorurl}}"><h6>{{pageauthor}}</h6></a>{%else%}<h6>{{pageauthor}}</h6>{%endif%}{% endunless %}
                 <p class="card-text">{{post.content | markdownify | truncatewords: 25  | strip_html}}</p>
               </div>
             </div>
@@ -45,11 +45,11 @@
           <div class="card-footer m-0 p-0 border-0 bg-light">
             <div class="d-flex flex-row mb-0 justify-content-end">
               {% if botcat %}<a class="link-light-box" href="{{botcaturl}}">
-                  <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0 border-right-0">
+                  <div class="h6 py-2 px-1 mt-auto border bg-light border-3 border-black mb-0 border-bottom-0 border-right-0">
                     {{botcat}}
                   </div>
               </a>{% endif %}
-              <div class="persianDate h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0 border-right-0" data-timestamp="{{post.date | date: '%s'}}">
+              <div class="persianDate h6 py-2 px-1 mt-auto border bg-light border-3 border-black mb-0 border-bottom-0 border-right-0" data-timestamp="{{post.date | date: '%s'}}">
               </div>
             </div>
 </div>

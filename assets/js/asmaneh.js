@@ -17,5 +17,14 @@ $('.header').on('click', '.search-toggle', function(e) {
 
   e.preventDefault();
 });
-
+$(function ()
+{
+  $('.img-float-left').wrap('<figure class="figure fig-float-left"></figure>');
+  $('.img-float-right').wrap('<figure class="figure fig-float-left"></figure>');
+  $(".img-float-left, .img-float-right").each(function () {
+    if ($(this).attr('alt')) {
+      $(this).parent().append('<figcaption class="figure-caption">'+$(".img-float-left").attr('alt')+'</figcaption>');
+    }
+  })
+});
 });

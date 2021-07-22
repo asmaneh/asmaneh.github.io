@@ -33,7 +33,7 @@ $.getJSON('/search.json', function(data) {
     if(item.author === currentUser.username){
       $('#alertPublishedPosts').hide();
       $('#myPublishedPostsTable').show();
-      $('#myPublishedPostsList').prepend('<tr><td><a href="'+item.url+'">'+item.title+'</a></td><td class="persianDate" data-timestamp="'+item.date+'"></td></tr>')
+      $('#myPublishedPostsList').append('<tr><td><a href="'+item.url+'">'+item.title+'</a></td><td class="persianDate" data-timestamp="'+item.date+'"></td></tr>')
     }
   });
 });

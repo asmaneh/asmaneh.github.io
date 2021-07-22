@@ -6,15 +6,17 @@
     <title>{{ site.title }} {% if page.title %} | {{ page.title }}{% endif %}</title>
     <link rel="stylesheet" href="/assets/vendors/bootstrap.min.css">
     {% if page.jsFile == 'edit.js' %}<link rel="stylesheet" href="/assets/vendors/bootstrap-markdown.min.css">{% endif %}
+    {% if page.jsFile == 'edit.js' %}<link rel="stylesheet" href="/assets/vendors/bootstrap-tagsinput/tagsinput.css">{% endif %}
     <link rel="stylesheet" href="/assets/vendors/fontawesome/css/all.css">
     <link rel="stylesheet" href="/assets/vendors/lightbox/ekko-lightbox.css">
-    <link rel="stylesheet" href="/assets/css/asmaneh.css?v=1.01">
+    <link rel="stylesheet" href="/assets/css/asmaneh.css?v=2.01">
     <script type="text/javascript" src="/assets/vendors/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/vendors/bootstrap.min.js"></script>
     {% if page.jsFile == 'edit.js' %}<script src="/assets/vendors/markdown.js"></script>{% endif %}
     {% if page.jsFile == 'edit.js' %}<script src="/assets/vendors/to-markdown.js"></script>{% endif %}
     {% if page.jsFile == 'edit.js' %}<script src="/assets/vendors/bootstrap-markdown.js"></script>{% endif %}
     {% if page.jsFile == 'edit.js' %}<script src="/assets/vendors/bootstrap-markdown.fa.js"></script>{% endif %}
+    {% if page.jsFile == 'edit.js' %}<script src="/assets/vendors/bootstrap-tagsinput/tagsinput.js"></script>{% endif %}
     <script src="/assets/vendors/lightbox/ekko-lightbox.min.js"></script>
   </head>
   <body>
@@ -36,10 +38,10 @@
   </body>
 </html>
 <script src="/assets/js/simple-jekyll-search.min.js"></script>
-<script type="text/javascript" src="/assets/js/functions.js?v=1.01"></script>
-<script type="text/javascript" src="/assets/js/asmaneh.js?v=1.01"></script>
-{% if page.jsFile %}<script type="text/javascript" src="/assets/js/{{page.jsFile}}?v=1.01"></script>{% endif %}
-{% if page.access == 'users' %}<script src="https://alitayebi.com/asmaneh/dist.js?v=1.01" defer async></script>{% endif %}
+<script type="text/javascript" src="/assets/js/functions.js?v=2"></script>
+<script type="text/javascript" src="/assets/js/asmaneh.js?v=2"></script>
+{% if page.jsFile %}<script type="text/javascript" src="/assets/js/{{page.jsFile}}?v=2"></script>{% endif %}
+{% if page.access == 'users' %}<script src="https://alitayebi.com/asmaneh/dist.js?v=2" defer async></script>{% endif %}
 <script>
   window.simpleJekyllSearch = new SimpleJekyllSearch({
     searchInput: document.getElementById('search-input'),

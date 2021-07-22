@@ -1,6 +1,6 @@
 {% if page.collection == "categories" %}
 {% for type in page.type %}{% assign typ = site.types | where: 'slug', type | first %}
-{% if typ %}{% assign pagetopcat = typ.title %}{% assign pagetopcaturl = typ.url %}{% endif %}
+{% if typ %}{% assign pagetopcat = typ.title %}{% assign pagetopcatimg = typ.icon %}{% assign pagetopcaturl = typ.url %}{% endif %}
 {% endfor %}
 {% endif %}
 <section id="topSection" class="py-5 bg-black" style="{% if page.background %} background-image:linear-gradient(#000000dd, #000000dd),url('{{page.background}}'); {%else%}background-image:linear-gradient(#000000dd, #000000dd),url('/assets/img/topSectionBg.jpg');{%endif%}">
@@ -14,18 +14,18 @@
               </div>
               {%endif%}
               <div class="col-sm mt-5">
-                <div class="card-body border border-3 border-dark mt-0  bg-light p-0">
+                <div class="card-body border border-3 border-white text-white mt-0  bg-transparent p-0">
                   {% if pagetopcat %}
                   <div class="d-flex flex-row mb-0">
-                    <a class="link-light-box" href="{{topcaturl}}">
-                      <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-top-0 border-left-0">
-                        {{pagetopcat}}
-                      </div>
-                    </a>
+                        <a href="{{pagetopcaturl}}">
+                          <div class="h5 mt-auto border bg-light border-3 border-white mb-0 border-top-0 border-left-0">
+                            <img src="{{pagetopcatimg}}" alt="{{pagetopcat}}" class="nav-icon">
+                          </div>
+                        </a>
                   </div>
                   {% else %}
                   <div class="d-flex flex-row mb-0">
-                    <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-top-0 border-left-0">
+                    <div class="h5 py-2 px-3 mt-auto border bg-transparent border-3 border-white text-white mb-0 border-top-0 border-left-0">
                       {{pcollection.title}}
                     </div>
                   </div>
@@ -36,7 +36,7 @@
                     <p class="lead card-text"><?php echo $excerpt;  ?></p>
                   </div>
                   <div class="d-flex flex-row mt-0 justify-content-end">
-                    <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0 border-right-0">
+                    <div class="h5 py-2 px-3 mt-auto border bg-transparent border-3 border-white text-white mb-0 border-bottom-0 border-right-0">
                       تعداد مطلب: {{pagesize}}
                     </div>
                   </div>

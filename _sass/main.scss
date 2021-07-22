@@ -22,12 +22,14 @@ p {
 .navbar {
 }
 .logo {
-  filter: invert(1);
   height: 80px;
 }
 #topSection {
   background-size: cover;
   background-position: center;
+}
+.border-black {
+  border-color: #000 !important;
 }
 .border-3 {
     border-width:3px !important;
@@ -38,18 +40,27 @@ p {
 .bg-night {
   background-color: #000000 !important;
 }
-.img-float-left {
+.bg-night a {
+  color: white;
+}
+.bg-light-transparent {
+  background-color: #fafafa99 !important;
+}
+.img-float-left, .img-float-right {
+  width: 100%;
+}
+.fig-float-left {
   width: 50%;
   float: left;
   margin: 10px 20px 10px -150px;
 }
-.img-float-right {
+.fig-float-right {
   width: 50%;
   float: right;
   margin: 10px -150px 10px 20px;
 }
 @media only screen and (max-width: 600px) {
-  .img-float-left,.img-float-right {
+  .fig-float-left,.fig-float-right {
     width: 100%;
     margin: 10px auto;
   }
@@ -209,7 +220,23 @@ blockquote p {
   .sidenav a {font-size: 18px;}
 }
 #editor {
-  height: 500px;
+  height: 800px;
   padding: 10px;
   font-size: 1rem;
+}
+.icon {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+}
+.nav-icon {
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+}
+.navbar-dark img {
+  filter: invert(1);
 }

@@ -1,5 +1,5 @@
 {% for type in post.types %}{% assign typ = site.types | where: 'slug', type | first %}
-{% if typ %}{% assign topcat = typ.title %}{% assign topcaturl = typ.url %}{% endif %}
+{% if typ %}{% assign topcat = typ.title %}{% assign topcatimg = typ.icon %}{% assign topcaturl = typ.url %}{% endif %}
 {% endfor %}
 {% for category in post.categories %}{% assign cat = site.categories | where: 'slug', category | first %}
 {% if cat %}{% assign botcat = cat.title %}{% assign botcaturl = cat.url %}{% endif %}
@@ -7,6 +7,7 @@
 {% for author in post.authors %}{% assign auth = site.authors | where: 'slug', author | first %}
 {% if auth %}
 {% assign pageauthor = auth.title %}
+{% if auth.image %}{% assign pageauthorimg = auth.image %}{% endif %}
 {% assign pageauthorurl = auth.url %}
 {% else %}
 {% assign pageauthor = post.authors %}
@@ -21,35 +22,51 @@
 <div class="col-sm-6 mt-3">
   <div class="card bg-transparent border-0 p-0">
       <div class="row no-gutters">
-        {% if post.featureImg %}
+          {% if post.types == 'blog' %}
+          {% if pageauthorimg %}
+          <div class="col-sm-4 card-image card-image-hr">
+            <a href="{{post.url}}">
+            <div class="square border border-3 border-dark" style="background-image: url('{{pageauthorimg}}')">
+            </div>
+          </a>
+          </div>
+          {% elsif post.featureImg %}
           <div class="col-sm-4 card-image card-image-hr">
             <a href="{{post.url}}">
             <div class="square border border-3 border-dark" style="background-image: url('{{post.featureImg}}')">
             </div>
           </a>
           </div>
+          {% endif %}
+          {% elsif post.featureImg %}
+          <div class="col-sm-4 card-image card-image-hr">
+            <a href="{{post.url}}">
+            <div class="square border border-3 border-black" style="background-image: url('{{post.featureImg}}')">
+            </div>
+          </a>
+          </div>
           {%endif%}
           <div class="col-sm mt-2" >
-            <div class="card-body border border-3 border-dark mt-0  bg-light p-0">
+            <div class="card-body border border-3 border-black mt-0  bg-light p-0">
               <div class="d-flex flex-row mb-0  ">
-                <a class="link-light-box" href="{{topcaturl}}">
-                  <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-top-0 border-left-0">
-                    {{topcat}}
+                <a href="{{topcaturl}}">
+                  <div class="h5 mt-auto border bg-light border-3 border-black mb-0 border-top-0 border-left-0">
+                    <img src="{{topcatimg}}" alt="{{topcat}}" class="nav-icon">
                   </div>
                 </a>
               </div>
               <div class="px-3 pb-3">
                 <h5 class="card-title"><a href="{{post.url}}">{% if post.shortTitle%}{{post.shortTitle}}{%else%}{{post.title}}{%endif%}</a></h5>
-                {%if pageauthorurl %}<a href="{{pageauthorurl}}"><h6>{{pageauthor}}</h6></a>{%else%}<h6>{{pageauthor}}</h6>{%endif%}
+                {% unless post.authors == 'asmaneh'%}{%if pageauthorurl %}<a href="{{pageauthorurl}}"><h6>{{pageauthor}}</h6></a>{%else%}<h6>{{pageauthor}}</h6>{%endif%}{% endunless %}
                 <p class="card-text">{{post.content | truncatewords: 20  | strip_html}}</p>
               </div>
               <div class="d-flex flex-row mb-0 justify-content-end">
                 {% if botcat %}<a class="link-light-box" href="{{botcaturl}}">
-                    <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0 border-right-0">
+                    <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-black mb-0 border-bottom-0 border-right-0">
                       {{botcat}}
                     </div>
                 </a>{% endif %}
-                <div class="persianDate h5 py-2 px-3 mt-auto border bg-light border-3 border-dark mb-0 border-bottom-0 border-right-0" data-timestamp="{{post.date | date: '%s'}}">
+                <div class="persianDate h5 py-2 px-3 mt-auto border bg-light border-3 border-black mb-0 border-bottom-0 border-right-0" data-timestamp="{{post.date | date: '%s'}}">
                 </div>
               </div>
             </div>

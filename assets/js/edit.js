@@ -60,9 +60,12 @@ if (urlParams.get('id')) {
                 date: $('#publishDateU').val(),
                 type: $('#postType').val(),
                 category: $('#postCategory').val(),
+                tags: $("#postTags").val(),
                 content: $('#editor').val(),
                 image: $('#featureImg > .image-link').attr('href'),
                 imagePath: $('#featureImg > .image-link').attr('data-path'),
+                pdfRawPath: $('#attachPDF > .pdf-link').attr('href'),
+                pdfPath: $('#attachPDF > .pdf-link').attr('data-path'),
                 published: $('#postStatus').val(),
                 gallary: postGallary,
                 author: postAuthor,
@@ -81,6 +84,7 @@ if (urlParams.get('id')) {
 } else {
   var postID = makeid(4);
   $('#uploadFImg').attr('data-name', postID);
+  $('#uploadFPdf').attr('data-name', postID);
   $('#postAuthor').val(currentUser.username);
   if (currentUser.role != 'admin') {
     $('#postAuthor').prop('disabled', true);
@@ -121,6 +125,8 @@ if (urlParams.get('id')) {
             type: $('#postType').val(),
             image: $('#featureImg > .image-link').attr('href'),
             imagePath: $('#featureImg > .image-link').attr('data-path'),
+            pdfRawPath: $('#attachPDF > .pdf-link').attr('href'),
+            pdfPath: $('#attachPDF > .pdf-link').attr('data-path'),
             gallary: postGallary,
             author: postAuthor,
             otherAuthor: postOtherAuthor,
@@ -140,6 +146,7 @@ function getPost(object) {
   if (object.entries.length > 0) {
     postID = object.entries[0].slug;
     $('#uploadFImg').attr('data-name', postID);
+    $('#uploadFPdf').attr('data-name', postID);
     $('#postTitle').val(object.entries[0].title);
     $('#postType').val(object.entries[0].type).trigger('change');
     $('#publishDate').persianDatepicker({
@@ -159,7 +166,7 @@ function getPost(object) {
     if (object.entries[0].sort) {
       $('#postSort').val(object.entries[0].sort);
     } else {
-      $('#postSort').val('');      
+      $('#postSort').val('');
     }
     if (object.entries[0].otherAuthor == true) {
       $('#postAuthor').val('other').trigger('change');
@@ -189,6 +196,15 @@ function getPost(object) {
       $('#featureImg > .image-link').attr('href', '').attr('data-path', '');
       $('#featureImg > .uploadImg').show();
       $('#featureImg > .uploadedImg').hide();
+    }
+    if (obj.entries[0].pdfPath) {
+      $('#attachPDF > .pdf-link').attr('href', obj.entries[0].pdfRawPath).attr('data-path', obj.entries[0].pdfPath);
+      $('#attachPDF > .uploadImg').hide();
+      $('#attachPDF > .uploadedImg').show();
+    } else {
+      $('#attachPDF > .pdf-link').attr('href', '').attr('data-path', '');
+      $('#attachPDF > .uploadImg').show();
+      $('#attachPDF > .uploadedImg').hide();
     }
     if (obj.entries[0].gallary) {
       if (obj.entries[0].gallary.length > 0) {

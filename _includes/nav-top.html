@@ -1,17 +1,16 @@
-<nav class="navbar navbar-expand-lg py-3 navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-lg py-3 {% if page.url == '/'%}navbar-dark text-white fixed-top position-absolute bg-transparent {% else %} navbar-light bg-white shadow-sm{% endif %}">
   <div class="container-fluid">
     <a href="/" class="navbar-brand">
       <!-- Logo Image -->
       <img class="logo" src="/assets/img/asmaneh-logo.png" alt="" class="d-inline-block align-middle mr-2">
       <!-- Logo Text -->
-      <span class="text-uppercase font-weight-bold">آسمانه</span>
     </a>
 
     <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
 
     <div id="navbarSupportedContent" class="collapse navbar-collapse justify-content-end">
         <div class="btn-group rounded-0 guest">
-          <a href="/login" class="btn btn-primary-outline rounded-0 border-0">ورود</a>
+          <a href="/login" class="mx-1"><img src="/assets/img/tiles/login.png" alt="login" class="nav-icon"></a>
         </div>
         <div class="btn-group rounded-0 user">
           <a href="/dashboard/" class="btn btn-primary-outline rounded-0 border-0 user-fullname"></a>
@@ -32,9 +31,9 @@
         {% for item in site.types %}
         {% assign type-categories = site.categories | where: 'type', item.slug %}
         <div class="btn-group rounded-0">
-          <a href="{{item.url}}" class="btn btn-primary-outline rounded-0 border-0">{{item.title}}</a>
+          <a href="{{item.url}}" {% if item.icon %}class="{% if type-categories.size > 0 %}ml-0 {%else%}mx-1{%endif%}" {%else%}class="btn btn-primary-outline rounded-0 border-0"{%endif%}>{% if item.icon %}<img src="{{item.icon}}" alt="{{item.title}}" class="nav-icon">{%else%}{{item.title}}{% endif%}</a>
           {% if type-categories.size > 0 %}
-          <button type="button" class="btn btn-primary-outline rounded-0 border-0 dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+          <button type="button" class="border-2 bg-transparent {% if page.url == '/'%}border-white text-white{%else%} border-dark {%endif%} border-left-0 mr-1 dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
             <span class="sr-only">Toggle Dropdown</span>
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">

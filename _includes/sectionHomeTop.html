@@ -6,18 +6,20 @@
 {% assign pageauthor = post.authors %}
 {% endif %}
 {% endfor %}
-<section id="topSection" class="d-flex  py-3 bg-black text-light" style="min-height: calc(100vh - 96px);{% if post.featureImg %} background-image:linear-gradient(#000000dd, #000000dd),url('{{post.featureImg}}'); {%else%}background-image:linear-gradient(#000000dd, #000000dd),url('/assets/img/topSectionBg.jpg');{%endif%}">
-  <div class="align-self-center container">
-    <div class="row pb-5">
-      <div class=" p-3 d-flex  align-items-start flex-column">
+<section id="topSection" class="d-flex py-3 bg-black text-light" style="min-height: 100vh;{% if post.featureImg %} background-image:linear-gradient(#000000dd, #000000dd),url('{{post.featureImg}}'); {%else%}background-image:linear-gradient(#000000dd, #111);{%endif%}">
+  <div class="align-self-center container px-5">
+    <div class="row pb-5 mt-5">
+      <div class="mt-5 p-3 d-flex mt-5 align-items-start flex-column">
         <a class="link-dark-box" href="{{post.url}}">
-          <div class="h2  border border-3 w-100 border-white p-4 mb-0">
+          <div class="h2  border border-3 {% unless post.featureImg %}border-bottom-0{% endunless%} w-100 border-white p-4 mb-0">
             {{post.title}}
           </div>
         </a>
+        {% if post.featureImg %}
+        {% unless post.authors == 'asmaneh'%}
         {% if pageauthorurl %}
         <a class="link-dark-box" href="{{pageauthorurl}}">
-          <div class="h3 py-2 px-3 border border-top-0 border-3 border-white mt-0">
+          <div class="h3 py-2 px-3 border w-100 border-top-0 border-3 border-white mt-0">
             {{pageauthor}}
           </div>
         </a>
@@ -26,6 +28,27 @@
           {{pageauthor}}
         </div>
         {%endif%}
+        {% endunless %}
+        {% else %}
+        <div class=" border border-3 border-white mt-0">
+          <div class="d-flex flex-row mb-0  ">
+            {% if pageauthorurl %}
+            <a class="link-dark-box" href="{{pageauthorurl}}">
+              <div class="h5 py-2 px-3 mt-auto border bg-transparent border-3 border-light mb-0 border-top-0 border-left-0">
+                {{pageauthor}}
+              </div>
+            </a>
+            {%else%}
+            <div class="h5 py-2 px-3 mt-auto border bg-transparent border-3 border-light mb-0 border-top-0 border-left-0">
+              {{pageauthor}}
+            </div>
+            {%endif%}
+          </div>
+          <div class="py-2 px-3">
+            {{post.content | truncatewords: 100 | strip_newlines | strip_html}}
+          </div>
+        </div>
+        {% endif %}
       </div>
     </div>
     <div class="row pt-5">
@@ -49,7 +72,7 @@
         {% endif %}
         {% endfor %}
         <div class="persianDate h4 py-2 px-3 mt-auto border border-3 border-white float-right text-center" style="min-width:250px" data-timestamp="{{post.date | date: '%s'}}">
-          
+
         </div>
       </div>
     </div>

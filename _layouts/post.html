@@ -40,10 +40,19 @@ layout: default
           <div class="h4 border border-dark border-3 mb-0 border-bottom-0 p-3">
             اشتراک مطلب
           </div>
-          <div class="h5 border border-dark border-3 d-flex justify-content-around mt-0 p-3">
-            <a href="#">فیسبوک</a>
-            <a href="#">توئیتر</a>
-            <a href="#">ایمیل</a>
+          <div class="border border-dark border-3 d-flex justify-content-around mt-0 p-3">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text" id="btnGroupAddon">لینک کوتاه</div>
+              </div>
+              <input type="text" class="form-control" disabled dir="ltr" id="shortLink" value="{{site.url}}{{page.url}}"  aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button type="button" class="btn btn-primary btn-copy js-tooltip js-copy" onclick="copyToCilpboard('shortLink')" title="کپی لینک">
+                  <!-- icon from google's material design library -->
+                  <svg class="icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M17,9H7V7H17M17,13H7V11H17M14,17H7V15H14M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3Z" /></svg>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -71,11 +80,35 @@ layout: default
           مطالب مرتبط
         </div>
       </div>
-      <div class="card-deck">
-        {% assign special_issue = site.posts | where_exp: "item", "item.featureImg" %}
-      {% for post in special_issue limit:4 %}
-        {% include cardVertical.html %}
-        {% endfor %}
+      <div class="card-columns">
+        {% assign maxRelated = 3 %}
+        {% assign minCommonTags =  1 %}
+        {% assign maxRelatedCounter = 0 %}
+
+        {% for post in site.posts %}
+
+            {% assign sameTagCount = 0 %}
+            {% assign commonTags = '' %}
+
+            {% for category in post.categories %}
+              {% if post.url != page.url %}
+                {% if page.categories contains category %}
+                  {% assign sameTagCount = sameTagCount | plus: 1 %}
+                  {% capture tagmarkup %} <span class="label label-default">{{ category }}</span> {% endcapture %}
+                  {% assign commonTags = commonTags | append: tagmarkup %}
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+
+            {% if sameTagCount >= minCommonTags %}
+            {% include cardVertical.html %}
+              {% assign maxRelatedCounter = maxRelatedCounter | plus: 1 %}
+              {% if maxRelatedCounter >= maxRelated %}
+                {% break %}
+              {% endif %}
+            {% endif %}
+
+          {% endfor %}
       </div>
       </section>
 
