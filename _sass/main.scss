@@ -240,3 +240,10 @@ blockquote p {
 .navbar-dark img {
   filter: invert(1);
 }
+.collapse.show {
+  background-color: black !important;
+}
+.title-icon {
+  height: 80px;
+  filter: invert(1);
+}
