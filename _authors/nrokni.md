@@ -1,5 +1,7 @@
----
-title: نوشاد رکنی
-slug: nrokni
-image: '/assets/img/authors/nrokni.jpg'
----
+--- 
+title: "نوشاد رکنی" 
+slug: nrokni 
+subTitle: "null" 
+role: "author" 
+image: "https://alitayebi.com/asmaneh/cm/storage/uploads/2021/04/11/nrokni_uid_6072a1652b2fc.jpg" 
+--- 
