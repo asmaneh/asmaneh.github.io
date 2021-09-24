@@ -35,7 +35,7 @@
           <label for="poststatus">وضعیت</label>
           <select class="form-control" id="postStatus"  selected='false'>
             <option value="false" id="draft" value="false">پیش‌‌نویس</option>
-            <option value="true" id="published" value="true" class="admin reviewer" style="display:none;">آماده انتشار</option>
+            <option value="true" id="published" value="true" class="admin reviewer" style="display:none;">انتشار</option>
           </select>
         </div>
 
@@ -125,13 +125,13 @@
       </div>
       <div class="row">
         <div class="col-12">
-          <button id="send" type="button" class="btn btn-primary btn-block mb-2">ارسال</button>
+          <button id="send" type="button" class="btn btn-primary btn-block mb-2"><div id="loadingIcon" class="spinner-border spinner-border-sm" role="status" style="display:none;"> <span class="sr-only">Loading...</span> </div> ارسال</button>
         </div>
       </div>
       <div class="row text-center" id="alertEdited" style="display:none;">
         <div class="col-12">
           <div class="alert alert-success" role="alert">
-            این مطلب با موفقیت ویرایش شد.
+            این مطلب با موفقیت منتشر شد.
           </div>
         </div>
       </div>

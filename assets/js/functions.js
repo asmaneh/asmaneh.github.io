@@ -45,7 +45,7 @@ function getAllPosts() {
       method: 'post',
       headers: { 'Content-Type': 'application/json','Authorization': 'Bearer '+TOKEN },
       body: JSON.stringify({
-        filter: {upload: false},
+        filter: {published: false},
           sort: {_modified:1}
       })
     })
@@ -59,7 +59,7 @@ function getRecentPost(user) {
       method: 'post',
       headers: { 'Content-Type': 'application/json','Authorization': 'Bearer '+TOKEN },
       body: JSON.stringify({
-          filter: {author: user, upload: false},
+          filter: {author: user, published: false},
           limit: 10,
           sort: {_modified:1}
       })
@@ -92,7 +92,7 @@ function showRecentPost(object) {
       }
       var delPostTag = `<button class="btn btn-danger btn-sm rounded-0 d-inline-block" data-post_id="`+object.entries[i]._id+`" data-post_title="`+object.entries[i].title+`"  data-toggle="modal" data-target="#delPostConfirm">حذف</button>`;
 
-        $('#myRecentPostList').prepend('<tr><th scope="row" ><a href="/post/?id='+object.entries[i]._id+'" target="_blank">'+object.entries[i].title+'</a></th><td>'+object.entries[i].author+'</td><td>'+isPostDate.toLocaleDateString('fa-IR')+'</td><td>'+ isModifiedDate.toLocaleDateString('fa-IR')+'</td><td>'+ isStatus +'</td><td><a href="/post/?id='+object.entries[i]._id+'" target="_blank" class="btn btn-primary btn-sm rounded-0 d-inline-block admin reviewer" id="showPrvPost" style="'+isEdit+'">ویرایش</a>'+delPostTag+'<a href="javascript:void(0)" class="gitPublish btn '+publishBtn+' btn-sm rounded-0 admin reviewer '+isDownload+'" style="">ثبت</a><span style="display:none;" data=`'+JSON.stringify(object.entries[i])+'`></span></td></tr>');
+        $('#myRecentPostList').prepend('<tr><th scope="row" ><a href="/post/?id='+object.entries[i]._id+'" target="_blank">'+object.entries[i].title+'</a></th><td>'+object.entries[i].author+'</td><td>'+isPostDate.toLocaleDateString('fa-IR')+'</td><td>'+ isModifiedDate.toLocaleDateString('fa-IR')+'</td><td>'+ isStatus +'</td><td><a href="/post/?id='+object.entries[i]._id+'" target="_blank" class="btn btn-primary btn-sm rounded-0 d-inline-block admin reviewer" id="showPrvPost" style="'+isEdit+'">ویرایش</a>'+delPostTag+'</td></tr>');
     }
     checkCookie();
   }
