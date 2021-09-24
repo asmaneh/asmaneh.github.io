@@ -12,6 +12,13 @@ layout: default
       <div class="card-deck">
         {% assign type-categories = site.categories | where: 'type', page.slug %}
         {% for category in type-categories %}
+        {% if category.icon %}
+        <div class="card bg-transparent border-0">
+          <div class="text-center">
+            <a href="{{category.url}}"><img src="{{category.icon}}" alt="" style="max-height:100px"></a>
+          </div>
+        </div>
+        {% else %}
         <div class="card bg-black border-0" >
           <a class="link-dark-box" href="{{category.url}}">
           <div class="card-body text-center card-body border border-3 border-black">
@@ -19,6 +26,7 @@ layout: default
           </div>
         </a>
         </div>
+        {% endif %}
         {% endfor %}
       </div>
       {% endif %}
