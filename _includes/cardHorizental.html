@@ -48,6 +48,7 @@
           {%endif%}
           <div class="col-sm mt-2" >
             <div class="card-body border border-3 border-black mt-0  bg-light p-0">
+              {% unless post.types == page.slug%}
               <div class="d-flex flex-row mb-0  ">
                 <a href="{{topcaturl}}">
                   <div class="h5 mt-auto border bg-light border-3 border-black mb-0 border-top-0 border-left-0">
@@ -55,6 +56,7 @@
                   </div>
                 </a>
               </div>
+              {%endunless%}
               <div class="px-3 pb-3">
                 <h5 class="card-title"><a href="{{post.url}}">{% if post.shortTitle%}{{post.shortTitle}}{%else%}{{post.title}}{%endif%}</a></h5>
                 {% unless post.authors == 'asmaneh'%}{%if pageauthorurl %}<a href="{{pageauthorurl}}"><h6>{{pageauthor}}</h6></a>{%else%}<h6>{{pageauthor}}</h6>{%endif%}{% endunless %}
