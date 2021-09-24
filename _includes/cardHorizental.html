@@ -58,7 +58,7 @@
               </div>
               {%endunless%}
               <div class="px-3 pb-3">
-                <h5 class="card-title"><a href="{{post.url}}">{% if post.shortTitle%}{{post.shortTitle}}{%else%}{{post.title}}{%endif%}</a></h5>
+                <h5 class="card-title mb-0"><a href="{{post.url}}">{% if post.shortTitle%}{{post.shortTitle}}{%else%}{{post.title}}{%endif%}</a></h5>
                 {% unless post.authors == 'asmaneh'%}{%if pageauthorurl %}<a href="{{pageauthorurl}}"><h6>{{pageauthor}}</h6></a>{%else%}<h6>{{pageauthor}}</h6>{%endif%}{% endunless %}
                 <p class="card-text">{{post.content | truncatewords: 20  | strip_html}}</p>
               </div>

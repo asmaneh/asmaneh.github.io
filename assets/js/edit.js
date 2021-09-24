@@ -28,6 +28,7 @@ if (urlParams.get('id')) {
       .then(data => obj = data)
       .then(res => getPost(obj));
     $('#sendPost').submit(function () {
+      alert(tinymce.get("editor").getContent())
       console.log('sasasa');
       event.preventDefault();
       var postGallary;
@@ -121,7 +122,7 @@ if (urlParams.get('id')) {
             title: $('#postTitle').val(),
             slug: postID,
             date: $('#publishDateU').val(),
-            content: $('#editor').val(),
+            content: tinymce.get("editor").getContent(),
             category: $('#postCategory').val(),
             type: $('#postType').val(),
             image: $('#featureImg > .image-link').attr('href'),
@@ -176,7 +177,7 @@ function getPost(object) {
       $('#postAuthor').val(object.entries[0].author).trigger('change');
     }
     $('#postCategory').val(object.entries[0].category);
-    
+
     $('#editor').html(object.entries[0].content);
     if (object.entries[0].embedCode) {
       var embedCode = object.entries[0].embedCode;
