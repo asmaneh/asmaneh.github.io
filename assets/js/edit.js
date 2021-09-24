@@ -1,3 +1,4 @@
+var post_id;
 if (currentUser === undefined || currentUser === null) {
   window.location.replace('/');
 }
@@ -17,6 +18,7 @@ $("#publishDate").persianDatepicker({
   }
 });
 if (urlParams.get('id')) {
+  var idTag = "_id: "+urlParams.get('id')+",";
   fetch(API_URL+'/api/collections/get/posts', {
       method: 'post',
       headers: { 'Content-Type': 'application/json','Authorization': 'Bearer '+TOKEN },
@@ -27,63 +29,9 @@ if (urlParams.get('id')) {
       .then(res=>res.json())
       .then(data => obj = data)
       .then(res => getPost(obj));
-    $('#sendPost').submit(function () {
-      alert(tinymce.get("editor").getContent())
-      console.log('sasasa');
-      event.preventDefault();
-      var postGallary;
-      if ($('.gallary-image > .image-link').length > 0) {
-        postGallary =[];
-        $('.gallary-image > .image-link').each(function () {
-          postGallary.push({"imageUrl": $(this).attr('href'), "imagePath": $(this).attr('data-path'), "image_title": $(this).siblings('input[type=text]').val()})
-        });
-      }
-      if ($('#postAuthor').val() == "other") {
-        var postAuthor = $('#postOtherAuthor').val();
-        var postOtherAuthor = true;
-      } else {
-        var postAuthor = $('#postAuthor').val();
-        var postOtherAuthor = false;
-      };
-      if ($('#embdMediaCode').val() != "") {
-        var embedTag = '<!--' + $('#embdMediaCode').val() + '-->';
-      } else {
-        var embedTag = "";
-      }
-      const publishDateEn = new Date(parseInt($('#publishDateU').val()));
-      fetch(API_URL+'/api/collections/save/posts', {
-          method: 'post',
-          headers: { 'Content-Type': 'application/json','Authorization': 'Bearer '+TOKEN },
-          body: JSON.stringify({
-              data: {
-                _id: urlParams.get('id'),
-                title: $('#postTitle').val(),
-                upload: false,
-                date: $('#publishDateU').val(),
-                type: $('#postType').val(),
-                category: $('#postCategory').val(),
-                tags: $("#postTags").val(),
-                content: tinymce.get("editor").getContent(),
-                image: $('#featureImg > .image-link').attr('href'),
-                imagePath: $('#featureImg > .image-link').attr('data-path'),
-                pdfRawPath: $('#attachPDF > .pdf-link').attr('href'),
-                pdfPath: $('#attachPDF > .pdf-link').attr('data-path'),
-                published: $('#postStatus').val(),
-                gallary: postGallary,
-                author: postAuthor,
-                otherAuthor: postOtherAuthor,
-                embedCode: embedTag,
-                sort: $('#postSort').val(),
-                feature: $('#featureBtn').attr('aria-pressed')
-              }
-          })
-      })
-      .then(res=>res.json())
-      .then(data => {
-        window.location.replace('/review/')
-      });
-    })
+
 } else {
+  var idTag = "";
   var postID = makeid(4);
   $('#uploadFImg').attr('data-name', postID);
   $('#uploadFPdf').attr('data-name', postID);
@@ -92,15 +40,9 @@ if (urlParams.get('id')) {
     $('#postAuthor').prop('disabled', true);
   }
 
-  $('#sendPost').submit(function (e) {
-  e.preventDefault();
-  if ($('#postAuthor').val() == "other") {
-    var postAuthor = $('#postOtherAuthor').val();
-    var postOtherAuthor = true;
-  } else {
-    var postAuthor = $('#postAuthor').val();
-    var postOtherAuthor = false;
-  };
+}
+$('#send').on('click', function () {
+  console.log(idTag);
   var postGallary;
   if ($('.gallary-image > .image-link').length > 0) {
     postGallary =[];
@@ -108,27 +50,37 @@ if (urlParams.get('id')) {
       postGallary.push({"imageUrl": $(this).attr('href'), "imagePath": $(this).attr('data-path'), "image_title": $(this).siblings('input[type=text]').val()})
     });
   }
+  if ($('#postAuthor').val() == "other") {
+    var postAuthor = $('#postOtherAuthor').val();
+    var postOtherAuthor = true;
+  } else {
+    var postAuthor = $('#postAuthor').val();
+    var postOtherAuthor = false;
+  };
   if ($('#embdMediaCode').val() != "") {
     var embedTag = '<!--' + $('#embdMediaCode').val() + '-->';
   } else {
     var embedTag = "";
   }
+  const publishDateEn = new Date(parseInt($('#publishDateU').val()));
   fetch(API_URL+'/api/collections/save/posts', {
       method: 'post',
       headers: { 'Content-Type': 'application/json','Authorization': 'Bearer '+TOKEN },
       body: JSON.stringify({
           data: {
-            published: $('#postStatus').val(),
+            _id: urlParams.get('id'),
             title: $('#postTitle').val(),
-            slug: postID,
+            upload: false,
             date: $('#publishDateU').val(),
-            content: tinymce.get("editor").getContent(),
-            category: $('#postCategory').val(),
             type: $('#postType').val(),
+            category: $('#postCategory').val(),
+            tags: $("#postTags").val(),
+            content: tinymce.get("editor").getContent(),
             image: $('#featureImg > .image-link').attr('href'),
             imagePath: $('#featureImg > .image-link').attr('data-path'),
             pdfRawPath: $('#attachPDF > .pdf-link').attr('href'),
             pdfPath: $('#attachPDF > .pdf-link').attr('data-path'),
+            published: $('#postStatus').val(),
             gallary: postGallary,
             author: postAuthor,
             otherAuthor: postOtherAuthor,
@@ -140,13 +92,17 @@ if (urlParams.get('id')) {
   })
   .then(res=>res.json())
   .then(data => {
-    window.location.replace('/review/')
+    if ($('#postStatus').val()) {
+      $('#sendPost').submit()
+    } else {
+      window.location.replace('/review/')
+    }
   });
 })
-}
 function getPost(object) {
   if (object.entries.length > 0) {
     postID = object.entries[0].slug;
+    post_id= object.entries[0]._id;
     $('#uploadFImg').attr('data-name', postID);
     $('#uploadFPdf').attr('data-name', postID);
     $('#postTitle').val(object.entries[0].title);
