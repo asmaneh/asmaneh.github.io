@@ -14,7 +14,7 @@
               </div>
               {%endif%}
               <div class="col-sm mt-5">
-                <div class="card-body border border-3 border-white text-white mt-0  bg-transparent p-0">
+                <div class="card-body border border-4 border-white text-white mt-0  bg-transparent p-0">
                   {% if pagetopcat %}
                   <div class="d-flex flex-row mb-0">
                         <a href="{{pagetopcaturl}}">
@@ -26,7 +26,7 @@
                   {% endif %}
                   <div>
                     {% if page.icon %}
-                    <img src="{{page.icon}}" alt="{{page.title}}" class="title-icon">
+                    <img src="{{page.icon}}" alt="{{page.title}}" class="title-icon top-img">
                     {% else %}
                     <h1 class="card-title mx-3">{{page.title}} </h1>
                     {%endif%}
