@@ -40,6 +40,22 @@ function getUserInfo(u) {
       $('.user-photo').attr('src', u.avatar);
     }
   }
+function editPost(slug) {
+  console.log(slug);
+  fetch(API_URL+'/api/collections/get/posts', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json','Authorization': 'Bearer '+TOKEN },
+      body: JSON.stringify({
+        filter: {slug: slug}
+      })
+    })
+      .then(res=>res.json())
+      .then(data => {
+        window.location.replace('/post/?id='+data.entries[0]._id)
+
+      });
+
+}
 function getAllPosts() {
   fetch(API_URL+'/api/collections/get/posts', {
       method: 'post',

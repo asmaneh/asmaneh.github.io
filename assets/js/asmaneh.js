@@ -5,6 +5,12 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 $(this).ekkoLightbox();
 });
 $(document).ready(function(){
+  $('.fnoteBtn').on('click', function () {
+    alert(decodeURI($(this).data('content')))
+  })
+$('#editPost').on('click', function () {
+  editPost($(this).data('slug'));
+})
 $('.persianDate').each(function () {
   var postDate = new Date(parseInt($(this).attr('data-timestamp'))*1000);
   $(this).text(postDate.toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' }));

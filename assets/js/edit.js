@@ -69,6 +69,7 @@ $('#send').on('click', function () {
       body: JSON.stringify({
           data: {
             _id: urlParams.get('id'),
+            slug: postID,
             title: $('#postTitle').val(),
             upload: false,
             date: $('#publishDateU').val(),
