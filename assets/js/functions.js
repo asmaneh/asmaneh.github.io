@@ -45,7 +45,8 @@ function getAllPosts() {
       method: 'post',
       headers: { 'Content-Type': 'application/json','Authorization': 'Bearer '+TOKEN },
       body: JSON.stringify({
-          sort: {date:-1}
+        filter: {upload: false},
+          sort: {_modified:1}
       })
     })
       .then(res=>res.json())
@@ -60,7 +61,7 @@ function getRecentPost(user) {
       body: JSON.stringify({
           filter: {author: user, upload: false},
           limit: 10,
-          sort: {date:-1}
+          sort: {_modified:1}
       })
     })
       .then(res=>res.json())
@@ -89,9 +90,9 @@ function showRecentPost(object) {
       } else {
         publishBtn ='btn-secondary';
       }
+      var delPostTag = `<button class="btn btn-danger btn-sm rounded-0 d-inline-block" data-post_id="`+object.entries[i]._id+`" data-post_title="`+object.entries[i].title+`"  data-toggle="modal" data-target="#delPostConfirm">حذف</button>`;
 
-        $('#myRecentPostList').prepend('<tr><th scope="row" ><a href="/post/?id='+object.entries[i]._id+'" target="_blank">'+object.entries[i].title+'</a></th><td>'+object.entries[i].author+'</td><td>'+isPostDate.toLocaleDateString('fa-IR')+'</td><td>'+ isModifiedDate.toLocaleDateString('fa-IR')+'</td><td>'+ isStatus +'</td><td><a href="/post/?id='+object.entries[i]._id+'" target="_blank" class="btn btn-primary btn-sm rounded-0 d-inline-block admin reviewer" id="showPrvPost" style="'+isEdit+'">ویرایش</a><a href="javascript:void(0)" class="gitPublish btn '+publishBtn+' btn-sm rounded-0 admin reviewer '+isDownload+'" style="">ثبت</a><span style="display:none;">'+JSON.stringify(object.entries[i])+'</span></td></tr>');
-
+        $('#myRecentPostList').prepend('<tr><th scope="row" ><a href="/post/?id='+object.entries[i]._id+'" target="_blank">'+object.entries[i].title+'</a></th><td>'+object.entries[i].author+'</td><td>'+isPostDate.toLocaleDateString('fa-IR')+'</td><td>'+ isModifiedDate.toLocaleDateString('fa-IR')+'</td><td>'+ isStatus +'</td><td><a href="/post/?id='+object.entries[i]._id+'" target="_blank" class="btn btn-primary btn-sm rounded-0 d-inline-block admin reviewer" id="showPrvPost" style="'+isEdit+'">ویرایش</a>'+delPostTag+'<a href="javascript:void(0)" class="gitPublish btn '+publishBtn+' btn-sm rounded-0 admin reviewer '+isDownload+'" style="">ثبت</a><span style="display:none;">'+JSON.stringify(object.entries[i])+'</span></td></tr>');
     }
     checkCookie();
   }
@@ -170,6 +171,18 @@ function publishedPost(id) {
   })
   .then(res=>res.json());
 }
+function deletePost(id) {
+  fetch(API_URL+'/api/collections/remove/posts', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json','Authorization': 'Bearer '+TOKEN },
+      body: JSON.stringify({
+          filter: {
+            _id: id
+          }
+      })
+  })
+  .then(res=>reloadPage());
+}
 function publishedAuthor(id) {
   fetch(API_URL+'/api/collections/save/authors', {
       method: 'post',
@@ -184,7 +197,6 @@ function publishedAuthor(id) {
   .then(res=>res.json());
 }
 function deleteUser(id) {
-  console.log('ssss');
   fetch(API_URL+'/api/collections/remove/authors', {
       method: 'post',
       headers: { 'Content-Type': 'application/json','Authorization': 'Bearer '+TOKEN },

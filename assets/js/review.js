@@ -32,3 +32,9 @@ $(document).ready(function(){
     });
   });
 });
+$('#delPostConfirm').on('show.bs.modal', function (event) {
+  let post_id = $(event.relatedTarget).data('post_id')
+  let post_title = $(event.relatedTarget).data('post_title')
+  $(this).find('.modal-footer #approve').attr('onclick', 'deletePost("'+post_id+'")')
+  $(this).find('.modal-body strong').text(post_title)
+})

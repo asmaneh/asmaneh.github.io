@@ -28,6 +28,7 @@ if (urlParams.get('id')) {
       .then(data => obj = data)
       .then(res => getPost(obj));
     $('#sendPost').submit(function () {
+      console.log('sasasa');
       event.preventDefault();
       var postGallary;
       if ($('.gallary-image > .image-link').length > 0) {
@@ -61,7 +62,7 @@ if (urlParams.get('id')) {
                 type: $('#postType').val(),
                 category: $('#postCategory').val(),
                 tags: $("#postTags").val(),
-                content: $('#editor').val(),
+                content: tinymce.get("editor").getContent(),
                 image: $('#featureImg > .image-link').attr('href'),
                 imagePath: $('#featureImg > .image-link').attr('data-path'),
                 pdfRawPath: $('#attachPDF > .pdf-link').attr('href'),
@@ -175,6 +176,7 @@ function getPost(object) {
       $('#postAuthor').val(object.entries[0].author).trigger('change');
     }
     $('#postCategory').val(object.entries[0].category);
+    
     $('#editor').html(object.entries[0].content);
     if (object.entries[0].embedCode) {
       var embedCode = object.entries[0].embedCode;
@@ -253,11 +255,14 @@ function deleteImage(e) {
     addImage2Gallary();
   }
 }
-$("#editor").markdown({
-  iconlibrary: 'fa',
-  fullscreen: 'false',
-  language: 'fa'
-})
+tinymce.init({
+  menubar:false,
+  language: 'fa',
+  directionality: 'rtl',
+    plugins: 'preview autolink autosave save footnotes directionality visualblocks visualchars fullscreen image link media template table charmap hr anchor advlist lists wordcount charmap emoticons',
+    toolbar: 'undo redo | rtl ltr | bold italic underline strikethrough | formatselect fontsizeselect | footnotes | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | table | forecolor backcolor casechange permanentpen formatpainter removeformat | charmap emoticons | fullscreen  preview | insertfile image media pageembed link anchor',
+    selector: '#editor'
+});
 $("#embdMedia").change(function () {
   if ($(this).is(':checked')) {
     $('#embdMediaCode').parent().show();
