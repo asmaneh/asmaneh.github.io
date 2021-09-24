@@ -244,7 +244,7 @@ blockquote p {
 .navbar-dark img {
   filter: invert(1);
 }
-.collapse.show {
+.navbar-dark .container-fluid .collapse.show {
   background-color: black !important;
 }
 .title-icon {
