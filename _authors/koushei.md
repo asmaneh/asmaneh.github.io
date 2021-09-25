@@ -3,5 +3,5 @@ title: "سیدامیر کوشه‌ای"
 slug: koushei 
 subTitle: "null" 
 role: "author" 
-image: "null" 
+image: "https://raw.githubusercontent.com/asmaneh/asmaneh.github.io/master/assets/img/authors/koushei.jfif" 
 --- 
