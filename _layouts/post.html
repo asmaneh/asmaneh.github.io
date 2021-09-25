@@ -34,7 +34,6 @@ layout: default
           {% endfor %}
         </div>
         {% endif %}
-        <button type="button" name="editPost" id="editPost" class="btn btn-primary mx-auto admin editor" data-slug="{{page.slug}}" style="display:none;">ویرایش</button>
       </div>
       <div class="row justify-content-md-center">
         <div class="col col-lg-8 d-flex flex-column text-center">
@@ -71,8 +70,19 @@ layout: default
           </div>
         </div>
         {% endunless %}
+      </div>
+        <div class="row justify-content-md-center admin editor" style="display:none;">
+          <div class="col col-lg-8 d-flex flex-column text-center">
+            <div class="h4 border border-dark border-3 mb-0 border-bottom-0 p-3">
+              مدیریت
+            </div>
+            <div class="border border-dark border-3 d-flex justify-content-around mt-0 p-3">
+              <button type="button" name="editPost" id="editPost" class="btn btn-primary" data-slug="{{page.slug}}">ویرایش</button>
+              <button type="button" name="deletePost" id="deletePost" class="btn btn-danger" data-slug="{{page.slug}}" data-path="{{page.path}}">حذف</button>
+            </div>
+          </div>
+          </div>
 
-    </div>
   </section>
   <section class="bg-black text-light">
     <div class="container-fluid py-4">
