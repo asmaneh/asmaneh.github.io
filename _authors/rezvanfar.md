@@ -3,5 +3,5 @@ title: "مرتضی رضوانفر"
 slug: rezvanfar 
 subTitle: "null" 
 role: "author" 
-image: "null" 
+image: "https://raw.githubusercontent.com/asmaneh/asmaneh.github.io/master/assets/img/authors/rezvanfar.jfif" 
 --- 
