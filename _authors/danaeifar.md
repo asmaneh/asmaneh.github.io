@@ -3,5 +3,5 @@ title: "مطهره دانایی‌فر"
 slug: danaeifar 
 subTitle: "null" 
 role: "author" 
-image: "null" 
+image: "https://raw.githubusercontent.com/asmaneh/asmaneh.github.io/master/assets/img/authors/danaeifar.jpg" 
 --- 
