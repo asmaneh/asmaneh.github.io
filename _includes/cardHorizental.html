@@ -10,6 +10,7 @@
 {% if auth.image %}{% assign pageauthorimg = auth.image %}{% endif %}
 {% assign pageauthorurl = auth.url %}
 {% else %}
+{% assign pageauthorimg = false %}
 {% assign pageauthor = post.authors %}
 {% assign pageauthorurl = false %}
 {% endif %}
