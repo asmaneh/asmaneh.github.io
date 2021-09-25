@@ -2,7 +2,7 @@
 {% if typ %}{% assign topcat = typ.title %}{% assign topcatimg = typ.icon %}{% assign topcaturl = typ.url %}{% endif %}
 {% endfor %}
 {% for category in post.categories %}{% assign cat = site.categories | where: 'slug', category | first %}
-{% if cat %}{% assign botcat = cat.title %}{% assign botcaturl = cat.url %}{% endif %}
+{% if cat %}{% assign botcat = cat.title %}{% assign botcaturl = cat.url %}{% else %}{% assign botcat = false %}{% endif %}
 {% endfor %}
 {% for author in post.authors %}{% assign auth = site.authors | where: 'slug', author | first %}
 {% if auth %}

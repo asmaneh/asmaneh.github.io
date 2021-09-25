@@ -106,6 +106,7 @@ function getPost(object) {
     post_id= object.entries[0]._id;
     $('#uploadFImg').attr('data-name', postID);
     $('#uploadFPdf').attr('data-name', postID);
+    $('#postTags').tagsinput('add', object.entries[0].tags);
     $('#postTitle').val(object.entries[0].title);
     $('#postType').val(object.entries[0].type).trigger('change');
     $('#publishDate').persianDatepicker({
