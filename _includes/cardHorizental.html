@@ -1,4 +1,5 @@
 {% assign botcat = false %}
+{% assign postthumbnail = false %}
 {% for type in post.types %}{% assign typ = site.types | where: 'slug', type | first %}
 {% if typ %}{% assign topcat = typ.title %}{% assign topcatimg = typ.icon %}{% assign topcaturl = typ.url %}{% endif %}
 {% endfor %}
@@ -21,29 +22,23 @@
 {%else%}
 {% assign excerptn = 50 %}
 {%endif%}
+{% if post.types == 'blog' %}
+  {% if pageauthorimg %}
+    {% assign postthumbnail = pageauthorimg %}
+  {% elsif post.featureImg %}
+    {% assign postthumbnail = post.featureImg %}
+  {% endif %}
+{% elsif post.featureImg %}
+{% assign postthumbnail = post.featureImg %}
+{%endif%}
+
 <div class="col-sm-6 mt-3">
   <div class="card bg-transparent border-0 p-0">
       <div class="row no-gutters">
-          {% if post.types == 'blog' %}
-          {% if pageauthorimg %}
+          {% if postthumbnail %}
           <div class="col-sm-4 card-image card-image-hr">
             <a href="{{post.url}}">
-            <div class="square border border-3 border-dark" style="background-image: url('{{pageauthorimg}}')">
-            </div>
-          </a>
-          </div>
-          {% elsif post.featureImg %}
-          <div class="col-sm-4 card-image card-image-hr">
-            <a href="{{post.url}}">
-            <div class="square border border-3 border-dark" style="background-image: url('{{post.featureImg}}')">
-            </div>
-          </a>
-          </div>
-          {% endif %}
-          {% elsif post.featureImg %}
-          <div class="col-sm-4 card-image card-image-hr">
-            <a href="{{post.url}}">
-            <div class="square border border-3 border-black" style="background-image: url('{{post.featureImg}}')">
+            <div class="square border border-3 border-dark" style="background-image: url('{{postthumbnail}}')">
             </div>
           </a>
           </div>
@@ -59,19 +54,21 @@
                 </a>
               </div>
               {%endunless%}
-              <div class="px-3 pb-3">
-                <h5 class="card-title mb-0"><a href="{{post.url}}">{% if post.shortTitle%}{{post.shortTitle}}{%else%}{{post.title}}{%endif%}</a></h5>
+              <div class="px-3" style="margin-bottom:-15px;">
+                <h5 class="card-title mb-0"><a href="{{post.url}}">{% if post.shortTitle%}{{post.shortTitle}}{%else%}{{post.title  | truncatewords: 10}}{%endif%}</a></h5>
                 {% unless post.authors == 'asmaneh'%}{%if pageauthorurl %}<a href="{{pageauthorurl}}"><h6>{{pageauthor}}</h6></a>{%else%}<h6>{{pageauthor}}</h6>{%endif%}{% endunless %}
-                <p class="card-text">{{post.content | truncatewords: 20  | strip_html}}</p>
+                <p class="card-text">{% if postthumbnail%}{{post.content | truncatewords: 30  | strip_html}}{% else %}{{post.content | truncatewords: 60  | strip_html}}{%endif%}</p>
               </div>
               <div class="d-flex flex-row mb-0 justify-content-end">
                 {% if botcat %}<a class="link-light-box" href="{{botcaturl}}">
-                    <div class="h5 py-2 px-3 mt-auto border bg-light border-3 border-black mb-0 border-bottom-0 border-right-0">
+                    <div class="py-2 px-3 mt-auto border bg-light border-3 border-black mb-0 border-bottom-0 border-right-0">
                       {{botcat}}
                     </div>
                 </a>{% endif %}
-                <div class="persianDate h5 py-2 px-3 mt-auto border bg-light border-3 border-black mb-0 border-bottom-0 border-right-0" data-timestamp="{{post.date | date: '%s'}}">
-                </div>
+                <a class="link-light-box" href="{{post.url}}">
+                  <div class="persianDate py-2 px-3 mt-auto border bg-light border-3 border-black mb-0 border-bottom-0 border-right-0" data-timestamp="{{post.date | date: '%s'}}">
+                  </div>
+                </a>
               </div>
             </div>
           </div>

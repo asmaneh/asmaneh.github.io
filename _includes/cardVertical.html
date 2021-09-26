@@ -1,3 +1,5 @@
+{% assign postthumbnail = false %}
+
 {% for type in post.types %}{% assign typ = site.types | where: 'slug', type | first %}
 {% if typ %}{% assign topcat = typ.title %}{% assign topcatimg = typ.icon %}{% assign topcaturl = typ.url %}{% endif %}
 {% endfor %}
@@ -17,9 +19,19 @@
 {%else%}
 {% assign excerptn = 50 %}
 {%endif%}
+{% if post.types == 'blog' %}
+  {% if pageauthorimg %}
+    {% assign postthumbnail = pageauthorimg %}
+  {% elsif post.featureImg %}
+    {% assign postthumbnail = post.featureImg %}
+  {% endif %}
+{% elsif post.featureImg %}
+{% assign postthumbnail = post.featureImg %}
+{%endif%}
+
   <div class="card shadow-sm  p-0 text-dark border bg-light border-3 border-black">
           <div class="card-body m-0 p-0">
-            {% if post.featureImg %}
+            {% if postthumbnail %}
               <a href="{{post.url}}">
               <div class="card-image card-image-vr">
                 <div class="square" style="background-image: url('{{post.featureImg}}')">
@@ -38,7 +50,7 @@
               <div class="p-3">
                 <h5 class="card-title"><a href="{{post.url}}">{% if post.shortTitle%}{{post.shortTitle}}{%else%}{{post.title}}{%endif%}</a></h5>
                 {% unless post.authors == 'asmaneh'%}{%if pageauthorurl%}<a href="{{pageauthorurl}}"><h6>{{pageauthor}}</h6></a>{%else%}<h6>{{pageauthor}}</h6>{%endif%}{% endunless %}
-                <p class="card-text">{{post.content | markdownify | truncatewords: 25  | strip_html}}</p>
+                <p class="card-text">{% if postthumbnail %}{{post.content | markdownify | truncatewords: 25  | strip_html}}{%else%}{{post.content | markdownify | truncatewords: 150  | strip_html}}{%endif%}</p>
               </div>
             </div>
           </div>
