@@ -6,7 +6,7 @@ layout: default
   {% include sectionHomeTop.html %}
   {%endfor%}
   <section class="pt-5 bg-light text-dark" style="min-height: 100vh;">
-    <div class="container px-5 py-4">
+    <div class="container-fluid px-5 py-4">
       <div class="row">
   {% assign recent_section = site.posts %}
   {% for post in recent_section limit: 6 %}

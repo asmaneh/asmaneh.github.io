@@ -57,7 +57,7 @@
               <div class="px-3" style="margin-bottom:-15px;">
                 <h5 class="card-title mb-0"><a href="{{post.url}}">{% if post.shortTitle%}{{post.shortTitle}}{%else%}{{post.title  | truncatewords: 10}}{%endif%}</a></h5>
                 {% unless post.authors == 'asmaneh'%}{%if pageauthorurl %}<a href="{{pageauthorurl}}"><h6>{{pageauthor}}</h6></a>{%else%}<h6>{{pageauthor}}</h6>{%endif%}{% endunless %}
-                <p class="card-text">{% if postthumbnail%}{{post.content | truncatewords: 30  | strip_html}}{% else %}{{post.content | truncatewords: 60  | strip_html}}{%endif%}</p>
+                <p class="card-text">{% if postthumbnail%}{{post.content | truncatewords: 100  | strip_html}}{% else %}{{post.content | truncatewords: 200  | strip_html}}{%endif%}</p>
               </div>
               <div class="d-flex flex-row mb-0 justify-content-end">
                 {% if botcat %}<a class="link-light-box" href="{{botcaturl}}">
