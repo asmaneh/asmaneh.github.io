@@ -36,7 +36,7 @@ if (urlParams.get('id')) {
   $('#uploadFImg').attr('data-name', postID);
   $('#uploadFPdf').attr('data-name', postID);
   $('#postAuthor').val(currentUser.username);
-  if (currentUser.role != 'admin') {
+  if (currentUser.role != 'admin' || currentUser.role != 'editor') {
     $('#postAuthor').prop('disabled', true);
   }
 

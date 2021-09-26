@@ -88,7 +88,7 @@ if (urlParams.get('id')) {
     })
     .then(res=>res.json())
     .then(data => {
-      window.location.replace('/review/')
+      window.location.replace('/users/')
     });
 })
 
