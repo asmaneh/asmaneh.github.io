@@ -1,0 +1,7 @@
+--- 
+title: "بهاره تقوی‌نژاد" 
+slug: taghavinejad 
+subTitle: "null" 
+role: "author" 
+image: "https://raw.githubusercontent.com/asmaneh/asmaneh.github.io/master/assets/img/authors/asmaneh.jpg" 
+--- 
