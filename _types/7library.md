@@ -1,5 +1,5 @@
 ---
 title: کتابخانه
 slug: library
-icon: /assets/img/tiles/library.png
+icon: /assets/img/tiles/library.svg
 ---

@@ -7,26 +7,18 @@ layout: default
 <main role="main">
   {% include sectionArchiveTop.html %}
   <section class="pt-3 bg-light text-dark" style="min-height: 100vh;">
-    <div class="container-fluid px-5 py-0">
+    <div class="container-fluid py-0">
       {% if page.collection == 'types'%}
-      <div class="d-flex flex-row-reverse" style="height: 12vh">
+      <div class="d-flex flex-row-reverse">
         {% assign type-categories = site.categories | where: 'type', page.slug %}
         {% for category in type-categories %}
-        {% if category.icon %}
-        <div class="card bg-transparent border-0 h-100 p-1">
-          <div class="text-center h-100">
-            <a href="{{category.url}}"><img src="{{category.icon}}" class="h-100" alt=""></a>
-          </div>
+        <div class="btn-group rounded-0 my-1">
+          {% if category.icon %}
+          <a href="{{category.url}}" class="mx-1"><img src="{{category.icon}}" alt="{{category.title}}" class="nav-icon"></a>
+          {% else %}
+          <a href="{{category.url}}" class="btn border-3 bold bg-transparent border-dark rounded-0" style="font-weight:bold;">{{category.title}}</a>
+          {% endif %}
         </div>
-        {% else %}
-        <div class="bg-black border-0 h-100" >
-          <a class="link-dark-box" href="{{category.url}}">
-          <div class="text-center border border-3 border-black">
-            <h4 class="mx-1">{{category.title}}</h4>
-          </div>
-        </a>
-        </div>
-        {% endif %}
         {% endfor %}
       </div>
       {% endif %}

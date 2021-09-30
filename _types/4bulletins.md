@@ -1,5 +1,5 @@
 ---
 title: پرونده‌
 slug: bulletins
-icon: /assets/img/tiles/bulletins.png
+icon: /assets/img/tiles/bulletins.svg
 ---

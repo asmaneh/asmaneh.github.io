@@ -27,8 +27,9 @@
 
           </div>
         </div>
-
-        {% for item in site.types %}
+        {% assign recent_section = site.posts | where_exp: 'post', 'post.types != "gallery"'%}
+        {% assign topnavitems = site.types | where_exp: 'type', 'type.slug != "gallery"' %}
+        {% for item in topnavitems %}
         {% assign type-categories = site.categories | where: 'type', item.slug %}
         <div class="btn-group rounded-0 my-1">
           <a href="{{item.url}}" {% if item.icon %}class="{% if type-categories.size > 0 %}ml-0 {%else%}mx-1{%endif%}" {%else%}class="btn btn-primary-outline rounded-0 border-0"{%endif%}>{% if item.icon %}<img src="{{item.icon}}" alt="{{item.title}}" class="nav-icon">{%else%}{{item.title}}{% endif%}</a>

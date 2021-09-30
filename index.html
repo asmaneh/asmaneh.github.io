@@ -8,7 +8,7 @@ layout: default
   <section class="pt-5 bg-light text-dark" style="min-height: 100vh;">
     <div class="container-fluid px-5 py-4">
       <div class="row">
-  {% assign recent_section = site.posts %}
+  {% assign recent_section = site.posts | where_exp: 'post', 'post.types != "gallery"'%}
   {% for post in recent_section limit: 12 %}
   {% include cardHorizental.html %}
   {%endfor%}
@@ -22,6 +22,12 @@ layout: default
       </div>
     </div>
   </section>
+  {% assign recent_gallery = site.posts | where: "types", "gallery" %}
+  {% for post in recent_gallery limit:1 %}
+  {% include sectionGallery.html %}
+  {% endfor %}
+
+
   <section class="bg-black text-light">
     <div class="container-fluid py-4">
       <div class="row px-4">

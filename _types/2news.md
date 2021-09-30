@@ -1,5 +1,5 @@
 ---
 title: خبر و گزارش
 slug: news
-icon: /assets/img/tiles/news.png
+icon: /assets/img/tiles/news.svg
 ---
