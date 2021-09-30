@@ -9,20 +9,20 @@ layout: default
   <section class="pt-3 bg-light text-dark" style="min-height: 100vh;">
     <div class="container-fluid px-5 py-0">
       {% if page.collection == 'types'%}
-      <div class="card-deck">
+      <div class="d-flex flex-row-reverse" style="height: 12vh">
         {% assign type-categories = site.categories | where: 'type', page.slug %}
         {% for category in type-categories %}
         {% if category.icon %}
-        <div class="card bg-transparent border-0">
-          <div class="text-center">
-            <a href="{{category.url}}"><img src="{{category.icon}}" alt="" style="max-height:100px"></a>
+        <div class="card bg-transparent border-0 h-100 p-1">
+          <div class="text-center h-100">
+            <a href="{{category.url}}"><img src="{{category.icon}}" class="h-100" alt=""></a>
           </div>
         </div>
         {% else %}
-        <div class="card bg-black border-0" >
+        <div class="bg-black border-0 h-100" >
           <a class="link-dark-box" href="{{category.url}}">
-          <div class="card-body text-center card-body border border-3 border-black">
-            <h4 class="card-title">{{category.title}}</h4>
+          <div class="text-center border border-3 border-black">
+            <h4 class="mx-1">{{category.title}}</h4>
           </div>
         </a>
         </div>

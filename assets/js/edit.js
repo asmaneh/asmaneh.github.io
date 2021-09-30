@@ -219,7 +219,7 @@ tinymce.init({
   language: 'fa',
   directionality: 'rtl',
     plugins: 'preview autolink autosave save footnotes directionality visualblocks visualchars fullscreen image link media template table charmap hr anchor advlist lists wordcount charmap emoticons',
-    toolbar: 'undo redo | rtl ltr | bold italic underline strikethrough | formatselect fontsizeselect | footnotes | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | table | forecolor backcolor casechange permanentpen formatpainter removeformat | charmap emoticons | fullscreen  preview | insertfile image media pageembed link anchor',
+    toolbar: 'undo redo | rtl ltr | bold italic underline strikethrough | formatselect | footnotes | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | table | forecolor backcolor casechange permanentpen formatpainter removeformat | charmap emoticons | fullscreen  preview | insertfile image media pageembed link anchor',
     selector: '#editor'
 });
 $("#embdMedia").change(function () {

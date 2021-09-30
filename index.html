@@ -9,7 +9,7 @@ layout: default
     <div class="container-fluid px-5 py-4">
       <div class="row">
   {% assign recent_section = site.posts %}
-  {% for post in recent_section limit: 6 %}
+  {% for post in recent_section limit: 12 %}
   {% include cardHorizental.html %}
   {%endfor%}
       </div>
