@@ -6,7 +6,7 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
 });
 $(document).ready(function(){
   $('.fnoteBtn').on('click', function () {
-    alert(decodeURI($(this).data('content')))
+    window.location.replace('#fn'+$(this).text())
   })
 $('#editPost').on('click', function () {
   editPost($(this).data('slug'));

@@ -253,3 +253,12 @@ blockquote p {
 }
 .img-gallery a {flex-grow: 1;}
 .img-gallery img {height: 200px;width: 100%; flex-grow: 1; object-fit: cover; margin: 2px;}
+.fnoteBtn {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+  vertical-align: super;
+}

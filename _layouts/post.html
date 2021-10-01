@@ -20,6 +20,14 @@ layout: default
         <div class="col col-lg-8" markdown="1">
           {{page.content}}
           {{page.embedCode}}
+          {% if page.footnotes%}
+              <h6>یادداشت‌‌ها</h6>
+              <ul class="list-group list-group-flush small pb-2">
+                {% for fnote in page.footnotes %}
+                <li id="fn{{fnote.number}}" class="list-group-item p-0 border-0">{{fnote.number}}-{{fnote.content}}</li>
+                {% endfor%}
+              </ul>
+          {% endif %}
         </div>
       </div>
       <div class="row">
@@ -71,7 +79,7 @@ layout: default
         </div>
         {% endunless %}
       </div>
-        <div class="row justify-content-md-center admin editor" style="display:none;">
+        <div class="row justify-content-md-center admin reviewer" style="display:none;">
           <div class="col col-lg-8 d-flex flex-column text-center">
             <div class="h4 border border-dark border-3 mb-0 border-bottom-0 p-3">
               مدیریت

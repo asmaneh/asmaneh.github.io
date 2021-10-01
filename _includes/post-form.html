@@ -47,7 +47,7 @@
             <select class="form-control" id="postType">
               <option value=""></option>
               {% for type in site.types%}
-              <option value="{{type.slug}}">{{type.title}}</option>
+              <option {%unless type.slug == 'blog'%}class="admin reviewer" style="display:none;"{%endunless%} value="{{type.slug}}">{{type.title}}</option>
               {% endfor %}
             </select>
           </div>
