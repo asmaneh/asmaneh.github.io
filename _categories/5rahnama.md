@@ -1,6 +1,6 @@
 ---
 title: راهنمای منابع و پژوهش
 slug: rahnama
-type: bap
+type: library
 permalink: /bap/rahnama
 ---

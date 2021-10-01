@@ -1,6 +1,6 @@
 ---
 title: آرشیو فصلنامۀ گلستان هنر
 slug: golestanehonar
-type: bap
+type: library
 permalink: /bap/golestanehonar
 ---
