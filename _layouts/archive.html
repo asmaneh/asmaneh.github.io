@@ -16,7 +16,7 @@ layout: default
           {% if category.icon %}
           <a href="{{category.url}}" class="mx-1"><img src="{{category.icon}}" alt="{{category.title}}" class="nav-icon"></a>
           {% else %}
-          <a href="{{category.url}}" class="btn border-3 bold bg-transparent border-dark rounded-0" style="font-weight:bold;">{{category.title}}</a>
+          <a href="{{category.url}}" class="btn border-3 bold bg-transparent border-dark rounded-0 mx-1" style="font-weight:bold;">{{category.title}}</a>
           {% endif %}
         </div>
         {% endfor %}
