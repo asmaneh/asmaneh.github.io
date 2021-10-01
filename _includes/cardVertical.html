@@ -51,7 +51,7 @@
               <div class="p-3">
                 <h5 class="card-title"><a href="{{post.url}}">{% if post.shortTitle%}{{post.shortTitle}}{%else%}{{post.title}}{%endif%}</a></h5>
                 {% unless post.authors == 'asmaneh'%}{%if pageauthorurl%}<a href="{{pageauthorurl}}"><h6>{{pageauthor}}</h6></a>{%else%}<h6>{{pageauthor}}</h6>{%endif%}{% endunless %}
-                <p class="card-text small">{% if post.excerpt %}{{post.excerpt | markdownify | truncatewords: maxWords  | strip_html}}{%else%}{{post.content | markdownify | truncatewords: maxWords  | strip_html}}{% endif %}</p>
+                <div class="card-text small">{{post.excerpt | strip_html | truncatewords: maxWords}}</div>
               </div>
             </div>
           </div>
