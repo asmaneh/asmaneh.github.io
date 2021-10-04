@@ -3,6 +3,7 @@
 {% if typ %}{% assign pagetopcat = typ.title %}{% assign pagetopcatimg = typ.icon %}{% assign pagetopcaturl = typ.url %}{% endif %}
 {% endfor %}
 {% endif %}
+{% assign pagecontent = page.content | strip_newlines%}
 <section id="topSection" class="py-5 bg-black" style="{% if page.background %} background-image:linear-gradient(#000000dd, #000000dd),url('{{page.background}}'); {%else%}background-image:linear-gradient(#000000dd, #000000dd),url('/assets/img/topSectionBg.jpg');{%endif%}">
   <div class="container-fluid">
     <div class="col-12">
@@ -14,7 +15,7 @@
               </div>
               {%endif%}
               <div class="col-sm mt-5">
-                <div class="card-body border border-4 border-white text-white mt-0  bg-transparent p-0">
+                <div class="card-body border border-4 border-white text-white mt-0 p-0" style="background-color: #0009">
                   {% if pagetopcat %}
                   <div class="d-flex flex-row mb-0">
                         <a href="{{pagetopcaturl}}">
@@ -28,10 +29,10 @@
                     {% if page.icon %}
                     <img src="{{page.icon}}" alt="{{page.title}}" class="title-icon top-img">
                     {% else %}
-                    <h1 class="card-title mx-3">{{page.title}} </h1>
+                    <h1 class="card-title mx-3 text-shadow">{{page.title}} </h1>
                     {%endif%}
-                    <h4><?php echo $author;  ?></h4>
-                    <p class="lead card-text"><?php echo $excerpt;  ?></p>
+                    {% if page.subTitle %}{% unless page.subTitle == "null"%}<h5 class="text-shadow mx-3">{{page.subTitle}}</h5>{%endunless%}{% endif%}
+                    {%unless pagecontent == ""%}<p class="mx-3">{{pagecontent}}</p>{%endunless%}
                   </div>
                   <div class="d-flex flex-row mt-0 justify-content-end">
                     <div class="h5 py-2 px-3 mt-auto border bg-transparent border-3 border-white text-white mb-0 border-bottom-0 border-right-0">
