@@ -11,8 +11,6 @@ layout: default
 {% assign pageauthor = page.authors %}
 {% endif %}
 {% endfor %}
-<style>
-</style>
 <main role="main">
 
   {% include sectionPostTop.html %}
@@ -31,20 +29,16 @@ layout: default
                 {% endfor%}
               </ul>
           {% endif %}
-        </div>
-      </div>
-      <div class="row">
-      </div>
-      <div class="row">
-        {% if page.gallery %}
-        <div class="card-columns">
-          {% for image in page.gallery %}
-          <div class="card">
-            <a class="card-img-top" href="{{ image.image_path }}" data-title="{{image.title}}" data-toggle="lightbox" data-gallery="example-gallery"><img class="card-img-top" src="{{ image.image_path }}" alt="{{ image.title}}"></a>
+          {% if page.gallery %}
+          <div class="card-columns">
+            {% for image in page.gallery %}
+            <div class="card">
+              <a class="card-img-top" href="{{ image.image_path }}" data-title="{{image.title}}" data-toggle="lightbox" data-gallery="example-gallery"><img class="card-img-top" src="{{ image.image_path }}" alt="{{ image.title}}"></a>
+            </div>
+            {% endfor %}
           </div>
-          {% endfor %}
+          {% endif %}
         </div>
-        {% endif %}
       </div>
       <div class="row justify-content-md-center">
         <div class="col col-lg-8 d-flex flex-column text-center">
