@@ -9,24 +9,35 @@ layout: default
     <div class="container-fluid px-5 py-4">
       <div class="row">
   {% assign recent_section = site.posts | where_exp: 'post', 'post.types != "gallery"'%}
-  {% for post in recent_section limit: 12 %}
+  {% for post in recent_section limit: 6 %}
   {% include cardHorizental.html %}
   {%endfor%}
       </div>
+      {% assign recent_gallery = site.posts | where: "types", "gallery" %}
+      {% for post in recent_gallery limit:1 %}
+      <div class="row py-1">
+        {% include sectionGallery.html %}
+      </div>
+      {% endfor %}
+      <div class="row">
+        {% for post in recent_section offset:6 limit: 6 %}
+        {% include cardHorizental.html %}
+        {%endfor%}
+      </div>
       <div class="card-deck mt-4">
-        {% assign recent_section_sm = site.posts %}
-        {% for post in recent_section_sm offset:6 limit: 3 %}
+        {% for post in recent_section offset:12 limit: 3 %}
         {% include cardSmall.html %}
         {%endfor%}
 
       </div>
     </div>
   </section>
-  {% assign recent_gallery = site.posts | where: "types", "gallery" %}
-  {% for post in recent_gallery limit:1 %}
-  {% include sectionGallery.html %}
-  {% endfor %}
-
+  <section>
+    <div class="container-fluid px-5">
+    </div>
+  </section>
+  <section>
+  </section>
 
   <section class="bg-black text-light">
     <div class="container-fluid py-4">

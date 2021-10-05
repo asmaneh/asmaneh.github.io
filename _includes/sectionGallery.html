@@ -1,16 +1,77 @@
-<section class="bg-dark text-white">
-  <div class="container-fluid">
-    <!-- <div class="row px-4">
-      <div class="h3 py-2 px-3 mt-auto border border-3 border-light mb-3">
-        مجموعه عکس: {{post.title}}
+{% assign botcat = false %}
+{% assign postthumbnail = false %}
+{% for type in post.types %}{% assign typ = site.types | where: 'slug', type | first %}
+{% if typ %}{% assign topcat = typ.title %}{% assign topcatimg = typ.icon %}{% assign topcaturl = typ.url %}{% endif %}
+{% endfor %}
+{% for category in post.categories %}{% assign cat = site.categories | where: 'slug', category | first %}
+{% if cat %}{% assign botcat = cat.title %}{% assign botcaturl = cat.url %}{% endif %}
+{% endfor %}
+{% for author in post.authors %}{% assign auth = site.authors | where: 'slug', author | first %}
+{% if auth %}
+{% assign pageauthor = auth.title %}
+{% if auth.image %}{% assign pageauthorimg = auth.image %}{% endif %}
+{% assign pageauthorurl = auth.url %}
+{% else %}
+{% assign pageauthorimg = false %}
+{% assign pageauthor = post.authors %}
+{% assign pageauthorurl = false %}
+{% endif %}
+{% endfor %}
+{% if post.featureImg %}
+{% assign excerptn = 20 %}
+{%else%}
+{% assign excerptn = 50 %}
+{%endif%}
+{% if post.types == 'blog' %}
+  {% if pageauthorimg %}
+    {% assign postthumbnail = pageauthorimg %}
+  {% elsif post.featureImg %}
+    {% assign postthumbnail = post.featureImg %}
+  {% endif %}
+{% elsif post.featureImg %}
+{% assign postthumbnail = post.featureImg %}
+{%endif%}
+{% if postthumbnail %}{% assign maxWords = 100 %}{% else %}{% assign maxWords = 200 %}{%endif%}
+<div class="col-sm-12 mt-3">
+  <div class="card bg-transparent border-0 p-0">
+      <div class="row no-gutters">
+          {% if postthumbnail %}
+          <div class="col-sm-8 card-image card-image-hr">
+            <a href="{{post.url}}">
+            <div class="square border border-3 border-dark" style="background-image: url('{{postthumbnail}}'); background-size: cover;height: 350px;">
+            </div>
+          </a>
+          </div>
+          {%endif%}
+          <div class="col-sm mt-2 d-flex align-items-center" >
+            <div class="card-body border border-3 border-black mt-0  bg-light p-0">
+              <div class="d-flex flex-row mb-0 justify-content-start">
+              <a class="link-light-box" href="{{topcaturl}}">
+                  <div class="py-2 px-3 mt-auto border bg-light border-3 border-black mb-0 border-top-0 border-left-0">
+                    {{topcat}}
+                  </div>
+              </a>
+              </div>
+              <div class="px-3">
+                <h5 class="card-title mb-0"><a href="{{post.url}}">{% if post.shortTitle%}{{post.shortTitle}}{%else%}{{post.title  | truncatewords: 10}}{%endif%}</a></h5>
+                {% unless post.authors == 'asmaneh'%}{%if pageauthorurl %}<a href="{{pageauthorurl}}"><h6>{{pageauthor}}</h6></a>{%else%}<h6>{{pageauthor}}</h6>{%endif%}{% endunless %}
+                <p class="card-text">{{post.excerpt | strip_html | truncatewords: maxWords }}</p>
+              </div>
+              <div class="d-flex flex-row mb-0 justify-content-end">
+                {% if botcat %}
+                <a class="link-light-box" href="{{botcaturl}}">
+                    <div class="py-2 px-3 mt-auto border bg-light border-3 border-black mb-0 border-bottom-0 border-right-0">
+                      {{botcat}}
+                    </div>
+                </a>
+                {% endif %}
+                <a class="link-light-box" href="{{post.url}}">
+                  <div class="persianDate py-2 px-3 mt-auto border bg-light border-3 border-black mb-0 border-bottom-0 border-right-0" data-timestamp="{{post.date | date: '%s'}}">
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
       </div>
-    </div> -->
-    <div class="row img-gallery">
-      {% if post.gallery %}
-      {% for image in post.gallery %}
-      <a href="{{ image.image_path }}" data-title="{{image.title}}" data-toggle="lightbox" data-gallery="example-gallery"><img class="img-fluid" src="{{ image.image_path }}" alt="{{ image.title}}"></a>
-      {% endfor %}
-      {% endif%}
     </div>
-  </div>
-</section>
+</div>
