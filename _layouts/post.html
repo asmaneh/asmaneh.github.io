@@ -30,10 +30,12 @@ layout: default
               </ul>
           {% endif %}
           {% if page.gallery %}
-          <div class="card-columns">
+          <div class="card-columns pt-5">
             {% for image in page.gallery %}
             <div class="card">
-              <a class="card-img-top" href="{{ image.image_path }}" data-title="{{image.title}}" data-toggle="lightbox" data-gallery="example-gallery"><img class="card-img-top" src="{{ image.image_path }}" alt="{{ image.title}}"></a>
+              <a class="card-img-top" href="{{ image.image_path }}" data-title="{{image.title}}" data-toggle="lightbox" data-gallery="example-gallery">
+                <div class="square" style="background-image: url('{{ image.image_path }}')"></div>
+              </a>
             </div>
             {% endfor %}
           </div>

@@ -22,15 +22,11 @@
 {%else%}
 {% assign excerptn = 50 %}
 {%endif%}
-{% if post.types == 'blog' %}
-  {% if pageauthorimg %}
-    {% assign postthumbnail = pageauthorimg %}
-  {% elsif post.featureImg %}
+  {% if post.featureImg %}
     {% assign postthumbnail = post.featureImg %}
+  {% elsif pageauthorimg %}
+    {% unless post.authors == 'asmaneh'%}{% assign postthumbnail = pageauthorimg %}{%endunless%}
   {% endif %}
-{% elsif post.featureImg %}
-{% assign postthumbnail = post.featureImg %}
-{%endif%}
 {% if postthumbnail %}{% assign maxWords = 100 %}{% else %}{% assign maxWords = 200 %}{%endif%}
 <div class="col-sm-6 mt-3">
   <div class="card bg-transparent border-0 p-0">
