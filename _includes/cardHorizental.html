@@ -4,7 +4,7 @@
 {% if typ %}{% assign topcat = typ.title %}{% assign topcatimg = typ.icon %}{% assign topcaturl = typ.url %}{% endif %}
 {% endfor %}
 {% for category in post.categories %}{% assign cat = site.categories | where: 'slug', category | first %}
-{% if cat %}{% assign botcat = cat.title %}{% assign botcaturl = cat.url %}{% endif %}
+{% if cat %}{%unless cat.slug == page.slug %}{% assign botcat = cat.title %}{% assign botcaturl = cat.url %}{%endunless%}{% endif %}
 {% endfor %}
 {% for author in post.authors %}{% assign auth = site.authors | where: 'slug', author | first %}
 {% if auth %}
@@ -42,6 +42,7 @@
           <div class="col-sm mt-2" >
             <div class="card-body border border-3 border-black mt-0  bg-light p-0">
               {% unless post.types == page.slug%}
+              {% unless post.types == page.type%}
               <div class="d-flex flex-row mb-0  ">
                 <a href="{{topcaturl}}">
                   <div class="h5 mt-auto bg-light mb-0 border-0">
@@ -50,12 +51,14 @@
                 </a>
               </div>
               {%endunless%}
+              {%endunless%}
               <div class="px-3">
                 <h5 class="card-title mb-0"><a href="{{post.url}}">{% if post.shortTitle%}{{post.shortTitle}}{%else%}{{post.title  | truncatewords: 10}}{%endif%}</a></h5>
                 {% unless post.authors == 'asmaneh'%}{%if pageauthorurl %}<a href="{{pageauthorurl}}"><h6>{{pageauthor}}</h6></a>{%else%}<h6>{{pageauthor}}</h6>{%endif%}{% endunless %}
                 <p class="card-text small">{{post.excerpt | strip_html | truncatewords: maxWords }}</p>
               </div>
               <div class="d-flex flex-row mb-0 justify-content-end">
+                {% if post.categories == page.slug%}aaaa{%endif%}
                 {% if botcat %}
                 <a class="link-light-box" href="{{botcaturl}}">
                     <div class="py-2 px-3 mt-auto border bg-light border-3 border-black mb-0 border-bottom-0 border-right-0">

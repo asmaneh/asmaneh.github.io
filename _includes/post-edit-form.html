@@ -1,0 +1,147 @@
+<section class="py-5 user">
+  <form id="sendPost">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+          <label for="postTitle">عنوان</label>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" id="postTitle" placeholder="عنوان یادداشت" value="" required>
+            <div class="input-group-append">
+              <button id="featureBtn" type="button" class="btn btn-outline-secondary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                شاخص
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group">
+          <label for="postType">نویسنده</label>
+          <select class="form-control" id="postAuthor">
+            <option value=""></option>
+            {% for author in site.authors%}
+            <option value="{{author.slug}}">{{author.title}}</option>
+            {% endfor %}
+            <option value="other">سایر</option>
+          </select>
+          <input class="form-control" type="text" name="postOtherAuthor" id="postOtherAuthor" value="" style="display:none;">
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <label for="publishDate">تاریخ</label>
+          <input type="text" class="form-control" id="publishDate" placeholder="تاریخ انتشار ..." autocomplete="off"/>
+          <input type="hidden" id="publishDateU" />
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group">
+          <label for="poststatus">وضعیت</label>
+          <select class="form-control" id="postStatus"  selected='false'>
+            <option value="false" id="draft" value="false">پیش‌‌نویس</option>
+            <option value="true" id="published" value="true">انتشار</option>
+          </select>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="form-group">
+            <label for="postType">گروه</label>
+            <select class="form-control" id="postType">
+              <option value=""></option>
+              {% for type in site.types%}
+              <option {%unless type.slug == 'blog'%}class="admin reviewer" style="display:none;"{%endunless%} value="{{type.slug}}">{{type.title}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="form-group">
+            <label for="postCategory">دسته</label>
+            <select class="form-control" id="postCategory">
+              <option value=""></option>
+              {% for category in site.categories%}
+              <option value="{{category.slug}}" class="{{category.type}}">{{category.title}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="postTags">برچسب‌‌ها</label>
+            <input id="postTags" type="text" value="" data-role="tagsinput" aria-describedby="postTagsHelp" />
+            <small id="postTagsHelp" class="form-text text-muted">بعد از ورود هر برچسب enter بزنید.</small>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+      </div>
+      <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 git" id="featureImg">
+          <label>تصویر شاخص</label>
+          <input type="file" class="uploadImg" id="file" >
+          <a href="javascript:void(0)" class="uploadGit upload uploadImg btn btn-secondary" id="uploadFImg" data-commit="upload post feature image" data-path="assets/img/posts/" data-name="postSlug">بارگذاری</a>
+          <a href="" class="image-link uploadedImg btn btn-success" target="_blank" style="display: none;">نمایش</a>
+          <a href="javascript:void(0)" class="image-delete uploadedImg btn btn-danger" style="display: none;">حذف</a>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group" style="display:none;">
+          <label for="postSort">ترتیب نمایش پست در پرونده</label>
+          <input type="number" id="postSort" class="form-control" name="postSort" min="1" max="50">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 git" id="attachPDF">
+          <label>فایل پی‌‌دی‌‌اف پیوست</label>
+          <input type="file" class="uploadImg" id="pdfFile" >
+          <a href="javascript:void(0)" class="uploadGit upload uploadImg btn btn-secondary" id="uploadFPdf" data-commit="upload post pdf attachment" data-path="assets/pdf/" data-name="postSlug">بارگذاری</a>
+          <a href="" class="pdf-link uploadedImg btn btn-success" target="_blank" style="display: none;">نمایش</a>
+          <a href="javascript:void(0)" class="image-delete uploadedImg btn btn-danger" style="display: none;">حذف</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <label for="postExcerpt">چکیده</label>
+          <textarea name="postExcerpt" id="postExcerpt" class="form-control" maxlength="500" placeholder="حداکثر ۵۰۰ کاراکتر..."></textarea>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+          <label for="postText">متن</label>
+          <textarea id="editor" class="form-control" placeholder="متن"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="embdMedia">
+            <label class="form-check-label" for="embdMedia">
+              محتوای چندرسانه‌‌ای (آپارات، ساندکلاد، یوتیوب، و ...)
+            </label>
+          </div>
+        </div>
+        <div class="col-12 form-group" style="display:none;">
+          <label for="embdMediaCode">کد امبد</label>
+          <textarea class="form-control" id="embdMediaCode" style="direction: ltr;" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <label>سایر تصاویر</label>
+        <button type="button" class="btn btn-secondary btn-sm ml-4" onclick="addImage2Gallary()" name="addImage" id="addImage">افزودن تصویر</button>
+        <div class="col-12 p-3 git" id="postGallary">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button id="send" type="button" class="btn btn-primary btn-block mb-2"><div id="loadingIcon" class="spinner-border spinner-border-sm" role="status" style="display:none;"> <span class="sr-only">Loading...</span> </div> ارسال</button>
+        </div>
+      </div>
+      <div class="row text-center" id="alertEdited" style="display:none;">
+        <div class="col-12">
+          <div class="alert alert-success" role="alert">
+            این مطلب با موفقیت منتشر شد.
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>

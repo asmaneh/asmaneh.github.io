@@ -12,11 +12,11 @@
     <link rel="stylesheet" href="/assets/css/asmaneh.css?v=2.423">
     <script type="text/javascript" src="/assets/vendors/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/vendors/bootstrap.min.js"></script>
-    {% if page.jsFile == 'edit.js' %}<script src="/assets/vendors/markdown.js"></script>{% endif %}
-    {% if page.jsFile == 'edit.js' %}<script src="/assets/vendors/to-markdown.js"></script>{% endif %}
-    {% if page.jsFile == 'edit.js' %}<script src="/assets/vendors/bootstrap-markdown.js"></script>{% endif %}
-    {% if page.jsFile == 'edit.js' %}<script src="/assets/vendors/bootstrap-markdown.fa.js"></script>{% endif %}
-    {% if page.jsFile == 'edit.js' %}<script src="/assets/vendors/bootstrap-tagsinput/tagsinput.js"></script>{% endif %}
+    {% if page.jsFile == 'edit.js' or page.collection == 'posts' %}<script src="/assets/vendors/markdown.js"></script>{% endif %}
+    {% if page.jsFile == 'edit.js' or page.collection == 'posts' %}<script src="/assets/vendors/to-markdown.js"></script>{% endif %}
+    {% if page.jsFile == 'edit.js' or page.collection == 'posts' %}<script src="/assets/vendors/bootstrap-markdown.js"></script>{% endif %}
+    {% if page.jsFile == 'edit.js' or page.collection == 'posts' %}<script src="/assets/vendors/bootstrap-markdown.fa.js"></script>{% endif %}
+    {% if page.jsFile == 'edit.js' or page.collection == 'posts' %}<script src="/assets/vendors/bootstrap-tagsinput/tagsinput.js"></script>{% endif %}
     <script src="/assets/vendors/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="/assets/vendors/tinymce/jquery.tinymce.min.js"></script>
     <script src="/assets/vendors/lightbox/ekko-lightbox.min.js"></script>
