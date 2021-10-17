@@ -1,7 +1,6 @@
 ---
 layout: default
 ---
-{{page.collection}}
 {% for author in page.authors %}{% assign auth = site.authors | where: 'slug', author | first %}
 {% if auth %}
 {% assign pageauthor = auth.title %}
