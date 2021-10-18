@@ -4,6 +4,33 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ site.title }} {% if page.title %} | {{ page.title }}{% endif %}</title>
+    {% if page.title%}{% assign pagecontent_description = page.content | markdownify | replace: '.', '. ' | replace: '</h2>', ': ' | replace: '</h3>', ': ' | replace: '</h4>', ': ' | strip_html | strip_newlines | replace: '  ', ' ' | truncate: 160 %}{% endif %}
+    <meta name="description" content="{% if pagecontent_description.size > 10 %}{{ pagecontent_description }}{% else %}{{ site.description }}{% endif %}">
+
+    <link rel="shortcut icon" type="image/png" href="/assets/img/icon-192x192.png">
+    <link rel="shortcut icon" sizes="192x192" href="/assets/img/icon-192x192.png">
+    <link rel="apple-touch-icon" href="/assets/img/icon-192x192.png">
+
+     <!-- Facebook integration -->
+    <meta property="og:title" content="{{ page.title }}"/>
+    {% if page.featureImg %}<meta property="og:image" content="{{ page.featureImg | prepend: site.url }}"/>{% endif %}
+    <meta property="og:url" content="{{ page.url | prepend: site.url }}"/>
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="{{ site.title }}"/>
+    <meta property="og:description" content="{% if pagecontent_description.size > 10 %}{{ pagecontent_description }}{% else %}{{ site.description }}{% endif %}"/>
+
+    <!-- Twitter integration -->
+    <meta name="twitter:card" content="summary">
+    {% if site.twitter_url %}<meta name="twitter:site" content="{{ site.twitter_url }}">{% endif %}
+    <meta name="twitter:title" content="{{ page.title }}" />
+    {% if page.featureImg %}<meta name="twitter:image" content="{{ site.url }}{{ page.featureImg }}" />{% endif %}
+    <meta name="twitter:url" content="{{ site.url }}{{ page.url }}" />
+    <meta name="twitter:description" content="{% if pagecontent_description.size > 10 %}{{ pagecontent_description }}{% else %}{{ site.description }}{% endif %}" />
+
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.url }}">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ "/sitemap.xml" | prepend: site.url }}" />
+
     <link rel="stylesheet" href="/assets/vendors/bootstrap.min.css">
     {% if page.jsFile == 'edit.js' %}<link rel="stylesheet" href="/assets/vendors/bootstrap-markdown.min.css">{% endif %}
     {% if page.jsFile == 'edit.js' %}<link rel="stylesheet" href="/assets/vendors/bootstrap-tagsinput/tagsinput.css">{% endif %}
@@ -48,7 +75,7 @@
   window.simpleJekyllSearch = new SimpleJekyllSearch({
     searchInput: document.getElementById('search-input'),
     resultsContainer: document.getElementById('results-container'),
-    json: '{{ site.baseurl }}/search.json',
+    json: '{{ site.url }}/search.json',
     searchResultTemplate: '<li><a href="{url}?query={query}" title="{desc}">{title}</a></li>',
     noResultsText: 'نتیجه‌‌ای یافت نشد.',
     limit: 10,

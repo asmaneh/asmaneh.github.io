@@ -227,15 +227,14 @@ function deleteUser(id) {
 function reloadPage() {
   location.reload();
 }
-function copyToCilpboard(inputID) {
+function copyToCilpboard() {
  /* Get the text field */
- var copyText = document.getElementById(inputID);
+ var copyText = document.getElementById('shortLink');
 
  /* Select the text field */
  copyText.select();
  copyText.setSelectionRange(0, 99999); /* For mobile devices */
 
  /* Copy the text inside the text field */
- document.execCommand("copy");
-
+  navigator.clipboard.writeText(copyText.value);
 }
