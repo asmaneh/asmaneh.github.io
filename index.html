@@ -36,9 +36,11 @@ layout: default
   <section class="bg-black text-light">
     <div class="container-fluid py-4">
       <div class="row px-4">
+        <a href="{{bultCat.url}}" class="text-light">
         <div class="h3 py-2 px-3 mt-auto border border-3 border-light mb-3">
           پرونده {{bultCat.title}}
         </div>
+        </a>
       </div>
       <div class="card-deck">
         {% assign special_issue = site.posts | where: "categories", bultCat.slug %}
@@ -81,9 +83,11 @@ layout: default
   <section class="bg-black text-light">
     <div class="container-fluid py-4">
       <div class="row px-4">
+        <a href="/bulletins" class="text-light">
         <div class="h3 py-2 px-3 mt-auto border border-3 border-light mb-3">
           سایر پرونده‌ها
         </div>
+        </a>
       </div>
       <div class="card-deck">
         {% for bultCat in bultCats offset:1 limit:4 %}
