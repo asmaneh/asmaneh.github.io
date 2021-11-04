@@ -243,3 +243,9 @@ $('#postType').change(function () {
     $('#postSort').parent().hide();
   }
 })
+$(document).on( 'change keyup paste input', 'input[type="text"],textarea', function(){
+  var value = $(this).val();
+  if (value.indexOf('"') != -1) {
+    $(this).val(value.replace(/\"/g, "'"));
+  }
+} );
