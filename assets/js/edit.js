@@ -32,7 +32,7 @@ if (urlParams.get('id')) {
 
 } else {
   var idTag = "";
-  var postID = makeid(4);
+  var postID = makeid(5);
   $('#uploadFImg').attr('data-name', postID);
   $('#uploadFPdf').attr('data-name', postID);
   $('#postAuthor').val(currentUser.username);
