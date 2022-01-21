@@ -85,6 +85,18 @@ p a {
 .card-title a:hover{
   border-bottom: 2px solid;
 }
+.english {
+  direction: ltr;
+  text-align: left;
+}
+.english blockquote{
+  border-left: 10px solid #ccc;
+  border-right: 0;
+}
+.english blockquote:before{
+  margin-right: 0.25em;
+  margin-left:0;  
+}
 code {
   color: inherit;
 }
