@@ -56,3 +56,6 @@
 - name: library
   label: کتابخانه
   link: /library
+- name: about
+  label: about
+  link: /about/en/
