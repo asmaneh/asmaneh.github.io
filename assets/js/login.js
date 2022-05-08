@@ -5,7 +5,7 @@ $('.form-signin').submit(function(){
 event.preventDefault();
 var user = $('#inputUsername').val();
 var pass = $('#inputPassword').val();
-fetch('https://alitayebi.com/asmaneh/cm/api/collections/get/authors', {
+fetch('https://favela.ir/asmaneh/cm/api/collections/get/authors', {
     method: 'post',
     headers: { 'Content-Type': 'application/json','Authorization': 'Bearer 38211f8b09e9e58ec27947f1812d73' },
     body: JSON.stringify({

@@ -3,7 +3,7 @@ layout: default
 ---
 <?php
 $postID = $_GET['postID'];
-$strJsonFileContents = file_get_contents("https://alitayebi.com/cockpit/api/collections/get/posts?token=a90af541b2addebd0a6b3da1423423");
+$strJsonFileContents = file_get_contents("http://favela.ir/cockpit/api/collections/get/posts?token=a90af541b2addebd0a6b3da1423423");
 // Convert to array
 $array = json_decode($strJsonFileContents, true);
 foreach ($array["entries"] as $row) {

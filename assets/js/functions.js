@@ -1,4 +1,4 @@
-const API_URL = 'https://alitayebi.com/asmaneh/cm';
+const API_URL = 'https://favela.ir/asmaneh/cm';
 const TOKEN   = '38211f8b09e9e58ec27947f1812d73';
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
