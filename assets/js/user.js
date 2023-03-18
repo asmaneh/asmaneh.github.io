@@ -36,6 +36,7 @@ if (urlParams.get('id')) {
           body: JSON.stringify({
               data: {
                 _id: currentProfileID,
+				upload: false,	
                 name: $('#userFullName').val(),
                 username: $('#userUserName').val(),
                 title: $('#userTitle').val(),
