@@ -1,4 +1,4 @@
-const API_URL = 'https://cp.asmaneh.com';
+const API_URL = 'https://cp2.asmaneh.com';
 const TOKEN   = '38211f8b09e9e58ec27947f1812d73';
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);

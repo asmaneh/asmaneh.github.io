@@ -5,7 +5,7 @@ $('.form-signin').submit(function(){
 event.preventDefault();
 var user = $('#inputUsername').val();
 var pass = $('#inputPassword').val();
-fetch('https://cp.asmaneh.com/api/collections/get/authors', {
+fetch('https://cp2.asmaneh.com/api/collections/get/authors', {
     method: 'post',
     headers: { 'Content-Type': 'application/json','Authorization': 'Bearer 38211f8b09e9e58ec27947f1812d73' },
     body: JSON.stringify({
