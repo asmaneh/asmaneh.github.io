@@ -1,21 +1,20 @@
-{% assign botcat = false %}
-{% assign postthumbnail = false %}
+{% assign botcat = false %} {% assign postthumbnail = false %} {% assign pageauthor = false %} {% assign pageauthorurl = false %} {% assign pageauthorimg = false %}
 {% for type in post.types %}{% assign typ = site.types | where: 'slug', type | first %}
-{% if typ %}{% assign topcat = typ.title %}{% assign topcatimg = typ.icon %}{% assign topcaturl = typ.url %}{% endif %}
+  {% if typ %}{% assign topcat = typ.title %}{% assign topcatimg = typ.icon %}{% assign topcaturl = typ.url %}{% endif %}
 {% endfor %}
 {% for category in post.categories %}{% assign cat = site.categories | where: 'slug', category | first %}
-{% if cat %}{%unless cat.slug == page.slug %}{% assign botcat = cat.title %}{% assign botcaturl = cat.url %}{%endunless%}{% endif %}
+  {% if cat %}{%unless cat.slug == page.slug %}{% assign botcat = cat.title %}{% assign botcaturl = cat.url %}{%endunless%}{% endif %}
 {% endfor %}
 {% for author in post.authors %}{% assign auth = site.authors | where: 'slug', author | first %}
-{% if auth %}
-{% assign pageauthor = auth.title %}
-{% if auth.image %}{% assign pageauthorimg = auth.image %}{% endif %}
-{% assign pageauthorurl = auth.url %}
-{% else %}
-{% assign pageauthorimg = false %}
-{% assign pageauthor = post.authors %}
-{% assign pageauthorurl = false %}
-{% endif %}
+  {% if auth %}
+    {% assign pageauthor = auth.title %}
+    {% if auth.image %}{% assign pageauthorimg = auth.image %}{% endif %}
+      {% assign pageauthorurl = auth.url %}
+    {% else %}
+      {% assign pageauthorimg = false %}
+      {% assign pageauthor = post.authors %}
+      {% assign pageauthorurl = false %}
+  {% endif %}
 {% endfor %}
 {% if post.featureImg %}
 {% assign excerptn = 20 %}
