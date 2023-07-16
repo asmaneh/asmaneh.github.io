@@ -1,6 +1,10 @@
 ---
 layout: default
 ---
+  {% assign top_section = site.posts | where: 'featured', true %}
+  {% for post in top_section limit: 1 %}
+  {% include sectionHomeTop.html %}
+  {%endfor%}
   <section class="pt-5 bg-light text-dark" style="min-height: 100vh;">
     <div class="container-fluid px-5 py-4">
       <div class="row">
