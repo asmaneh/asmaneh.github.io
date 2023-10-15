@@ -1,0 +1,26 @@
+---
+layout: none
+---
+[
+  {% for post in site.posts %}
+    {
+        {% if post.authors%}"author": {{post.authors | jsonify }},{%endif%}
+        {% if post.categories%}"category": {{post.categories | jsonify }},{%endif%}
+        {% if post.content%}"content": {{post.content | jsonify }},{%endif%}
+        {% if post.date%}"date": {{post.date | date: '%s' | jsonify }},{%endif%}
+        {% if post.embedCode%}"embedCode": {{post.embedCode  | jsonify }},{%endif%}
+        {% if post.excerpt%}"excerpt": {{post.excerpt | jsonify }},{%endif%}
+        {% if post.featured%}"feature": {{post.featured | jsonify }},{%endif%}
+        {% if post.gallery%}"gallary": {{post.gallery | jsonify }},{%endif%}
+        {% if post.featureImg%}"image": {{post.featureImg | jsonify }},{%endif%}
+        {% if post.featureImg%}"imagePath": {{post.featureImg | jsonify }},{%endif%}
+        {% if post.attachedPDF%}"pdfPath": {{post.attachedPDF | jsonify }},{%endif%}
+        "published": "true",
+        {% if post.slug%}"slug": {{post.slug | jsonify }},{%endif%}
+        {% if post.sortOrder%}"sort": {{post.sortOrder | jsonify }},{%endif%}
+        {% if post.tags%}"tags": {{post.tags | jsonify }},{%endif%}
+        {% if post.types %}"type": {{post.types | jsonify }},{%endif%}
+        {% if post.title%}"title": {{post.title | jsonify }}{%endif%}
+    } {% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]

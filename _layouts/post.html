@@ -15,7 +15,7 @@ layout: default
 
   {% include sectionPostTop.html %}
 
-  <section class="post">
+  <section id="post" class="post">
     <div class="container py-5">
       <div class="row justify-content-md-center">
         <div class="col col-lg-8" markdown="1">
@@ -77,15 +77,15 @@ layout: default
             </p>
           </div>
         </div>
-        {% endunless %}
       </div>
+      {% endunless %}
         <div class="row justify-content-md-center admin reviewer" style="display:none;">
           <div class="col col-lg-8 d-flex flex-column text-center">
             <div class="h4 border border-dark border-3 mb-0 border-bottom-0 p-3">
               مدیریت
             </div>
             <div class="border border-dark border-3 d-flex justify-content-around mt-0 p-3">
-              <button type="button" name="editPost" id="editPost" class="btn btn-primary" data-slug="{{page.slug}}">ویرایش</button>
+              <a href="/post/?slug={{page.slug}}" class="btn btn-primary">ویرایش</a>
               <button type="button" name="deletePost" id="deletePost" class="btn btn-danger" data-slug="{{page.slug}}" data-path="{{page.path}}">حذف</button>
             </div>
           </div>
@@ -125,7 +125,43 @@ layout: default
           {% endfor %}
       </div>
       </section>
+      <s
 </main>
 <script type="text/javascript">
   $("code").parents('p').prop("style", "text-align:left; direction:ltr;");
+  $(document).ready(function(){
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  if (urlParams.get('action') == "edit"){
+      console.log('edit')
+      $('#post').empty();
+      $('#post').html(`
+        {% assign post = page %}
+        {% include post-form.html %}
+      `);
+    postID = "{{post.slug}}";
+    $(main).find('#uploadFImg').attr('data-name', postID);
+    $(main).find('#uploadFPdf').attr('data-name', postID);
+    {% for tag in post.tags%}
+    $(main).find('#postTags').tagsinput('add', "{{tag}}");
+    {%endfor%}
+    $(main).find('#postTitle').val("{{post.title}}");
+    $(main).find('#postType').val("{{post.type}}").trigger('change');
+    $(main).find('#publishDate').persianDatepicker({
+      responsive: true,
+      format: 'L',
+      autoClose: true,
+      altField: '#publishDateU',
+      calendar:{
+        persian:{
+          showHint: true
+        },
+        gregorian:{
+          showHint: true
+        }
+      }
+    }).setDate(parseInt({{post.date | date: '%s'}}));
+  };
+})
+  
 </script>

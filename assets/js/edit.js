@@ -1,6 +1,6 @@
 var post_id;
 if (currentUser === undefined || currentUser === null) {
-  window.location.replace('/');
+  window.location.replace('/404.html');
 }
 $("#publishDate").persianDatepicker({
   initialValue: false,
@@ -17,6 +17,16 @@ $("#publishDate").persianDatepicker({
     }
   }
 });
+if (urlParams.get('slug')){
+  $.getJSON('/posts.json', function(json) {
+    var as=$(json).filter(function (i,n){return n.slug===urlParams.get('slug')});
+    if (as.length > 0) {
+      getPost(as);
+    } else {
+      window.location.replace('/404.html');
+    }
+  });
+}
 if (urlParams.get('id')) {
   var idTag = "_id: "+urlParams.get('id')+",";
   fetch(API_URL+'/api/collections/get/posts', {
@@ -42,7 +52,8 @@ if (urlParams.get('id')) {
 
 }
 $('#send').on('click', function () {
-  console.log(idTag);
+  $('#sendPost').submit()
+  /*
   var postGallary;
   if ($('.gallary-image > .image-link').length > 0) {
     postGallary =[];
@@ -99,16 +110,22 @@ $('#send').on('click', function () {
       window.location.replace('/review/')
     }
   });
+  */
 })
 function getPost(object) {
-  if (object.entries.length > 0) {
-    postID = object.entries[0].slug;
-    post_id= object.entries[0]._id;
+  console.log(object.length);
+  if (object.length > 0) {
+    postID = object[0].slug;
+    console.log(postID);
     $('#uploadFImg').attr('data-name', postID);
     $('#uploadFPdf').attr('data-name', postID);
-    $('#postTags').tagsinput('add', object.entries[0].tags);
-    $('#postTitle').val(object.entries[0].title);
-    $('#postType').val(object.entries[0].type).trigger('change');
+    if (object[0].tags.length > 0){
+      for (let i = 0; i < object[0].tags.length; i++) { 
+        $('#postTags').tagsinput('add', object[0].tags[i]);
+      }
+    }
+    $('#postTitle').val(object[0].title);
+    $('#postType').val(object[0].type).trigger('change');
     $('#publishDate').persianDatepicker({
       responsive: true,
       format: 'L',
@@ -122,23 +139,24 @@ function getPost(object) {
           showHint: true
         }
       }
-    }).setDate(parseInt(object.entries[0].date));
-    if (object.entries[0].sort) {
-      $('#postSort').val(object.entries[0].sort);
+    }).setDate(parseInt(object[0].date)*1000);
+    if (object[0].sort) {
+      $('#postSort').val(object[0].sort);
     } else {
       $('#postSort').val('');
     }
-    if (object.entries[0].otherAuthor == true) {
+    if (object[0].otherAuthor == true) {
       $('#postAuthor').val('other').trigger('change');
-      $('#postOtherAuthor').val(object.entries[0].author)
+      $('#postOtherAuthor').val(object[0].author)
     } else {
-      $('#postAuthor').val(object.entries[0].author).trigger('change');
+      $('#postAuthor').val(object[0].author).trigger('change');
     }
-    $('#postCategory').val(object.entries[0].category);
-
-    $('#editor').html(object.entries[0].content);
-    if (object.entries[0].embedCode) {
-      var embedCode = object.entries[0].embedCode;
+    $('#postCategory').val(object[0].category);
+    $('#postExcerpt').html(object[0].excerpt);
+    tinyMCE.get('editor').setContent(object[0].content);
+    $('#editor').html(object[0].content);
+    if (object[0].embedCode) {
+      var embedCode = object[0].embedCode;
       embedCode = embedCode.replace("<!--", "");
       embedCode = embedCode.replace("-->", "");
       $('#embdMedia').attr('checked', true).trigger('change');
@@ -147,10 +165,10 @@ function getPost(object) {
       $('#embdMedia').attr('checked', false).trigger('change');
       $('#embdMediaCode').val('');
     }
-    $('#featureBtn').attr('aria-pressed', object.entries[0].feature)
-    $('#published').attr('selected',object.entries[0].published);
-    if (obj.entries[0].image) {
-      $('#featureImg > .image-link').attr('href', obj.entries[0].image).attr('data-path', obj.entries[0].imagePath);
+    $('#featureBtn').attr('aria-pressed', object[0].feature)
+    $('#published').attr('selected',object[0].published);
+    if (object[0].image) {
+      $('#featureImg > .image-link').attr('href', object[0].image).attr('data-path', object[0].image);
       $('#featureImg > .uploadImg').hide();
       $('#featureImg > .uploadedImg').show();
     } else {
@@ -158,8 +176,8 @@ function getPost(object) {
       $('#featureImg > .uploadImg').show();
       $('#featureImg > .uploadedImg').hide();
     }
-    if (obj.entries[0].pdfPath) {
-      $('#attachPDF > .pdf-link').attr('href', obj.entries[0].pdfRawPath).attr('data-path', obj.entries[0].pdfPath);
+    if (object[0].pdfPath) {
+      $('#attachPDF > .pdf-link').attr('href', object[0].pdfPath).attr('data-path', object[0].pdfPath);
       $('#attachPDF > .uploadImg').hide();
       $('#attachPDF > .uploadedImg').show();
     } else {
@@ -167,17 +185,17 @@ function getPost(object) {
       $('#attachPDF > .uploadImg').show();
       $('#attachPDF > .uploadedImg').hide();
     }
-    if (obj.entries[0].gallary) {
-      if (obj.entries[0].gallary.length > 0) {
+    if (object[0].gallary) {
+      if (object[0].gallary.length > 0) {
         $('#postGallary').empty();
-        for (var i = 0; i < obj.entries[0].gallary.length; i++) {
+        for (var i = 0; i < object[0].gallary.length; i++) {
           $('#postGallary').append(`
           <div class="row gallary-image">
               <input type="file" class="uploadImg" style="display:none;">
               <a href="javascript:void(0)" class="uploadImg btn btn-secondary" onclick="uploadImage(this)" style="display:none;">بارگذاری</a>
-              <a href="`+obj.entries[0].gallary[i].imageUrl+`" data-path="`+obj.entries[0].gallary[i].imagePath+`" class="image-link uploadedImg btn btn-success" target="_blank">نمایش</a>
+              <a href="`+object[0].gallary[i].image_path+`" data-path="`+object[0].gallary[i].imagePath+`" class="image-link uploadedImg btn btn-success" target="_blank">نمایش</a>
               <a href="javascript:void(0)" class="image-delete uploadedImg btn btn-danger" onclick="deleteImage(this)">حذف</a>
-              <input type="text" class="uploadedImg" value="`+obj.entries[0].gallary[i].image_title+`" name="" placeholder="توضیح عکس" value="" style="width:400px">
+              <input type="text" class="uploadedImg" value="`+object[0].gallary[i].title+`" name="" placeholder="توضیح عکس" value="" style="width:400px">
           </div>
           `)
         }
