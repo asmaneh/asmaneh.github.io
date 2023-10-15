@@ -1,7 +1,7 @@
 --- 
-title: "مجید میرنظامی" 
+title: "سیدمجید میرنظامی" 
 slug: mirnezami 
 subTitle: "null" 
-role: "admin" 
+role: "author" 
 image: "https://raw.githubusercontent.com/asmaneh/asmaneh.github.io/master/assets/img/authors/mirnezami.jfif" 
 --- 
