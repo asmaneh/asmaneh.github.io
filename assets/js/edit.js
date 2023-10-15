@@ -113,10 +113,8 @@ $('#send').on('click', function () {
   */
 })
 function getPost(object) {
-  console.log(object.length);
   if (object.length > 0) {
     postID = object[0].slug;
-    console.log(postID);
     $('#uploadFImg').attr('data-name', postID);
     $('#uploadFPdf').attr('data-name', postID);
     if (object[0].tags.length > 0){
@@ -186,9 +184,14 @@ function getPost(object) {
       $('#attachPDF > .uploadedImg').hide();
     }
     if (object[0].gallary) {
-      if (object[0].gallary.length > 0) {
+      if (object[0].image){
+        var gi = 1;
+      } else {
+        var gi = 0;
+      }
+    if (object[0].gallary.length > gi) {
         $('#postGallary').empty();
-        for (var i = 0; i < object[0].gallary.length; i++) {
+        for (var i = gi; i < object[0].gallary.length; i++) {
           $('#postGallary').append(`
           <div class="row gallary-image">
               <input type="file" class="uploadImg" style="display:none;">
