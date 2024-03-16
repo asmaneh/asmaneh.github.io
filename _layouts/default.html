@@ -75,7 +75,7 @@
   window.simpleJekyllSearch = new SimpleJekyllSearch({
     searchInput: document.getElementById('search-input'),
     resultsContainer: document.getElementById('results-container'),
-    json: '{{ site.url }}/search.json',
+    json: '{{ site.url }}/search.json?v=2',
     searchResultTemplate: '<li><a href="{url}?query={query}" title="{desc}">{title}</a></li>',
     noResultsText: 'نتیجه‌‌ای یافت نشد.',
     limit: 10,

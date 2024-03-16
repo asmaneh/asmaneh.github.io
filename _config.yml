@@ -23,7 +23,7 @@ email: asmanehchannel@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   «آسمانه» شبکه‌ای است برای انتقال اطلاعات و دانش، و گفت‌وگو و نقد در زمینۀ تاریخ و تئوری معماری و هنر، پیوندهای معماری و هنر با انسانیات و فرهنگ، و حوزه‌های میان‌رشته‌ای به‌ویژه در پیوند با رشته‌ها و حوزه‌های تاریخ هنر، نقد هنر، نظریۀ ادبی، انسان‌شناسی فرهنگی، مطالعات فرهنگی، تاریخ فرهنگی، تاریخ اجتماعی، جامعه‌شناسی تاریخی.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://asmaneh.com" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://asmaneh.com" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
 plugins:
